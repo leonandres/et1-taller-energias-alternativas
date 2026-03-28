@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo Estructural Solar | ET N°1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: white; }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6">
+
+    <div class="max-w-4xl w-full">
+        <a href="energia-solar.html" class="text-yellow-500 mb-6 inline-block hover:underline">← Volver a la teoría</a>
+        
+        <div class="glass p-8 rounded-3xl shadow-2xl">
+            <header class="mb-8">
+                <h1 class="text-3xl font-black uppercase tracking-tight">Análisis de carga: El sol como material de obra</h1>
+                <p class="text-slate-400 mt-2 text-sm">Calculá el impacto del sistema fotovoltaico sobre la estructura de perfiles PGC/PGU.</p>
+            </header>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Cantidad de Paneles (450W c/u)</label>
+                        <input type="number" id="paneles" value="6" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Superficie del panel (m²)</label>
+                        <input type="number" id="superficie" value="2.1" step="0.1" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
+                    </div>
+                    <button onclick="analizar()" class="w-full bg-yellow-500 text-black font-black py-4 rounded-xl hover:bg-yellow-400 transition uppercase shadow-lg shadow-yellow-500/20">
+                        Ejecutar Análisis Técnico
+                    </button>
+                </div>
+
+                <div id="resultado" class="bg-black/20 p-6 rounded-2xl border border-white/5 flex flex-col justify-center">
+                    <div class="mb-6">
+                        <span class="text-slate-400 text-xs uppercase">Carga estática adicional:</span>
+                        <div class="text-4xl font-mono text-yellow-400"><span id="pesoTotal">150</span> kg</div>
+                    </div>
+                    <div>
+                        <span class="text-slate-400 text-xs uppercase">Distribución de carga:</span>
+                        <div class="text-2xl font-mono"><span id="kgm2">11.9</span> kg/m²</div>
+                    </div>
+                    <div id="status" class="mt-6 p-3 rounded-lg text-xs font-bold text-center bg-emerald-500/20 text-emerald-400">
+                        DENTRO DE LOS LÍMITES ESTÁNDAR
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function analizar() {
+            const n = document.getElementById('paneles').value;
+            const m2_unit = document.getElementById('superficie').value;
+            
+            // Peso promedio panel + estructura soporte = 25kg
+            const pesoTotal = n * 25;
+            const kgm2 = (pesoTotal / (n * m2_unit)).toFixed(1);
+
+            document.getElementById('pesoTotal').innerText = pesoTotal;
+            document.getElementById('kgm2').innerText = kgm2;
+
+            const status = document.getElementById('status');
+            if (pesoTotal > 400) {
+                status.innerText = "ALERTA: REFORZAR MODULACIÓN DE PERFILERÍA";
+                status.className = "mt-6 p-3 rounded-lg text-xs font-bold text-center bg-red-500/20 text-red-400";
+            } else {
+                status.innerText = "DENTRO DE LOS LÍMITES ESTÁNDAR";
+                status.className = "mt-6 p-3 rounded-lg text-xs font-bold text-center bg-emerald-500/20 text-emerald-400";
+            }
+        }
+    </script>
+</body>
+</html>
