@@ -7,7 +7,85 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    
+<body class="bg-slate-900 text-slate-100 font-sans antialiased">
+
+    <div class="sun-glow"></div>
+
+    <div class="container mx-auto px-4 py-12 max-w-4xl relative z-10">
+        
+        <header class="main-header text-center mb-16">
+            <span class="badge">Módulo: Energías Renovables</span>
+            <h1 class="text-5xl font-black tracking-tight mt-4">ENERGÍA SOLAR</h1>
+            <p class="text-xl text-slate-400 mt-4">Del átomo de silicio a la factura de luz.</p>
+        </header>
+
+        <section class="glass-card mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-yellow-400">¿Cómo funciona un panel?</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="text-slate-300 leading-relaxed">
+                    <p class="mb-4">
+                        Imagina que el panel es un boliche lleno de electrones aburridos (capa de Silicio). Cuando un <strong>fotón</strong> (partícula de luz) entra con suficiente energía, golpea a un electrón y lo "invita a salir".
+                    </p>
+                    <p>
+                        Ese movimiento de electrones hacia la salida es lo que llamamos <strong>corriente eléctrica</strong>. En construcción en seco, estos paneles se integran como pieles de vidrio o sobre estructuras de acero liviano.
+                    </p>
+                </div>
+                <div class="image-placeholder flex items-center justify-center border-2 border-dashed border-slate-700 rounded-xl h-48 bg-slate-800/50">
+                    <span class="text-xs text-slate-500">[Insertar Figura B: Efecto Fotoeléctrico]</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <h2 class="text-2xl font-bold mb-6 text-orange-400 text-center">Simulador de Rendimiento</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="input-group">
+                    <label>Potencia Panel (W)</label>
+                    <input type="number" id="inputWatts" value="450" class="solar-input">
+                </div>
+                <div class="input-group">
+                    <label>Horas Sol Pico (HSP)</label>
+                    <input type="number" id="inputHsp" value="4.5" step="0.1" class="solar-input">
+                </div>
+                <div class="input-group">
+                    <label>Eficiencia Sistema (%)</label>
+                    <input type="number" id="inputEff" value="80" class="solar-input">
+                </div>
+            </div>
+
+            <button onclick="calcular()" class="btn-primary mt-8">
+                Calcular Generación Diaria
+            </button>
+
+            <div id="resultBox" class="mt-12 hidden transition-all duration-500">
+                <div class="grid grid-cols-2 gap-4 text-center">
+                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10">
+                        <p class="text-sm text-slate-400 uppercase">Generación</p>
+                        <p id="outKwh" class="text-3xl font-bold text-yellow-400">0 kWh</p>
+                    </div>
+                    <div class="p-6 bg-white/5 rounded-2xl border border-white/10">
+                        <p class="text-sm text-slate-400 uppercase">Capacidad</p>
+                        <p id="outCarga" class="text-3xl font-bold text-emerald-400">0 cargas</p>
+                    </div>
+                </div>
+                <p class="text-center mt-6 text-sm text-slate-500 italic">
+                    * Estimación basada en paneles monocristalinos estándar.
+                </p>
+            </div>
+        </section>
+
+            <main class = "container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">Energías alternativas: energía solar</h1>
+        <p class="mb-4">La energía solar es una fuente de energía renovable que se obtiene a partir de la radiación del sol. Es una de las formas más limpias y sostenibles de generar electricidad, ya que no produce emisiones de gases de efecto invernadero ni contaminación atmosférica.</p>
+        <p class="mb-4">Existen dos formas principales de aprovechar la energía solar: la energía solar fotovoltaica y la energía solar térmica. La energía solar fotovoltaica utiliza paneles solares para convertir la luz del sol en electricidad, mientras que la energía solar térmica utiliza colectores solares para calentar un fluido que luego se utiliza para generar electricidad o calefacción.</p>
+        <p class="mb-4">La energía solar tiene muchas ventajas, como su abundancia, su bajo costo a largo plazo y su capacidad para reducir la dependencia de los combustibles fósiles. Sin embargo, también tiene algunas desventajas, como su intermitencia (no siempre hay sol) y la necesidad de espacio para instalar los paneles solares.</p>
+        <p class="mb-4">En resumen, la energía solar es una opción prometedora para
+
+    </main>
+
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
