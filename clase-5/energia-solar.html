@@ -168,15 +168,34 @@
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-yellow-500 pl-4">
                 1 - Definición y tipos de radiación
             </h2>
-            <p class="text-justify">
-                La radiación es una forma de energía que se propaga a través del espacio en forma de ondas electromagnéticas o partículas, y puede ser ionizante o no ionizante según su capacidad de afectar la materia.
+
+            <!-- Párrafo introductorio -->
+            <div class="prose prose-slate dark:prose-invert max-w-none">
+                <p class="text-justify text-lg leading-relaxed text-slate-700 dark:text-slate-300">
+                    La <strong class="text-yellow-600 dark:text-yellow-400">radiación</strong> es una forma de energía que se propaga a través del espacio en forma de ondas electromagnéticas o partículas, y puede ser ionizante o no ionizante según su capacidad de afectar la materia.
+                </p>
+            </div>
+
+            <!-- Imagen de radiación general -->
+            <figure class="my-8 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-lg">
+                <img src="imagenes/12-radiacion.png" alt="Concepto general de radiación" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/800x400/1e293b/white?text=Concepto+de+Radiación'">
+                <figcaption class="bg-slate-50 dark:bg-slate-800/50 p-3 text-xs text-slate-500 dark:text-slate-400 text-center border-t border-slate-200 dark:border-slate-700">
+                    Figura 1: representación de los distintos tipos de radiación electromagnética.
+                </figcaption>
+            </figure>
+
+
+            <!-- Comparativa luz vs radiación - Versión fluida y mejorada -->
+            <p class="text-justify text-slate-700 dark:text-slate-300 leading-relaxed my-8">
+                <strong>¿La luz es lo mismo que la radiación?</strong> La respuesta es... <strong>¡no!</strong> 
+                La <strong>luz visible</strong> es solo una pequeña parte del espectro electromagnético que el Sol, o cualquier estrella, emite. 
+                Además de la luz que vemos, el Sol también emite <strong class="text-orange-600 dark:text-orange-400">radiación infrarroja</strong> 
+                (que sentimos como calor) y <strong class="text-purple-600 dark:text-purple-400">radiación ultravioleta</strong> 
+                (invisible para nosotros, pero puede causar quemaduras en la piel y daños en materiales con el tiempo). 
+                De hecho, las tres —visible, infrarroja y ultravioleta— son formas de <strong>radiación electromagnética</strong>, 
+                solo que nuestros ojos evolucionaron para detectar solo una de ellas.
             </p>
 
-            <img src="imagenes/12 - radiacion.png" alt="" sizes="" srcset="">
-
-            <p class ="text-justify">
-                ¿La luz es lo mismo que la radiación? La respuesta es... ¡nop! La luz visible es solo una pequeña parte del espectro electromagnético que el sol (o cualquier estrella) emite. Además de la luz que vemos, el sol también emite radiación infrarroja (que sentimos como calor) y ultravioleta (que no vemos pero puede causar quemaduras). 
-            </p>
 
             <div class="my-8 not-prose">
                 <a href="https://planetario.buenosaires.gob.ar/sites/default/files/2020-04/la%20luz%20-.pdf" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-6 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-yellow-500 dark:hover:border-yellow-500/50 hover:shadow-2xl hover:shadow-yellow-500/10 transition-all duration-300 transform hover:-translate-y-1">
@@ -196,18 +215,44 @@
                 </a>
             </div>
 
-            <p>
-                Para los paneles solares, la luz visible e infrarroja son las más importantes, ya que son las que pueden ser convertidas en electricidad o calor útil para los edificios, ya veremos eso en la sección de fotovoltaica y termosolar.
+
+            <!-- Párrafo de transición a paneles solares -->
+            <p class="text-justify text-slate-700 dark:text-slate-300 leading-relaxed my-6">
+                <span class="font-bold text-blue-700 dark:text-blue-400">Para los paneles solares</span>, la luz visible e infrarroja son las más importantes, ya que son las que pueden ser convertidas en electricidad o calor útil para los edificios. Ya veremos esto en detalle en las secciones de <strong>fotovoltaica</strong> y <strong>termosolar</strong>.
             </p>
 
-            <figure class="my-6 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
-                <img src="imagenes/4 - espectro-electromagnetico.png" alt="Tipos de radiación solar: directa, difusa y reflejada" class="w-full h-auto" onerror="this.src='https://placehold.co/600x300/1e293b/white?text=Diagrama:+Radiación+Directa,+Difusa+y+Reflejada'">
-                <figcaption class="bg-slate-50 dark:bg-slate-800 p-3 text-xs text-slate-500 dark:text-slate-400 text-center">Esquema de los tres tipos de radiación que impactan en un panel solar.</figcaption>
+
+            <!-- Figura 2: espectro electromagnético -->
+            <figure class="my-10 overflow-hidden border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/30 relative group">
+                <div class="relative">
+                    <img src="imagenes/4-espectro-electromagnetico.png" 
+                        alt="Espectro electromagnético completo" 
+                        class="w-full h-auto" 
+                        onerror="this.src='https://placehold.co/800x400/1e293b/white?text=Espectro+Electromagnético'">
+                    
+                    <!-- Botón de expandir - clase unificada .expand-btn -->
+                    <button class="expand-btn absolute bottom-3 right-3 bg-black/70 hover:bg-black/90 text-white p-2 rounded-md transition text-sm backdrop-blur-sm"
+                            data-img-src="imagenes/4-espectro-electromagnetico.png"
+                            data-img-alt="Espectro electromagnético completo - NASA">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <figcaption class="bg-slate-50 dark:bg-slate-800/50 p-4 text-sm text-slate-600 dark:text-slate-400 text-center border-t border-slate-200 dark:border-slate-700">
+                    <span class="font-bold">Figura 2:</span> espectro electromagnético completo. La luz visible es solo una pequeña franja (380-780 nm). Los paneles solares aprovechan desde el ultravioleta hasta el infrarrojo cercano.
+                    <br>
+                    <span class="text-xs text-slate-400 dark:text-slate-500">Fuente: NASA: https://science.nasa.gov/asset/webb/el-espectro-electromagnetico-destacando-los-rangos-de-observacion-de-hubble-webb-y-spitzer/</span>
+                </figcaption>
             </figure>
 
-            <p class="text-justify">
-                Para dimensionar un sistema en una obra, primero hay que entender cómo llega la luz al techo. La radiación no es toda igual; se divide en tres formas que los paneles y colectores aprovechan de distinta manera:
+
+            <!--Párrafo 4-->
+            <p class="text-justify text-slate-700 dark:text-slate-300 leading-relaxed">
+                Para dimensionar un sistema en una obra, primero hay que entender cómo llega la luz al techo. La radiación no es toda igual; se divide en <strong class="text-yellow-600 dark:text-yellow-400">tres formas</strong> que los paneles y colectores aprovechan de distinta manera:
             </p>
+            <!--Lista de formas de radiación-->
             <ul class="list-none space-y-4 my-6 pl-0 not-prose">
                 <li class="bg-white dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex gap-4 items-start">
                     <div class="w-3 h-3 mt-2 rounded-full bg-yellow-500 shrink-0"></div>
@@ -222,12 +267,30 @@
                     <div><strong class="text-orange-600">Radiación reflejada (Albedo):</strong> Es la luz que rebota en las superficies cercanas (el suelo, un techo blanco de chapa, un muro vecino). El albedo varía según la superficie: nieve (0.8-0.9), techo blanco (0.7-0.8), pasto (0.2), asfalto (0.1). En instalaciones modernas se usan <strong>paneles bifaciales</strong> que captan esta luz por su cara trasera.</div>
                 </li>
             </ul>
+
             <figure class="my-6 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
-                <img src="imagenes/2 - tipos-de-radiacion.png" alt="Tipos de radiación solar: directa, difusa y reflejada" class="w-full h-auto" onerror="this.src='https://placehold.co/600x300/1e293b/white?text=Diagrama:+Radiación+Directa,+Difusa+y+Reflejada'">
+                <img src="imagenes/2-tipos-de-radiacion.png" alt="Tipos de radiación solar: directa, difusa y reflejada" class="w-full h-auto" onerror="this.src='https://placehold.co/600x300/1e293b/white?text=Diagrama:+Radiación+Directa,+Difusa+y+Reflejada'">
                 <figcaption class="bg-slate-50 dark:bg-slate-800 p-3 text-xs text-slate-500 dark:text-slate-400 text-center">Esquema de los tres tipos de radiación que impactan en un panel solar.</figcaption>
             </figure>
-            <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl mt-4 text-sm text-blue-800 dark:text-blue-300">
-                <span class="font-bold">📌 Dato técnico:</span> La irradiancia global horizontal (GHI) es la suma de la radiación directa normal (DNI) proyectada sobre la horizontal más la radiación difusa horizontal (DHI): <span class="font-mono">GHI = DHI + DNI × cos θ</span>, donde θ es el ángulo cenital.
+            
+            <!--Formula de irridancia global-->
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-xl mt-6 text-sm text-blue-800 dark:text-blue-300 border-l-4 border-blue-500">
+                <span class="font-bold text-base">📐 Dato técnico: la fórmula de la irradiancia global</span>
+                <p class="mt-2">
+                    La <strong>irradiancia global horizontal (GHI)</strong> es la suma de la radiación directa normal (DNI) proyectada sobre la horizontal más la radiación difusa horizontal (DHI):
+                </p>
+                <div class="font-mono bg-white/50 dark:bg-slate-800/50 p-2 rounded text-center my-2 text-base font-bold">
+                    GHI = DHI + DNI × cos θ
+                </div>
+                <ul class="list-disc pl-5 mt-2 space-y-1 text-xs">
+                    <li><strong>GHI</strong> = Irradiancia <strong>G</strong>lobal <strong>H</strong>orizontal (todo lo que llega al techo)</li>
+                    <li><strong>DHI</strong> = Irradiancia <strong>D</strong>ifusa <strong>H</strong>orizontal (luz dispersada por nubes y atmósfera)</li>
+                    <li><strong>DNI</strong> = Irradiancia <strong>D</strong>irecta <strong>N</strong>ormal (rayos directos del sol, medidos perpendicularmente)</li>
+                    <li><strong>θ</strong> (theta) = ángulo cenital (inclinación de los rayos respecto a la vertical)</li>
+                </ul>
+                <p class="mt-2 text-xs">
+                    💡 <strong>En la práctica:</strong> Para un panel horizontal, si el sol está alto (θ pequeño), cos θ se acerca a 1 y el DNI aporta casi todo su valor. Si el sol está bajo, el DNI se reduce porque los rayos llegan más inclinados.
+                </p>
             </div>
 
             <div class="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/10 border-l-4 border-yellow-400 rounded-r-xl">
@@ -235,6 +298,71 @@
                 <p class="text-sm text-yellow-900/80 dark:text-yellow-200/70">Para maximizar la captación en el hemisferio sur, los paneles deben orientarse hacia el <strong>Norte geográfico</strong> (Azimut 0°). La inclinación ideal para captación anual suele ser igual a la latitud del lugar (ej. ~34° en Buenos Aires). Una mala orientación puede reducir la eficiencia hasta en un 40%.</p>
             </div>
         </section>
+
+
+
+
+
+
+        <!-- Prueba tarjetas -->
+
+<!-- Tarjetas de los 3 tipos de radiación (mejoradas visualmente) -->
+    <div class="grid md:grid-cols-3 gap-6 my-8 not-prose">
+        
+        <!-- Tarjeta 1: Radiación directa -->
+        <div class="group bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-gradient-to-br from-yellow-500 to-yellow-600 p-4 text-white">
+                <div class="text-3xl mb-2">☀️</div>
+                <h4 class="font-black text-lg">Radiación directa</h4>
+            </div>
+            <div class="p-5">
+                <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">
+                    Es la que llega directamente del disco solar sin sufrir desviaciones. Proyecta <strong>sombras definidas</strong> y es la más potente.
+                </p>
+                <div class="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs text-yellow-600 dark:text-yellow-500 font-mono">
+                    💡 Orientación norte para maximizarla
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 2: Radiación difusa -->
+        <div class="group bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-gradient-to-br from-blue-400 to-blue-500 p-4 text-white">
+                <div class="text-3xl mb-2">☁️</div>
+                <h4 class="font-black text-lg">Radiación difusa</h4>
+            </div>
+            <div class="p-5">
+                <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">
+                    Es la luz dispersada por nubes, polvo y atmósfera. Permite generar energía incluso en <strong>días nublados</strong> (80-90% de la radiación total).
+                </p>
+                <div class="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs text-blue-600 dark:text-blue-400 font-mono">
+                    📊 Importante en zonas con alta nubosidad
+                </div>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3: Radiación reflejada (Albedo) -->
+        <div class="group bg-white dark:bg-slate-800/50 rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden hover:shadow-xl hover:border-emerald-500/50 transition-all duration-300 hover:-translate-y-1">
+            <div class="bg-gradient-to-br from-emerald-500 to-emerald-600 p-4 text-white">
+                <div class="text-3xl mb-2">🪞</div>
+                <h4 class="font-black text-lg">Radiación reflejada</h4>
+                <p class="text-xs opacity-90">(Albedo)</p>
+            </div>
+            <div class="p-5">
+                <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">
+                    Es la luz que rebota en superficies cercanas (suelo, techos blancos, paredes). Los <strong>paneles bifaciales</strong> captan esta luz por su cara trasera.
+                </p>
+                <div class="mt-3 pt-3 border-t border-slate-200 dark:border-slate-700 text-xs text-emerald-600 dark:text-emerald-400 font-mono">
+                    🎨 Albedo: nieve(0.9) | techo blanco(0.7) | asfalto(0.1)
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
 
         <!-- SECCIÓN: Seguridad y Mantenimiento -->
         <section id="seccion-mantenimiento" class="mb-20 p-8 rounded-3xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 not-prose">
@@ -512,8 +640,8 @@
             <!-- Opción A -->
             <div class="border rounded-xl p-4 transition-all option-img-container">
                 <div class="relative group">
-                    <img src="imagenes/8 - radiacion-directa-difusa-reflejada.png" alt="Imagen A: Diagrama incorrecto" class="w-full rounded-lg mb-2 cursor-pointer selectable-img" data-opcion="A" data-correcta="false" data-img-src="https://placehold.co/800x500/1e293b/white?text=Imagen+A:+Radiación+INCORRECTA">
-                    <button class="expand-btn absolute bottom-2 right-2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full transition text-sm" data-img-src="imagenes/8 - radiacion-directa-difusa-reflejada.png" data-img-alt="Diagrama incorrecto de radiación">
+                    <img src="imagenes/8-radiacion-directa-difusa-reflejada.png" alt="Imagen A: Diagrama incorrecto" class="w-full rounded-lg mb-2 cursor-pointer selectable-img" data-opcion="A" data-correcta="false" data-img-src="https://placehold.co/800x500/1e293b/white?text=Imagen+A:+Radiación+INCORRECTA">
+                    <button class="expand-btn absolute bottom-2 right-2 bg-black/60 hover:bg-black/80 text-white p-2 rounded-full transition text-sm" data-img-src="imagenes/8-radiacion-directa-difusa-reflejada.png" data-img-alt="Diagrama incorrecto de radiación">
                         🔍 Expandir
                     </button>
                 </div>
