@@ -6,101 +6,455 @@
     <title>Introducción a la Energía Solar | ET N°1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;700&display=swap');
-        body { font-family: 'Onest', sans-serif; background-color: #f8fafc; }
+        @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #0f172a; color: #f1f5f9; }
         .text-justify { text-align: justify; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.8; color: #334155; text-wrap: pretty; }
+        .dark .prose p { color: #cbd5e1; }
+        .prose strong { color: #0f172a; }
+        .dark .prose strong { color: #f8fafc; }
+        .dark .bg-white { background-color: #1e293b; }
+        .dark .bg-slate-100 { background-color: #1e293b; }
+        .dark .text-slate-900 { color: #ffffff; }
+        .nav-clase a {
+            transition: all 0.2s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-clase a:hover {
+            border-bottom-color: #eab308;
+            color: #eab308;
+        }
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-open {
+            transform: translateX(0) !important;
+        }
     </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
 </head>
-<body class="text-slate-800 leading-relaxed">
+<body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
-    <nav class="bg-slate-900 text-white p-4 sticky top-0 z-50">
-        <div class="max-w-4xl mx-auto flex justify-between items-center">
-            <span class="font-bold tracking-tighter">CONSTRUCCIONES ET N°1</span>
-            <a href="calculo-de-eficiencia.html" class="bg-yellow-500 text-black px-4 py-2 rounded-lg font-bold text-sm hover:bg-yellow-400 transition">CALCULADORA →</a>
-        </div>
-    </nav>
+    <!-- Overlay para el sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] hidden"></div>
 
-    <header class="bg-white border-b border-slate-200 py-16 px-6">
-        <div class="max-w-3xl mx-auto">
-            
-            <h1 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">Energía solar</h1>
-
-            <div class="text-justify space-y-4">
-                <p>La energía solar es aquella que se obtiene de la radiación electromagnética (luz, calor y rayos ultravioleta) que emite el Sol. Es considerada una fuente de energía renovable, limpia e inagotable, ya que proviene de un recurso natural que se regenera constantemente y no produce emisiones de gases de efecto invernadero.</p>
-                <p>El sol emite constantemente energía al espacio. Mucha de ella impacta en la Tierra, pero la atmósfera rechaza o dispersa gran parte. Sin embargo, un 30% ingresa al planeta y es absorbida por océanos y continentes. Este flujo de energía es constante, económico y no contaminante.</p>
+    <!-- Sidebar Navegación -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-[70] transform -translate-x-full sidebar-open shadow-2xl overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-black text-xl tracking-tighter text-slate-900 dark:text-white uppercase">Programa 2026</span>
+                <button id="close-sidebar" class="text-slate-500 hover:text-slate-900 dark:hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
             </div>
 
-            <img src = "imagenes/1 - frio-solar-para-climatizacion.jpg" alt="" srcset="">
-            <p class="text-xl text-slate-600 italic">"La energía no se crea ni se destruye, solo se transforma (y el sol nos regala 1000 W/m² para empezar)".</p>
+            <div class="space-y-8">
+                <div>
+                    <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Clases del Módulo</h4>
+                    <div class="space-y-1">
+                        <a href="../index.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            1. Seguridad e higiene
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            2. Renovables vs No Ren.
+                        </a>
+                        
+                        <!-- CLASE ACTUAL ACTIVA -->
+                        <div class="bg-yellow-500/10 dark:bg-yellow-500/20 border-l-4 border-yellow-500 p-3 rounded-r-xl my-2">
+                            <span class="text-yellow-700 dark:text-yellow-500 font-bold text-sm block mb-2">5. Energía solar (Teoría)</span>
+                            <div class="pl-4 space-y-2 border-l border-slate-200 dark:border-slate-700 ml-1 mt-2">
+                                <a href="#seccion-1" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Radiación solar</a>
+                                <a href="#seccion-2" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Fotovoltaica</a>
+                                <a href="#seccion-3" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Termosolar</a>
+                                <a href="#seccion-4" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Estructuras</a>
+                                <a href="#seccion-6" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Ley 27.424</a>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-200 dark:border-slate-800 space-y-2">
+                                <a href="calculo-de-eficiencia.html" class="block text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-yellow-600 transition-colors">Calculadora de Cargas</a>
+                                <a href="preguntas-frecuentes.html" class="block text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-yellow-600 transition-colors">FAQ de Obra</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            6. Hidroeléctrica
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Barra superior con navegación a otros materiales de la clase -->
+    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <span class="font-bold tracking-tight text-sm flex items-center gap-2">
+                        <span class="text-yellow-500 font-black">|</span> 
+                        ET N°1 - Clase 5: Energía solar
+                    </span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Cambiar tema">
+                        <span id="theme-toggle-dark-icon" class="hidden text-slate-300">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        </span>
+                        <span id="theme-toggle-light-icon" class="text-yellow-400">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[30rem] h-[30rem] bg-yellow-400/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <div class="flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-500 mb-4">
+                <span>🏠 ET N°1</span>
+                <span>→</span>
+                <span>Clase 6</span>
+                <span>→</span>
+                <span class="text-slate-500">Energía solar</span>
+            </div>
+            <h1 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter leading-tight">Energía solar y la envolvente activa</h1>
+
+            <div class="text-justify space-y-4 text-lg text-slate-600 dark:text-slate-400 mb-10">
+                <p>La energía solar es aquella que se obtiene de la radiación electromagnética (luz visible, calor infrarrojo y rayos ultravioleta) que emite nuestro Sol. En el ámbito de la construcción moderna, ha dejado de ser una simple variable de iluminación pasiva para convertirse en una fuente de energía renovable, limpia e inagotable. Proviene de un gigantesco reactor de fusión nuclear natural que se regenera constantemente a 150 millones de kilómetros de distancia.</p>
+                <p>El sol emite constantemente energía al espacio. De los <strong>1.367 W/m²</strong> que llegan al tope de nuestra atmósfera (lo que en física se conoce como "constante solar"), una gran parte es rechazada, absorbida o dispersada por los gases y las nubes. Sin embargo, en un día despejado, aproximadamente <strong>1.000 W/m²</strong> logran impactar en la superficie terrestre. Como técnicos constructores, nuestro trabajo es capturar ese flujo constante, económico y no contaminante para integrarlo a los edificios.</p>
+            </div>
+
+            <figure class="my-8 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
+                <img src="imagenes/1 - frio-solar-para-climatizacion.jpg" alt="Integración de energía solar en edificios" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/800x400/1e293b/white?text=Imagen:+Integración+Solar'">
+                <figcaption class="bg-slate-50 dark:bg-slate-800/50 p-4 text-sm text-slate-500 dark:text-slate-400 italic text-center border-t border-slate-200 dark:border-slate-800">
+                    "La energía no se crea ni se destruye, solo se transforma (y el sol nos regala 1000 W/m² para empezar a trabajar)".
+                </figcaption>
+            </figure>
         </div>
     </header>
 
-    <main class="max-w-3xl mx-auto py-12 px-6">
+    <main class="max-w-3xl mx-auto py-16 px-6 prose prose-slate dark:prose-invert">
+
+        <!-- Índice de contenidos -->
+        <section class="mb-16 p-8 bg-slate-100 dark:bg-slate-800/50 rounded-3xl border border-slate-200 dark:border-slate-700 not-prose">
+            <h3 class="text-xl font-bold mb-6 text-slate-900 dark:text-white flex items-center gap-2">
+                <span class="w-2 h-6 bg-yellow-500 rounded-full"></span>
+                Contenidos de la clase
+            </h3>
+            <nav class="grid md:grid-cols-2 gap-x-8 gap-y-3">
+                <a href="#seccion-1" class="text-slate-600 dark:text-slate-400 hover:text-yellow-600 dark:hover:text-yellow-500 transition-colors flex items-center gap-2"><span>1.</span> Definición y tipos de radiación</a>
+                <a href="#seccion-2" class="text-slate-600 dark:text-slate-400 hover:text-yellow-600 dark:hover:text-yellow-500 transition-colors flex items-center gap-2"><span>2.</span> Energía solar fotovoltaica</a>
+                <a href="#seccion-3" class="text-slate-600 dark:text-slate-400 hover:text-yellow-600 dark:hover:text-yellow-500 transition-colors flex items-center gap-2"><span>3.</span> Energía termosolar</a>
+                <a href="#seccion-4" class="text-slate-600 dark:text-slate-400 hover:text-yellow-600 dark:hover:text-yellow-500 transition-colors flex items-center gap-2"><span>4.</span> El sol como material de obra</a>
+                <a href="#seccion-6" class="text-slate-600 dark:text-slate-400 hover:text-yellow-600 dark:hover:text-yellow-500 transition-colors flex items-center gap-2"><span>6.</span> Generación Distribuida (Ley 27.424)</a>
+                <a href="#seccion-5" class="text-slate-600 dark:text-slate-400 hover:text-yellow-600 dark:hover:text-yellow-500 transition-colors flex items-center gap-2"><span>5.</span> I+D en Argentina</a>
+            </nav>
+        </section>
         
-        <section class="mb-16">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-l-4 border-yellow-500 pl-4">1. Definición y naturaleza</h2>
-            <div class="text-justify space-y-4">
-                <p>La energía solar es aquella producida por la recepción de luz proveniente del sol (energía fotovoltaica) o el calor del sol (energía termosolar). Es una fuente <strong>inagotable y renovable</strong> que se obtiene por medio de paneles y espejos.</p>
-                <p>El sol emite constantemente energía al espacio. Mucha de ella impacta en la Tierra, pero la atmósfera rechaza o dispersa gran parte. Sin embargo, un 30% ingresa al planeta y es absorbida por océanos y continentes. Este flujo de energía es constante, económico y no contaminante.</p>
+        <!-- TÍTULO PRINCIPAL: Definición y tipos de radiación -->
+        <section id="seccion-1" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-yellow-500 pl-4">
+                1. Definición y tipos de radiación
+            </h2>
+            <p class="text-justify">
+                Para dimensionar un sistema en una obra, primero hay que entender cómo llega la luz al techo. La radiación no es toda igual; se divide en tres formas que los paneles y colectores aprovechan de distinta manera:
+            </p>
+            <ul class="list-none space-y-4 my-6 pl-0 not-prose">
+                <li class="bg-white dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex gap-4 items-start">
+                    <div class="w-3 h-3 mt-2 rounded-full bg-yellow-500 shrink-0"></div>
+                    <div><strong class="text-yellow-600">Radiación directa (día despejado):</strong> Es la que llega directamente del disco solar sin sufrir desviaciones. Es la que proyecta sombras definidas y la más potente. En términos de diseño arquitectónico, es la que debemos capturar con orientación norte.</div>
+                </li>
+                <li class="bg-white dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex gap-4 items-start">
+                    <div class="w-3 h-3 mt-2 rounded-full bg-slate-400 shrink-0"></div>
+                    <div><strong class="text-slate-600">Radiación difusa:</strong> Es la luz que ha sido dispersada por las nubes, el polvo y la atmósfera. Permite que los paneles generen energía (aunque en menor medida) incluso en días nublados. En días muy nublados, puede representar hasta el 80-90% de la radiación total.</div>
+                </li>
+                <li class="bg-white dark:bg-slate-800/50 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex gap-4 items-start">
+                    <div class="w-3 h-3 mt-2 rounded-full bg-orange-400 shrink-0"></div>
+                    <div><strong class="text-orange-600">Radiación reflejada (Albedo):</strong> Es la luz que rebota en las superficies cercanas (el suelo, un techo blanco de chapa, un muro vecino). El albedo varía según la superficie: nieve (0.8-0.9), techo blanco (0.7-0.8), pasto (0.2), asfalto (0.1). En instalaciones modernas se usan <strong>paneles bifaciales</strong> que captan esta luz por su cara trasera.</div>
+                </li>
+            </ul>
+            <figure class="my-6 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <img src="imagenes/2 - tipos-de-radiacion.png" alt="Tipos de radiación solar: directa, difusa y reflejada" class="w-full h-auto" onerror="this.src='https://placehold.co/600x300/1e293b/white?text=Diagrama:+Radiación+Directa,+Difusa+y+Reflejada'">
+                <figcaption class="bg-slate-50 dark:bg-slate-800 p-3 text-xs text-slate-500 dark:text-slate-400 text-center">Esquema de los tres tipos de radiación que impactan en un panel solar.</figcaption>
+            </figure>
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-xl mt-4 text-sm text-blue-800 dark:text-blue-300">
+                <span class="font-bold">📌 Dato técnico:</span> La irradiancia global horizontal (GHI) es la suma de la radiación directa normal (DNI) proyectada sobre la horizontal más la radiación difusa horizontal (DHI): <span class="font-mono">GHI = DHI + DNI × cos θ</span>, donde θ es el ángulo cenital.
+            </div>
+
+            <div class="mt-8 p-6 bg-yellow-50 dark:bg-yellow-900/10 border-l-4 border-yellow-400 rounded-r-xl">
+                <h4 class="font-bold text-yellow-800 dark:text-yellow-400 mb-2">| Conceptos de obra: azimut e inclinación</h4>
+                <p class="text-sm text-yellow-900/80 dark:text-yellow-200/70">Para maximizar la captación en el hemisferio sur, los paneles deben orientarse hacia el <strong>Norte geográfico</strong> (Azimut 0°). La inclinación ideal para captación anual suele ser igual a la latitud del lugar (ej. ~34° en Buenos Aires). Una mala orientación puede reducir la eficiencia hasta en un 40%.</p>
             </div>
         </section>
 
-        
-
-        <section class="mb-16 bg-slate-100 p-8 rounded-2xl">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4">2. Energía solar fotovoltaica</h2>
-            <p class="mb-4 text-justify">Consiste en la conversión directa de la luz solar en electricidad. Esto ocurre mediante el <strong>efecto fotoeléctrico</strong>: ciertos materiales semiconductores (como el silicio) son capaces de absorber fotones y liberar electrones, generando una corriente eléctrica.</p>
-            
-            <h3 class="font-bold mt-6 mb-2 text-slate-700 uppercase text-sm tracking-widest">Componentes del sistema:</h3>
-            <ul class="list-disc pl-5 space-y-2">
-                <li><strong>Módulos/Paneles:</strong> Conjunto de celdas conectadas entre sí que generan corriente continua (CC).</li>
-                <li><strong>Regulador:</strong> Modera la energía recibida para proteger las baterías.</li>
-                <li><strong>Acumuladores (Baterías):</strong> Almacenan la energía para su uso nocturno o en días nublados.</li>
-                <li><strong>Inversor:</strong> Transforma la CC en Corriente Alterna (CA), modificando el voltaje (ej. 220V) para el uso de electrodomésticos.</li>
-            </ul>
-        </section>
-
-        
-
-        <section class="mb-16">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4 border-l-4 border-orange-500 pl-4">3. Energía termosolar</h2>
-            <p class="mb-4 text-justify">A diferencia de la anterior, aquí utilizamos el espectro electromagnético para producir <strong>calor</strong>. La transformación se realiza mediante colectores térmicos. El fluido que circula por estos captadores absorbe la energía radiada, aumentando su temperatura interna.</p>
-            
-            <div class="grid md:grid-cols-2 gap-6 mt-8">
-                <div class="border border-slate-200 p-6 rounded-xl">
-                    <h4 class="font-bold text-orange-600 mb-2">Uso Doméstico</h4>
-                    <p class="text-sm text-slate-600">Termotanques solares. El agua caliente es más liviana que la fría (convección), lo que permite que el agua calentada en los tubos suba al tanque de almacenamiento automáticamente.</p>
+        <!-- SECCIÓN: Seguridad y Mantenimiento -->
+        <section id="seccion-mantenimiento" class="mb-20 p-8 rounded-3xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/30 not-prose">
+            <h2 class="text-2xl font-bold text-amber-800 dark:text-amber-500 mb-6 flex items-center gap-2">
+                <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>
+                Mantenimiento y seguridad en obra
+            </h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                    <h4 class="font-bold text-slate-800 dark:text-slate-200">Riesgo eléctrico (DC)</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">A diferencia de la corriente alterna (AC) de casa, los paneles generan corriente continua (DC). Durante el día, los cables del techo <strong>siempre tienen tensión</strong> y no se pueden apagar con una llave general si no hay un seccionador de DC. Es vital usar herramientas aisladas.</p>
                 </div>
-                <div class="border border-slate-200 p-6 rounded-xl">
-                    <h4 class="font-bold text-orange-600 mb-2">Uso Industrial</h4>
-                    <p class="text-sm text-slate-600">Grandes plantas que usan espejos para concentrar el calor en un punto, generando vapor a alta presión para mover turbinas eléctricas.</p>
+                <div class="space-y-4">
+                    <h4 class="font-bold text-slate-800 dark:text-slate-200">Limpieza y sombras</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">El polvo o los excrementos de aves pueden reducir la eficiencia un 15%. La limpieza se hace con agua pura (sin detergentes) y nunca se deben pisar los módulos, ya que el peso humano rompe las celdas de silicio internamente.</p>
                 </div>
             </div>
         </section>
 
-        
-
-        <section class="mb-16">
-            <h2 class="text-2xl font-bold text-slate-900 mb-4">4. El sol como material de obra</h2>
-            <p class="text-justify">Para un técnico en construcciones, el panel es un elemento más del cerramiento. Debemos considerar:</p>
-            <ul class="list-none space-y-4 mt-6">
-                <li class="bg-white p-4 shadow-sm rounded-lg border-l-4 border-blue-500">
-                    <strong>Cargas Estructurales:</strong> El peso propio de los paneles y los perfiles de soporte en cubiertas de Steel Framing.
-                </li>
-                <li class="bg-white p-4 shadow-sm rounded-lg border-l-4 border-blue-500">
-                    <strong>Hermeneticidad:</strong> Las fijaciones mecánicas en techos de chapa no deben comprometer la barrera de agua y viento.
-                </li>
-                <li class="bg-white p-4 shadow-sm rounded-lg border-l-4 border-blue-500">
-                    <strong>Integración (BIPV):</strong> Vidrios fotovoltaicos en muros cortina (piel de vidrio).
-                </li>
-            </ul>
+        <!-- Subtítulo 1: Energía solar fotovoltaica -->
+        <section id="seccion-2" class="mb-20 bg-slate-100 dark:bg-slate-800/30 p-8 md:p-10 rounded-[2rem] border border-slate-200 dark:border-slate-700 relative">
+            <div class="absolute -top-6 -right-6 w-24 h-24 bg-yellow-400 rounded-full blur-[40px] opacity-50"></div>
+            
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-yellow-500 pl-4">
+                2 - Energía solar fotovoltaica
+            </h2>
+            <p class="text-justify">
+                Esta tecnología consiste en la conversión directa de la luz solar en electricidad sin partes móviles mecánicas. La magia ocurre en la escala cuántica mediante el <strong>efecto fotoeléctrico</strong>.
+            </p>
+            <p class="text-justify mt-4">
+                Los paneles están fabricados con materiales semiconductores dopados, principalmente <strong>Silicio</strong>. El panel tiene dos capas: una con exceso de electrones (capa N) y otra con falta de ellos (capa P). Cuando los <em>fotones</em> (partículas de luz) impactan contra la celda de silicio con la energía suficiente, "arrancan" los electrones de sus átomos. Al obligar a estos electrones libres a viajar por un circuito externo para volver a su lugar, se genera la corriente eléctrica.
+            </p>
+            
+            <h3 class="font-black mt-8 mb-4 text-slate-800 dark:text-white text-xl">Anatomía de un sistema para viviendas:</h3>
+            <div class="grid md:grid-cols-2 gap-4 not-prose">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <strong class="text-yellow-600 block mb-1">1. Generación (Paneles)</strong>
+                    <p class="text-sm">Conjunto de celdas conectadas en serie o paralelo. Generan <strong>Corriente Continua (CC)</strong>, similar a la de una pila de automóvil pero a mayor escala. Potencias típicas: 400-600 Wp por panel.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <strong class="text-yellow-600 block mb-1">2. Control (Regulador)</strong>
+                    <p class="text-sm">Actúa como un peaje. Modera y estabiliza la tensión y el amperaje que baja del techo para no "freír" las baterías por sobrecarga. Puede ser PWM (más económico) o MPPT (más eficiente, +30% de captación).</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700">
+                    <strong class="text-yellow-600 block mb-1">3. Acumulación (Baterías)</strong>
+                    <p class="text-sm">Generalmente de Litio (LiFePO₄) o gel. Almacenan la energía química para suministrar electricidad durante la noche o en cortes de suministro. Las baterías de ciclo profundo tienen una vida útil de 3 a 8 años según el uso.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 border-l-4 border-l-yellow-500">
+                    <strong class="text-yellow-600 block mb-1">4. Cerebro (Inversor)</strong>
+                    <p class="text-sm">El equipo más vital. Transforma la corriente continua (CC) en <strong>corriente alterna (CA) a 220V/50Hz</strong>, haciéndola compatible con la heladera, el televisor y la red pública. En sistemas on-grid, el inversor también sincroniza la inyección a la red.</p>
+                </div>
+            </div>
+            
+            <div class="mt-8 p-6 bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-2xl shadow-sm">
+                <h4 class="font-bold text-slate-900 dark:text-yellow-500 mb-4 flex items-center gap-2">
+                    <span class="w-1 h-4 bg-yellow-500 rounded-full"></span>
+                    Datos reales (Argentina - Programa RenovAr):
+                </h4>
+                <ul class="text-sm text-slate-600 dark:text-slate-400 space-y-2 list-none">
+                    <li class="flex items-start gap-2"><span>•</span> <strong>Potencia:</strong> Más de 1.700 MW fotovoltaicos adjudicados entre 2016-2019.</li>
+                    <li class="flex items-start gap-2"><span>•</span> <strong>Costo:</strong> Precios promedio de USD 40-60 por MWh, compitiendo con fósiles.</li>
+                    <li class="flex items-start gap-2"><span>•</span> <strong>Material:</strong> Silicio monocristalino domina el 90% del mercado actual por su mayor eficiencia.</li>
+                </ul>
+            </div>
         </section>
 
+        <!-- Subtítulo 2: Energía termosolar -->
+        <section id="seccion-3" class="mb-20">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-orange-500 pl-4">
+                3 - Energía termosolar
+            </h2>
+            <p class="text-justify">
+                A diferencia de la fotovoltaica (que busca luz), la energía termosolar utiliza la porción infrarroja del espectro electromagnético para producir <strong>calor</strong>. La transformación se realiza mediante <em>colectores térmicos</em>, por cuyo interior circula un fluido caloportador (insertar acá definición "sustancia (generalmente un fluido) cuya función principal es transportar energía térmica desde un punto de generación de calor hasta un sistema que lo utiliza o lo disipa") que aumenta su energía interna (entalpía) al absorber la radiación.
+            </p>
+            
+            <div class="grid md:grid-cols-2 gap-8 mt-8 not-prose">
+                <div class="border-t-4 border-orange-400 bg-white dark:bg-slate-800/50 p-8 rounded-b-2xl shadow-lg border-x border-b border-slate-100 dark:border-slate-700">
+                    <h4 class="font-black text-xl text-slate-800 dark:text-white mb-3">Baja temperatura (doméstico)</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 text-justify mb-4">
+                        Son los clásicos termotanques solares de tubos de vacío o colectores planos. Funcionan bajo un principio físico fundamental: el <strong>efecto termosifón</strong>.
+                    </p>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">
+                        El agua caliente disminuye su densidad (se vuelve más liviana) y asciende de forma natural hacia el tanque de almacenamiento aislado. Simultáneamente, el agua fría, más pesada, baja por los tubos para ser calentada. Este ciclo ocurre sin necesidad de bombas eléctricas.
+                    </p>
+                    <div class="mt-4 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-xs">
+                        <span class="font-bold">📐 Dimensionamiento típico:</span> Para una familia de 4 personas, se necesitan entre 2 y 3 m² de colector, que ocupan unos 4-6 m² de techo.
+                    </div>
+                </div>
+                
+                <div class="border-t-4 border-red-500 bg-white dark:bg-slate-800/50 p-8 rounded-b-2xl shadow-lg border-x border-b border-slate-100 dark:border-slate-700">
+                    <h4 class="font-black text-xl text-slate-800 dark:text-white mb-3">Alta temperatura (Industrial / CSP)</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 text-justify mb-4">
+                        Conocidas como plantas CSP (Concentrated Solar Power). Utilizan inmensos campos de espejos (helióstatos) o cilindros parabólicos que siguen la trayectoria del sol.
+                    </p>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 text-justify">
+                        Concentran la radiación en un punto focal, calentando sales fundidas o aceites térmicos a más de 400°C. Este calor extremo hierve agua, generando vapor a altísima presión que mueve una turbina acoplada a un generador eléctrico.
+                    </p>
+                    <div class="mt-4 p-3 bg-red-50 dark:bg-red-900/20 rounded-lg text-xs text-red-900 dark:text-red-300">
+                        <span class="font-bold">| Nota Global:</span> Plantas como Gemasolar (España) pueden almacenar calor en sales fundidas para generar electricidad hasta 15 horas sin sol.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subtítulo 3: El sol como material de obra -->
+        <section id="seccion-4" class="mb-20">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-blue-600 pl-4">
+                4 - El sol como material de obra
+            </h2>
+            <p class="text-justify">
+                Para un técnico en construcciones, un panel solar no es un electrodoméstico; es un elemento estructural y funcional de la envolvente del edificio. Al proyectar una instalación en sistemas como el <em>Steel Framing</em> o cubiertas tradicionales, deben calcularse tres factores críticos:
+            </p>
+            
+            <div class="space-y-6 mt-8 not-prose">
+                <div class="flex gap-6 bg-blue-50/50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-slate-700">
+                    <div class="text-blue-500 font-bold text-2xl">|</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-slate-800 dark:text-white">Cargas estáticas (peso muerto)</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Un panel moderno de 450W a 550W ronda los 22 a 27 kg. Sumado a la perfilería de aluminio de soporte, una matriz de 10 paneles añade casi 300 kg a la cubierta. Debe verificarse la flecha admisible en los perfiles PGC de la cabriada del techo.</p>
+                        <div class="mt-2 text-xs text-blue-600 dark:text-blue-400 font-mono">Cálculo: (10 paneles × 25 kg) + Estructura (50 kg) = 300 kg adicionales</div>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6 bg-blue-50/50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-slate-700">
+                    <div class="text-blue-500 font-bold text-2xl">|</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-slate-800 dark:text-white">Cargas dinámicas (succión por viento)</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Los paneles montados en paralelo al techo (coplanares) sufren el "efecto vela" durante las ráfagas. La succión aerodinámica puede arrancar el sistema completo si las fijaciones (tornillos autoperforantes) no están correctamente ancladas a la estructura primaria. Según CIRSOC 102, la presión de viento varía por zona (I a V).</p>
+                    </div>
+                </div>
+
+                <div class="flex gap-6 bg-blue-50/50 dark:bg-blue-900/10 p-6 rounded-2xl border border-blue-100 dark:border-slate-700">
+                    <div class="text-blue-500 font-bold text-2xl">|</div>
+                    <div>
+                        <h4 class="font-bold text-lg text-slate-800 dark:text-white">Integración arquitectónica (BIPV)</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2"><em>Building Integrated Photovoltaics</em>. Son paneles que reemplazan materiales de construcción convencionales. Por ejemplo, vidrios semitransparentes fotovoltaicos en muros cortina (piel de vidrio). El desafío aquí es ocultar el cableado de CC dentro de las manguetas de aluminio sin permitir filtraciones de agua.</p>
+                        <div class="mt-2 text-xs text-blue-600 dark:text-blue-400">Nota técnica: permite el ahorro de materiales de revestimiento tradicionales.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- NUEVA SECCIÓN: Generación Distribuida -->
+        <section id="seccion-6" class="mb-20">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-emerald-500 pl-4">
+                6. Generación Distribuida (Ley 27.424)
+            </h2>
+            <p class="text-justify">
+                Para un constructor, es fundamental entender que hoy los edificios no solo consumen, sino que pueden "inyectar" energía a la red pública. En Argentina, la <strong>Ley 27.424</strong> regula la figura del Usuario-Generador pero hablaremos de eso en la clase 8.
+            </p>
+            <div class="grid md:grid-cols-2 gap-6 mt-8 not-prose">
+                <div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30">
+                    <h4 class="font-bold text-emerald-800 dark:text-emerald-400">El medidor bidireccional</h4>
+                    <p class="text-sm mt-2 text-emerald-900/70 dark:text-emerald-300/60">A diferencia del medidor tradicional, este equipo registra la energía que entra de la red y la que el edificio inyecta cuando sus paneles producen más de lo que se consume.</p>
+                </div>
+                <div class="bg-emerald-50 dark:bg-emerald-900/10 p-6 rounded-2xl border border-emerald-100 dark:border-emerald-900/30">
+                    <h4 class="font-bold text-emerald-800 dark:text-emerald-400">Trámite de conexión</h4>
+                    <p class="text-sm mt-2 text-emerald-900/70 dark:text-emerald-300/60">Requiere un <em>certificado de instalación</em> firmado por un profesional matriculado, asegurando que el inversor cumple con las normas de seguridad para no inyectar energía durante un corte de red (protección anti-isla).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subtítulo 5: Investigación y desarrollo en Argentina -->
+        <section id="seccion-5" class="mb-20 bg-slate-900 dark:bg-black/40 text-white p-8 md:p-10 rounded-[2rem] shadow-2xl relative overflow-hidden not-prose">
+            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-cyan-500 rounded-full blur-[80px] opacity-30 pointer-events-none"></div>
+            
+            <h2 class="text-3xl font-black mb-4 relative z-10 border-l-4 border-cyan-400 pl-4 text-cyan-400">
+                5 - Investigación y desarrollo en Argentina
+            </h2>
+            <p class="text-slate-300 text-justify relative z-10 leading-relaxed mb-6">
+                El aprovechamiento de la energía solar en Argentina no es solo una cuestión comercial, sino de soberanía tecnológica. Desde el año 1976, la <strong class="text-cyan-300">Comisión Nacional de Energía Atómica (CNEA)</strong> lidera un programa de investigación, desarrollo y transferencia tecnológica en este campo.
+            </p>
+            <p class="text-slate-300 text-justify relative z-10 leading-relaxed mb-6">
+                A través de su <em>Departamento de Energía Solar (DES)</em>, ubicado en el centro atómico constituyentes, los científicos y técnicos argentinos trabajan bajo tres pilares estratégicos:
+            </p>
+            <ul class="list-disc pl-6 space-y-3 text-slate-300 relative z-10 font-medium">
+                <li>Desarrollo de aplicaciones solares de extrema resistencia para misiones espaciales y satélites.</li>
+                <li>Implementación de sistemas fotovoltaicos terrestres para diversificar la matriz energética nacional (Programa RenovAr: +1.700 MW adjudicados).</li>
+                <li>Investigación aplicada sobre nuevos dispositivos fotovoltaicos, como celdas de alta eficiencia y sensores ópticos de vanguardia.</li>
+            </ul>
+            <div class="mt-6 p-4 bg-slate-800/50 border border-cyan-900/50 rounded-xl text-sm text-slate-300 relative z-10">
+                <span class="font-bold text-cyan-300">| Mapa de radiación:</span> Las provincias del NOA y Cuyo presentan los valores más altos del país, entre 5.5 y 6.5 kWh/m²/día.
+            </div>
+        </section>
+
+        <!-- Navegación interna a otros recursos -->
+        <div class="mt-12 pt-8 border-t border-slate-200">
+            <p class="text-center text-slate-500 text-sm mb-4">📚 Material complementario de la clase:</p>
+            <div class="flex flex-wrap justify-center gap-3 text-sm">
+                <a href="tabla-comparativa-termica-vs-fotovoltaica.html" class="bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full transition">⚖️ Térmica vs Fotovoltaica</a>
+                <a href="mapa-radiacion-argentina.html" class="bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full transition">🗺️ Mapa de radiación Argentina</a>
+                <a href="guia-dimensionamiento-solar.html" class="bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full transition">📐 Guía de dimensionamiento</a>
+                <a href="tipos-de-sistemas-fotovoltaicos.html" class="bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full transition">🏘️ Tipos de sistemas</a>
+                <a href="calculo-de-eficiencia.html" class="bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-full transition">🏗️ Calculadora estructural</a>
+            </div>
+        </div>
     </main>
 
-    <footer class="bg-slate-200 py-8 text-center text-slate-500 text-sm">
-        ET N°1 - Taller energías renovables.
+    <footer class="bg-slate-200 border-t border-slate-300 py-10 text-center mt-8">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="text-slate-500 font-medium tracking-wide">ET N°1 - Especialidad Construcciones</p>
+            <p class="text-slate-400 text-sm mt-2">Apunte técnico para el módulo de energías renovables y análisis de estructuras en seco.</p>
+            <p class="text-slate-400 text-xs mt-2">Fuentes: CNEA, Subsecretaría de Energías Renovables Argentina, IRENA, Fraunhofer ISE</p>
+        </div>
     </footer>
+
+    <script>
+        // Lógica de alternancia de tema claro/oscuro
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        // Inicialización basada en preferencias previas
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Lógica del Sidebar
+        const openSidebarBtn = document.getElementById('open-sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('sidebar-open');
+            
+            if (!sidebar.classList.contains('sidebar-open')) {
+                overlay.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        }
+
+        openSidebarBtn.addEventListener('click', toggleSidebar);
+        closeSidebarBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        // Cerrar al hacer clic en un link del sidebar
+        sidebar.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleSidebar));
+    </script>
 
 </body>
 </html>
