@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cálculo Estructural Solar | ET N°1</title>
+    <title>Cálculo estructural solar | ET N°1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background-color: #0f172a; color: white; }
@@ -14,29 +14,97 @@
         }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-6">
+<body class="min-h-screen p-6">
 
-    <div class="max-w-4xl w-full">
+    <div class="max-w-4xl mx-auto">
         <a href="energia-solar.html" class="text-yellow-500 mb-6 inline-block hover:underline">← Volver a la teoría</a>
         
+        <!-- TÍTULO PRINCIPAL -->
+        <div class="glass p-8 rounded-3xl shadow-2xl mb-8">
+            <h1 class="text-3xl font-black uppercase tracking-tight">Análisis de carga: El sol como material de obra</h1>
+            <p class="text-slate-400 mt-2 text-sm">Calculá el impacto del sistema fotovoltaico sobre la estructura de perfiles PGC/PGU.</p>
+        </div>
+
+        <!-- ==================== SECCIÓN DIDÁCTICA ==================== -->
+        <div class="glass p-8 rounded-3xl shadow-2xl mb-8">
+            <h2 class="text-2xl font-bold mb-4 border-l-4 border-yellow-500 pl-4">📐 ¿Cómo se calcula la carga?</h2>
+            
+            <!-- IMAGEN ÚNICA: Panel solar con anotaciones (la que tenés) -->
+            <figure class="my-6">
+                <img src="imagenes/14-panel.png" 
+                     alt="Diagrama de panel solar fotovoltaico con peso, dimensiones y estructura de soporte" 
+                     class="w-full rounded-xl border border-slate-700">
+                <figcaption class="text-xs text-slate-500 text-center mt-2">
+                    Figura 1: panel solar fotovoltaico estándar de 450W-550W. Peso: 22-27 kg. Dimensiones: ~2.1 m × 1.1 m (~2.3 m²).
+                    <br>La estructura de rieles y herrajes agrega 3-5 kg adicionales por panel.
+                </figcaption>
+            </figure>
+
+            <div class="space-y-6 text-slate-300">
+                <p>
+                    Para un técnico constructor, <strong>cada panel solar es un peso muerto adicional</strong> que la cubierta debe soportar. 
+                    El cálculo es simple pero fundamental para evitar colapsos estructurales.
+                </p>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-yellow-500">
+                    <h3 class="font-bold text-yellow-400 mb-2">Fórmula principal:</h3>
+                    <p class="font-mono text-lg">Peso total = cantidad de paneles × (peso del panel + peso de la estructura)</p>
+                    <p class="text-sm mt-2 text-slate-400">Donde: <strong>peso del panel</strong> ≈ 22-27 kg (para paneles de 450W-550W)<br>
+                    <strong>Peso de la estructura</strong> (rieles, herrajes) ≈ 3-5 kg por panel</p>
+                    <p class="text-sm mt-2 text-slate-400">→ <strong>Valor típico usado:</strong> 25 kg por panel (incluye panel + estructura)</p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-400 mb-2">Distribución de carga (kg/m²):</h3>
+                    <p class="font-mono text-lg">kg/m² = Peso total / (cantidad de paneles × superficie de cada panel)</p>
+                    <p class="text-sm mt-2 text-slate-400">Ejemplo: 6 paneles × 2.1 m² = 12.6 m² de ocupación.<br>
+                    Si pesan 150 kg total → 150 / 12.6 = <strong class="text-yellow-400">11.9 kg/m²</strong></p>
+                </div>
+
+                <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-emerald-500">
+                    <h3 class="font-bold text-emerald-400 mb-2">📌 Caso práctico resuelto (obra real):</h3>
+                    <p><strong>Problema:</strong> Un techista instala 12 paneles en una cubierta de chapa. Cada panel pesa 24 kg. La estructura de soporte agrega 45 kg adicionales. La superficie útil del techo es de 35 m².</p>
+                    <p class="mt-2"><strong>Paso 1 - Carga muerta total:</strong><br>
+                    (12 paneles × 24 kg) + 45 kg = 288 + 45 = <strong class="text-yellow-400">333 kg</strong></p>
+                    <p><strong>Paso 2 - kg/m² adicionales:</strong><br>
+                    333 kg / 35 m² = <strong class="text-yellow-400">9.5 kg/m²</strong></p>
+                    <p><strong>Paso 3 - Conclusión:</strong> La cubierta original se diseñó para 30 kg/m² (carga de nieve/mantenimiento). 9.5 kg/m² adicionales es aceptable, pero debe verificarse la flecha de los perfiles PGC.</p>
+                </div>
+
+                <div class="bg-red-950/30 p-4 rounded-xl border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-400 mb-2">⚠️ Precauciones importantes:</h3>
+                    <ul class="list-disc pl-5 space-y-1 text-sm">
+                        <li>Verificar la <strong>flecha admisible</strong> de los perfiles PGC (L/250 o L/200 según uso).</li>
+                        <li>Los paneles coplanares sufren <strong>succión por viento</strong>. Revisar CIRSOC 102.</li>
+                        <li>Nunca pisar los paneles durante la limpieza: el peso humano rompe las celdas de silicio.</li>
+                        <li>Usar <strong>herramientas aisladas</strong> porque los cables DC siempre tienen tensión durante el día.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== CALCULADORA INTERACTIVA ==================== -->
         <div class="glass p-8 rounded-3xl shadow-2xl">
-            <header class="mb-8">
-                <h1 class="text-3xl font-black uppercase tracking-tight">Análisis de carga: El sol como material de obra</h1>
-                <p class="text-slate-400 mt-2 text-sm">Calculá el impacto del sistema fotovoltaico sobre la estructura de perfiles PGC/PGU.</p>
-            </header>
+            <h2 class="text-2xl font-bold mb-6 border-l-4 border-yellow-500 pl-4">🧮 Calculadora interactiva</h2>
+            <p class="text-slate-400 mb-6 text-sm">Modificá los valores y ejecutá el análisis para ver cómo cambia la carga sobre la estructura.</p>
 
             <div class="grid md:grid-cols-2 gap-10">
                 <div class="space-y-6">
                     <div>
-                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Cantidad de Paneles (450W c/u)</label>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Cantidad de paneles (450W c/u)</label>
                         <input type="number" id="paneles" value="6" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Superficie del panel (m²)</label>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Superficie de cada panel (m²)</label>
                         <input type="number" id="superficie" value="2.1" step="0.1" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
                     </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Peso por panel + estructura (kg)</label>
+                        <input type="number" id="pesoPorPanel" value="25" step="1" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
+                        <p class="text-xs text-slate-500 mt-1">Valor típico: 22-27 kg para paneles de 450W-550W</p>
+                    </div>
                     <button onclick="analizar()" class="w-full bg-yellow-500 text-black font-black py-4 rounded-xl hover:bg-yellow-400 transition uppercase shadow-lg shadow-yellow-500/20">
-                        Ejecutar Análisis Técnico
+                        Ejecutar análisis 
                     </button>
                 </div>
 
@@ -45,39 +113,63 @@
                         <span class="text-slate-400 text-xs uppercase">Carga estática adicional:</span>
                         <div class="text-4xl font-mono text-yellow-400"><span id="pesoTotal">150</span> kg</div>
                     </div>
+                    <div class="mb-6">
+                        <span class="text-slate-400 text-xs uppercase">Ocupación total en techo:</span>
+                        <div class="text-2xl font-mono"><span id="ocupacion">12.6</span> m²</div>
+                    </div>
                     <div>
                         <span class="text-slate-400 text-xs uppercase">Distribución de carga:</span>
                         <div class="text-2xl font-mono"><span id="kgm2">11.9</span> kg/m²</div>
                     </div>
                     <div id="status" class="mt-6 p-3 rounded-lg text-xs font-bold text-center bg-emerald-500/20 text-emerald-400">
-                        DENTRO DE LOS LÍMITES ESTÁNDAR
+                        DENTRO DE LOS LÍMITES ESTÁNDAR (menos de 250 kg)
                     </div>
                 </div>
             </div>
+        </div>
+
+        <!-- ==================== PIE DE FUENTES ==================== -->
+        <div class="mt-8 text-center text-xs text-slate-500">
+            <p>Referencias: CIRSOC 102 (Reglamento Argentino de Acción del Viento) | PGC (Perfil Galvanizado de Chapa)</p>
+            <p>Pesos típicos según fabricantes: JA Solar, Trina Solar, LONGi (2024-2025)</p>
         </div>
     </div>
 
     <script>
         function analizar() {
-            const n = document.getElementById('paneles').value;
-            const m2_unit = document.getElementById('superficie').value;
+            const n = parseFloat(document.getElementById('paneles').value);
+            const m2_unit = parseFloat(document.getElementById('superficie').value);
+            const pesoUnitario = parseFloat(document.getElementById('pesoPorPanel').value);
             
-            // Peso promedio panel + estructura soporte = 25kg
-            const pesoTotal = n * 25;
+            if (isNaN(n) || isNaN(m2_unit) || isNaN(pesoUnitario)) {
+                alert("Ingresá valores numéricos válidos");
+                return;
+            }
+            
+            // Cálculos
+            const pesoTotal = n * pesoUnitario;
+            const ocupacion = (n * m2_unit).toFixed(1);
             const kgm2 = (pesoTotal / (n * m2_unit)).toFixed(1);
 
             document.getElementById('pesoTotal').innerText = pesoTotal;
+            document.getElementById('ocupacion').innerText = ocupacion;
             document.getElementById('kgm2').innerText = kgm2;
 
             const status = document.getElementById('status');
             if (pesoTotal > 400) {
-                status.innerText = "ALERTA: REFORZAR MODULACIÓN DE PERFILERÍA";
+                status.innerText = "⚠️ ALERTA: REFORZAR MODULACIÓN DE PERFILERÍA (excede 400 kg)";
                 status.className = "mt-6 p-3 rounded-lg text-xs font-bold text-center bg-red-500/20 text-red-400";
+            } else if (pesoTotal > 250) {
+                status.innerText = "⚡ VERIFICAR FLECHA DE PERFILES PGC (carga media-alta)";
+                status.className = "mt-6 p-3 rounded-lg text-xs font-bold text-center bg-orange-500/20 text-orange-400";
             } else {
-                status.innerText = "DENTRO DE LOS LÍMITES ESTÁNDAR";
+                status.innerText = "✅ DENTRO DE LOS LÍMITES ESTÁNDAR (menos de 250 kg)";
                 status.className = "mt-6 p-3 rounded-lg text-xs font-bold text-center bg-emerald-500/20 text-emerald-400";
             }
         }
+        
+        // Ejecutar al cargar la página para mostrar valores iniciales
+        window.onload = analizar;
     </script>
 </body>
 </html>
