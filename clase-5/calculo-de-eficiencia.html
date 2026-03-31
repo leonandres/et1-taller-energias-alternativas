@@ -6,18 +6,110 @@
     <title>Cálculo estructural solar | ET N°1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background-color: #0f172a; color: white; }
+        @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Onest', sans-serif; background-color: #0f172a; transition: background-color 0.3s, color 0.3s; }
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        #sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar-open {
+            transform: translateX(0) !important;
+        }
     </style>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
 </head>
-<body class="min-h-screen p-6">
+<body class="text-slate-200 leading-relaxed antialiased">
 
-    <div class="max-w-4xl mx-auto">
-        <a href="energia-solar.html" class="text-yellow-500 mb-6 inline-block hover:underline">← Volver a la teoría</a>
+    <!-- Overlay para el sidebar -->
+    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] hidden"></div>
+
+    <!-- Sidebar navegación -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full sidebar-open shadow-2xl overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <span class="font-black text-xl tracking-tighter text-yellow-500 uppercase">Programa 2026</span>
+                <button id="close-sidebar" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+
+            <div class="space-y-8">
+                <div>
+                    <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Clases del Módulo</h4>
+                    <div class="space-y-1">
+                        <a href="../index.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            1. Seguridad e higiene
+                        </a>
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            2. Renovables vs no ren.
+                        </a>
+                        <a href="../clase-3/energia-geotermica.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            3. Energía geotérmica
+                        </a>
+                        <a href="../clase-4/energia-eolica.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            4. Energía eólica
+                        </a>
+                        
+                        <!-- CLASE ACTUAL ACTIVA -->
+                        <div class="bg-yellow-500/10 border-l-4 border-yellow-500 p-3 rounded-r-xl my-2">
+                            <span class="text-yellow-500 font-bold text-sm block mb-2">5. Energía solar</span>
+                            <div class="pl-4 space-y-2 border-l border-slate-700 ml-1 mt-2">
+                                <a href="energia-solar.html#seccion-1" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">Radiación solar</a>
+                                <a href="energia-solar.html#seccion-2" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">Fotovoltaica</a>
+                                <a href="energia-solar.html#seccion-3" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">Termosolar</a>
+                                <a href="energia-solar.html#seccion-4" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">El sol como material de obra</a>
+                                <a href="energia-solar.html#seccion-5" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">I+D en Argentina</a>
+                                <a href="energia-solar.html#seccion-6" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">Ley 27.424</a>
+                            </div>
+                            <div class="mt-4 pt-2 border-t border-slate-700 space-y-2">
+                                <a href="calculo-de-eficiencia.html" class="block text-xs font-bold text-yellow-500 transition-colors">📊 Calculadora de Cargas</a>
+                                <a href="preguntas-frecuentes.html" class="block text-xs text-slate-400 hover:text-yellow-500 transition-colors">📋 FAQ de Obra</a>
+                            </div>
+                        </div>
+
+                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
+                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            6. Biomasa
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Barra superior con navegación -->
+    <div class="bg-slate-900/90 backdrop-blur-md text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <span class="font-bold tracking-tight text-sm flex items-center gap-2">
+                        <span class="text-yellow-500 font-black">|</span> 
+                        ET N°1 - Calculadora de cargas solares
+                    </span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <a href="energia-solar.html" class="text-yellow-500 hover:underline text-sm">← Volver a la teoría</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-4xl mx-auto py-16 px-6">
         
         <!-- TÍTULO PRINCIPAL -->
         <div class="glass p-8 rounded-3xl shadow-2xl mb-8">
@@ -25,11 +117,10 @@
             <p class="text-slate-400 mt-2 text-sm">Calculá el impacto del sistema fotovoltaico sobre la estructura de perfiles PGC/PGU.</p>
         </div>
 
-        <!-- ==================== SECCIÓN DIDÁCTICA ==================== -->
+        <!-- SECCIÓN DIDÁCTICA -->
         <div class="glass p-8 rounded-3xl shadow-2xl mb-8">
             <h2 class="text-2xl font-bold mb-4 border-l-4 border-yellow-500 pl-4">📐 ¿Cómo se calcula la carga?</h2>
             
-            <!-- IMAGEN ÚNICA: Panel solar con anotaciones (la que tenés) -->
             <figure class="my-6">
                 <img src="imagenes/14-panel.png" 
                      alt="Diagrama de panel solar fotovoltaico con peso, dimensiones y estructura de soporte" 
@@ -86,7 +177,7 @@
             </div>
         </div>
 
-        <!-- ==================== CALCULADORA INTERACTIVA ==================== -->
+        <!-- CALCULADORA INTERACTIVA -->
         <div class="glass p-8 rounded-3xl shadow-2xl">
             <h2 class="text-2xl font-bold mb-6 border-l-4 border-yellow-500 pl-4">🧮 Calculadora interactiva</h2>
             <p class="text-slate-400 mb-6 text-sm">Modificá los valores y ejecutá el análisis para ver cómo cambia la carga sobre la estructura.</p>
@@ -114,7 +205,7 @@
                 <div id="resultado" class="bg-black/20 p-6 rounded-2xl border border-white/5 flex flex-col justify-center">
                     <div class="mb-6">
                         <span class="text-slate-400 text-xs uppercase">Carga estática adicional:</span>
-                        <div class="text-4xl font-mono text-yellow-400"><span id="pesoTotal">150</span> kg</div>
+                        <div class="text-4xl font-mono text-yellow-400"><span id="pesoTotal">168</span> kg</div>
                     </div>
                     <div class="mb-6">
                         <span class="text-slate-400 text-xs uppercase">Ocupación total en techo:</span>
@@ -122,7 +213,7 @@
                     </div>
                     <div>
                         <span class="text-slate-400 text-xs uppercase">Distribución de carga:</span>
-                        <div class="text-2xl font-mono"><span id="kgm2">11.9</span> kg/m²</div>
+                        <div class="text-2xl font-mono"><span id="kgm2">13.3</span> kg/m²</div>
                     </div>
                     <div id="status" class="mt-6 p-3 rounded-lg text-xs font-bold text-center bg-emerald-500/20 text-emerald-400">
                         DENTRO DE LOS LÍMITES ESTÁNDAR (menos de 250 kg)
@@ -131,14 +222,44 @@
             </div>
         </div>
 
-        <!-- ==================== PIE DE FUENTES ==================== -->
+        <!-- PIE DE FUENTES -->
         <div class="mt-8 text-center text-xs text-slate-500">
             <p>Referencias: CIRSOC 102 (Reglamento Argentino de Acción del Viento) | PGC (Perfil Galvanizado de Chapa)</p>
             <p>Pesos típicos según fabricantes: JA Solar, Trina Solar, LONGi (2024-2025)</p>
         </div>
-    </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center mt-8">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="text-slate-500 font-medium tracking-wide">ET N°1 - Especialidad Construcciones</p>
+            <p class="text-slate-400 text-sm mt-2">Herramienta de cálculo para estructuras fotovoltaicas.</p>
+        </div>
+    </footer>
 
     <script>
+        // Lógica del Sidebar
+        const openSidebarBtn = document.getElementById('open-sidebar');
+        const closeSidebarBtn = document.getElementById('close-sidebar');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('sidebar-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('sidebar-open');
+            if (!sidebar.classList.contains('sidebar-open')) {
+                overlay.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            } else {
+                overlay.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        openSidebarBtn.addEventListener('click', toggleSidebar);
+        closeSidebarBtn.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+        // Cerrar al hacer clic en un link del sidebar
+        sidebar.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleSidebar));
+
         function analizar() {
             const n = parseFloat(document.getElementById('paneles').value);
             const m2_unit = parseFloat(document.getElementById('superficie').value);
@@ -148,7 +269,6 @@
                 alert("Ingresá valores numéricos válidos");
                 return;
             }
-            
             // Cálculos
             const pesoTotal = n * pesoUnitario;
             const ocupacion = (n * m2_unit).toFixed(1);
@@ -170,7 +290,6 @@
                 status.className = "mt-6 p-3 rounded-lg text-xs font-bold text-center bg-emerald-500/20 text-emerald-400";
             }
         }
-        
         // Ejecutar al cargar la página para mostrar valores iniciales
         window.onload = analizar;
     </script>
