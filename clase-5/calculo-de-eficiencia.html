@@ -49,9 +49,12 @@
                 <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-yellow-500">
                     <h3 class="font-bold text-yellow-400 mb-2">Fórmula principal:</h3>
                     <p class="font-mono text-lg">Peso total = cantidad de paneles × (peso del panel + peso de la estructura)</p>
-                    <p class="text-sm mt-2 text-slate-400">Donde: <strong>peso del panel</strong> ≈ 22-27 kg (para paneles de 450W-550W)<br>
-                    <strong>Peso de la estructura</strong> (rieles, herrajes) ≈ 3-5 kg por panel</p>
-                    <p class="text-sm mt-2 text-slate-400">→ <strong>Valor típico usado:</strong> 25 kg por panel (incluye panel + estructura)</p>
+                    <p class="text-sm mt-2 text-slate-400">
+                        <strong>Peso del panel</strong> (450W-550W): 22 a 27 kg según fabricante.<br>
+                        <strong>Peso de la estructura</strong> (rieles, herrajes): 3 a 5 kg por panel.<br>
+                        → <strong>Rango típico por panel:</strong> 25 a 32 kg.<br>
+                        → <strong>Valor de referencia para cálculos preliminares:</strong> 28 kg/panel (promedio).
+                    </p>
                 </div>
 
                 <div class="bg-slate-800/50 p-4 rounded-xl border-l-4 border-blue-500">
@@ -100,8 +103,8 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase text-slate-500 mb-2">Peso por panel + estructura (kg)</label>
-                        <input type="number" id="pesoPorPanel" value="25" step="1" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
-                        <p class="text-xs text-slate-500 mt-1">Valor típico: 22-27 kg para paneles de 450W-550W</p>
+                        <input type="number" id="pesoPorPanel" value="28" step="1" class="w-full bg-slate-800 border-none p-4 rounded-xl text-white outline-none focus:ring-2 focus:ring-yellow-500">
+                        <p class="text-xs text-slate-500 mt-1">Rango real: 25-32 kg (panel 22-27 + estructura 3-5). Usamos 28 kg como promedio.</p>
                     </div>
                     <button onclick="analizar()" class="w-full bg-yellow-500 text-black font-black py-4 rounded-xl hover:bg-yellow-400 transition uppercase shadow-lg shadow-yellow-500/20">
                         Ejecutar análisis 
