@@ -514,8 +514,30 @@
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-blue-600 pl-4">
                 4 - El sol como material de obra
             </h2>
-            <p class="text-justify">
-                Para un técnico en construcciones, un panel solar no es un electrodoméstico; es un elemento estructural y funcional de la envolvente del edificio. Al proyectar una instalación en sistemas como el <em>Steel Framing</em> o cubiertas tradicionales, deben calcularse tres factores críticos:
+            <p class="text-justify text-slate-700 dark:text-slate-300 leading-relaxed">
+                Para un técnico en construcciones, un panel solar no es un electrodoméstico; es un <strong>elemento estructural y funcional</strong> de la envolvente del edificio. 
+                Como cualquier otro componente de la estructura (como una viga o un perfil), los paneles y sus soportes generan <strong>cargas que la cubierta debe resistir</strong>.
+            </p>
+
+            <p class="text-justify text-slate-700 dark:text-slate-300 leading-relaxed mt-3">
+                En esta sección vamos a calcular <strong>el peso adicional que los paneles solares y su estructura de soporte agregan al techo</strong>. 
+                Eso es lo que llamamos <strong class="text-blue-600 dark:text-blue-400">carga muerta</strong>.
+            </p>
+
+            <figure class="my-8 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                <img src="imagenes/17-panel-cargas.png" 
+                    alt="Esquema de cargas sobre una cubierta con paneles solares: peso de paneles (carga muerta) y succión por viento (carga dinámica)" 
+                    class="w-full h-auto"
+                    onerror="this.src='https://placehold.co/800x400/1e293b/white?text=Esquema+de+Cargas%0A⬇️+Peso+paneles+(carga+muerta)+%7C+⬆️+Succión+viento'">
+                <figcaption class="bg-slate-50 dark:bg-slate-800 p-3 text-xs text-slate-500 dark:text-slate-400 text-center border-t border-slate-200 dark:border-slate-700">
+                    <span class="font-bold">Figura:</span> Esquema de cargas sobre una cubierta con paneles solares. 
+                    <strong class="text-yellow-600 dark:text-yellow-400">Carga muerta (vertical):</strong> peso de los paneles + estructura.<br>
+                    <strong class="text-blue-600 dark:text-blue-400">Carga dinámica (succión):</strong> fuerza del viento que puede levantar los paneles si no están bien fijados.
+                </figcaption>
+            </figure>
+
+            <p class="text-justify text-slate-700 dark:text-slate-300 leading-relaxed">
+                Al proyectar una instalación en sistemas como el <em>Steel Framing</em> o cubiertas tradicionales, deben calcularse <strong>tres factores críticos</strong>:
             </p>
             
             <div class="space-y-6 mt-8 not-prose">
@@ -523,7 +545,7 @@
                     <div class="text-blue-500 font-bold text-2xl">|</div>
                     <div>
                         <h4 class="font-bold text-lg text-slate-800 dark:text-white">Cargas estáticas (peso muerto)</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Un panel moderno de 450W a 550W ronda los 22 a 27 kg. Sumado a la perfilería de aluminio de soporte, una matriz de 10 paneles añade casi 300 kg a la cubierta. Debe verificarse la flecha admisible en los perfiles PGC de la cabriada del techo.</p>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 mt-2">Un panel moderno de 450W a 550W ronda los 22 a 27 kg (promedio = 25 kg aprox). Sumado a la perfilería de aluminio de soporte, una matriz de 10 paneles añade casi 300 kg a la cubierta. Debe verificarse la flecha admisible en los perfiles PGC de la cabriada del techo.</p>
                         <div class="mt-2 text-xs text-blue-600 dark:text-blue-400 font-mono">Cálculo: (10 paneles × 25 kg) + Estructura (50 kg) = 300 kg adicionales</div>
                     </div>
                 </div>
