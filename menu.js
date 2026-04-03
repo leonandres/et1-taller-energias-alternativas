@@ -141,12 +141,19 @@
         function generarMenu() {
             const path = window.location.pathname;
             const isRoot = !path.includes('/clase-');
+            const urlInicio = isRoot ? "index.html" : "../index.html";
             
             // Detectar automáticamente la clase actual por la carpeta en la URL
             const match = path.match(/\/clase-(\d+)\//);
             const claseActualId = match ? parseInt(match[1]) : null;
 
             let menuHTML = `
+                <div class="mb-8 pb-4 border-b border-slate-800">
+                    <a href="${urlInicio}" class="flex items-center gap-3 text-slate-400 hover:text-yellow-500 transition-colors group">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <span class="text-xs font-bold uppercase tracking-wider">Ver todas las clases</span>
+                    </a>
+                </div>
                 <div>
                     <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">📚 Clases del Módulo</h4>
                     <div class="space-y-1">

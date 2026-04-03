@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vivienda Sustentable | ET N°1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../menu.js"></script>
+    <script src="../sidebar.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #0f172a; color: #f1f5f9; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.8; text-wrap: pretty; }
+        #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
+        #sidebar.sidebar-open { transform: translateX(0) !important; }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .reveal { animation: fadeInUp 0.8s ease-out forwards; }
+    </style>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+</head>
+<body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
+
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] shadow-2xl overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-10">
+                <span class="font-black text-xl tracking-tighter text-teal-500 uppercase">Energías alternativas</span>
+                <button id="close-sidebar" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="menu-container"></div>
+        </div>
+    </aside>
+
+    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 py-3 text-sm flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <span class="font-bold">ET N°1 - Clase 8: Sustentabilidad</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+                    <span id="theme-toggle-dark-icon" class="hidden">🌙</span>
+                    <span id="theme-toggle-light-icon">☀️</span>
+                </button>
+                <a href="../index.html" class="text-slate-400 hover:text-white text-sm ml-2 transition-colors border-l border-slate-700 pl-3">Inicio</a>
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[30rem] h-[30rem] bg-teal-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto relative z-10 reveal">
+            <h1 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter leading-tight bg-gradient-to-r from-teal-600 to-emerald-500 bg-clip-text text-transparent">
+                Vivienda Sustentable y Uso Responsable
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+                El diseño del futuro no solo busca generar energía limpia, sino reducir drásticamente la demanda mediante estrategias inteligentes y materiales conscientes.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto py-16 px-6 prose prose-slate dark:prose-invert">
+        <section id="seccion-1" class="mb-16 reveal" style="animation-delay: 0.1s;">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-teal-500 pl-4">
+                1 - ¿Qué es la sustentabilidad en la construcción?
+            </h2>
+            <p>
+                Una vivienda sustentable es aquella que se diseña, construye y opera minimizando su impacto sobre el medio ambiente y la salud de las personas, optimizando el uso de recursos naturales y energía.
+            </p>
+        </section>
+
+        <section id="seccion-2" class="mb-16 reveal" style="animation-delay: 0.2s;">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-teal-500 pl-4">
+                2 - Arquitectura Bioclimática
+            </h2>
+            <p>Se refiere al diseño que aprovecha las condiciones climáticas del entorno (sol, viento, vegetación) para lograr el confort térmico interior sin depender de sistemas mecánicos.</p>
+            <div class="grid md:grid-cols-2 gap-6 not-prose">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="font-bold text-teal-600 mb-2">Estrategias de Invierno</h3>
+                    <p class="text-sm">Ganancia solar directa, muros de inercia térmica (Muro Trombe) y máxima aislación en la envolvente.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h3 class="font-bold text-teal-600 mb-2">Estrategias de Verano</h3>
+                    <p class="text-sm">Protecciones solares (aleros, pérgolas), ventilación cruzada nocturna y cubiertas frescas o verdes.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="seccion-3" class="mb-16 reveal" style="animation-delay: 0.3s;">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-teal-500 pl-4">
+                3 - Estrategias Activas
+            </h2>
+            <p>Son los sistemas tecnológicos que integramos para generar energía o gestionar recursos:</p>
+            <ul class="list-none space-y-3 pl-0">
+                <li class="flex gap-2"><span>🔌</span> <strong>Sistemas On-Grid/Off-Grid:</strong> Inyección a red o autoconsumo.</li>
+                <li class="flex gap-2"><span>💧</span> <strong>Recolección de lluvia:</strong> Uso para riego y descargas sanitarias.</li>
+                <li class="flex gap-2"><span>💡</span> <strong>Domótica:</strong> Control inteligente de iluminación y climatización.</li>
+            </ul>
+        </section>
+
+        <section id="seccion-4" class="mb-16 reveal" style="animation-delay: 0.4s;">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-teal-500 pl-4">
+                4 - Materiales Ecológicos
+            </h2>
+            <p>Buscamos materiales con baja "energía embebida" (poca contaminación en su fabricación y transporte) y que sean reciclables o biodegradables.</p>
+            <div class="bg-teal-50 dark:bg-teal-900/20 p-6 rounded-2xl border-l-4 border-teal-500 my-8">
+                <h4 class="font-bold text-teal-800 dark:text-teal-400 mb-2">Ejemplos para construcción:</h4>
+                <p class="text-sm m-0">Madera certificada, celulosa proyectada (aislante de papel reciclado), ladrillos de plástico reciclado y pinturas sin compuestos volátiles orgánicos (COV).</p>
+            </div>
+        </section>
+
+        <section id="seccion-5" class="mb-16 reveal" style="animation-delay: 0.5s;">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-emerald-500 pl-4">
+                5 - Etiquetado de Eficiencia Energética
+            </h2>
+            <p>Al igual que los electrodomésticos, las viviendas en Argentina están comenzando a certificarse con una etiqueta que indica su desempeño térmico (de la A a la G).</p>
+        </section>
+
+        <section class="mt-20 pt-8 border-t-4 border-teal-500 not-prose reveal" style="animation-delay: 0.6s;">
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-8">📝 Actividad Final</h2>
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+                <p class="font-bold mb-4">Proyecto Integrador:</p>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">
+                    Elegí un sistema constructivo (Steel Framing o Tradicional) y proponé 3 modificaciones que le harías a un diseño estándar para transformarlo en una vivienda sustentable certificada Clase A.
+                </p>
+                <textarea class="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-teal-500 transition-all" rows="4" placeholder="Describí tus propuestas técnicas aquí..."></textarea>
+                <button class="mt-4 bg-teal-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-teal-700 transition-colors">Enviar proyecto</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center text-slate-500 text-sm">
+        <p>ET N°1 - Especialidad Construcciones - 2026</p>
+        <p class="mt-1">¡Programa completado! 🎓</p>
+    </footer>
+
+    <script>
+        // Lógica de tema
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Animación suave de aparición al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
