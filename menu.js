@@ -1,4 +1,4 @@
-// menu.js - Genera el menú con resaltado de sección activa
+// menu.js - Menú con bolitas y efecto hover
 (function() {
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', iniciarMenu);
@@ -7,7 +7,6 @@
     }
 
     function iniciarMenu() {
-        // Obtener el hash actual (ej: #seccion-1)
         const currentHash = window.location.hash;
         
         const menuConfig = {
@@ -23,16 +22,16 @@
                     disponible: true,
                     esActual: true,
                     subtemas: [
-                        { nombre: "Radiación solar", anchor: "seccion-1", icono: "☀️" },
-                        { nombre: "Fotovoltaica", anchor: "seccion-2", icono: "🔋" },
-                        { nombre: "Termosolar", anchor: "seccion-3", icono: "🔥" },
-                        { nombre: "El sol como material de obra", anchor: "seccion-4", icono: "🏗️" },
-                        { nombre: "I+D en Argentina", anchor: "seccion-5", icono: "🇦🇷" },
-                        { nombre: "Ley 27.424", anchor: "seccion-6", icono: "⚖️" }
+                        { nombre: "Radiación solar", anchor: "seccion-1" },
+                        { nombre: "Fotovoltaica", anchor: "seccion-2" },
+                        { nombre: "Termosolar", anchor: "seccion-3" },
+                        { nombre: "El sol como material de obra", anchor: "seccion-4" },
+                        { nombre: "I+D en Argentina", anchor: "seccion-5" },
+                        { nombre: "Ley 27.424", anchor: "seccion-6" }
                     ],
                     herramientas: [
-                        { nombre: "Calculadora de cargas", url: "calculo-de-eficiencia.html", icono: "🧮", destacado: true },
-                        { nombre: "Preguntas frecuentes", url: "preguntas-frecuentes.html", icono: "❓", destacado: false }
+                        { nombre: "Calculadora de cargas", url: "calculo-de-eficiencia.html", destacado: true },
+                        { nombre: "Preguntas frecuentes", url: "preguntas-frecuentes.html", destacado: false }
                     ]
                 },
                 { numero: 6, nombre: "Biomasa", url: "../clase-6/index.html", disponible: false },
@@ -61,30 +60,35 @@
                 }
 
                 if (clase.esActual) {
+                    // Clase activa: fondo más claro y borde amarillo
                     menuHTML += `
-                        <div class="bg-gradient-to-r from-yellow-500/15 to-yellow-500/5 border-l-4 border-yellow-500 p-3 rounded-r-xl my-2">
+                        <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/5 border-l-4 border-cyan-400 p-3 rounded-r-xl my-2">
                             <div class="flex items-center gap-2 mb-2">
-                                <span class="text-yellow-500 text-lg">⭐</span>
-                                <a href="${clase.url}" class="text-yellow-500 font-bold text-sm">${clase.numero}. ${clase.nombre}</a>
+                                <span class="text-cyan-400 text-lg">⭐</span>
+                                <a href="${clase.url}" class="text-cyan-400 font-bold text-sm">${clase.numero}. ${clase.nombre}</a>
                             </div>
                     `;
                     
                     if (clase.subtemas && clase.subtemas.length > 0) {
                         menuHTML += `
-                            <div class="pl-4 space-y-1 border-l border-yellow-500/30 ml-1 mt-2">
-                                <div class="text-[10px] font-bold text-yellow-600/70 uppercase tracking-wider mb-2">📖 Contenido</div>
+                            <div class="pl-4 space-y-1 border-l border-cyan-400/30 ml-1 mt-2">
+                                <div class="text-[10px] font-bold text-cyan-400/70 uppercase tracking-wider mb-2">📖 Contenido</div>
                         `;
                         clase.subtemas.forEach(sub => {
                             const anchorUrl = `${clase.url}#${sub.anchor}`;
                             const isActive = currentHash === `#${sub.anchor}`;
                             const activeClass = isActive 
-                                ? 'bg-yellow-500/20 text-yellow-400 font-bold border-l-2 border-yellow-500' 
-                                : 'text-slate-400 hover:text-yellow-400 hover:bg-slate-800/50';
+                                ? 'text-cyan-300 font-bold bg-cyan-500/10' 
+                                : 'text-slate-300 hover:text-cyan-300';
+                            
+                            // Bolita que al hover se transforma en barra
                             menuHTML += `
-                                <a href="${anchorUrl}" class="flex items-center gap-2 py-1.5 px-2 rounded-lg text-sm ${activeClass} transition-all duration-200">
-                                    <span class="text-base">${sub.icono}</span>
+                                <a href="${anchorUrl}" class="flex items-center gap-2 py-1.5 pl-2 rounded-lg text-sm ${activeClass} transition-all duration-200 group">
+                                    <span class="relative w-4 h-4 flex items-center justify-center">
+                                        <span class="absolute w-2 h-2 bg-cyan-400 rounded-full group-hover:w-4 group-hover:h-0.5 group-hover:rounded-full transition-all duration-200 ${isActive ? '!w-4 !h-0.5 !rounded-full' : ''}"></span>
+                                    </span>
                                     <span>${sub.nombre}</span>
-                                    ${isActive ? '<span class="ml-auto text-[10px] text-yellow-500">● Actual</span>' : ''}
+                                    ${isActive ? '<span class="ml-auto text-[10px] text-cyan-400">● Actual</span>' : ''}
                                 </a>
                             `;
                         });
@@ -100,11 +104,11 @@
                         `;
                         clase.herramientas.forEach(herramienta => {
                             const claseColor = herramienta.destacado 
-                                ? 'bg-yellow-500/10 text-yellow-500 font-bold border border-yellow-500/30' 
-                                : 'text-slate-400 hover:text-yellow-500 hover:bg-slate-800/50';
+                                ? 'bg-cyan-500/10 text-cyan-400 font-bold border border-cyan-400/30' 
+                                : 'text-slate-400 hover:text-cyan-400 hover:bg-slate-800/50';
                             menuHTML += `
                                 <a href="${herramienta.url}" class="flex items-center gap-2 py-1.5 px-2 rounded-lg text-sm ${claseColor} transition-all duration-200">
-                                    <span class="text-base">${herramienta.icono}</span>
+                                    <span>🛠️</span>
                                     <span>${herramienta.nombre}</span>
                                 </a>
                             `;
@@ -113,9 +117,10 @@
                     }
                     menuHTML += `</div>`;
                 } else {
+                    // Clase no actual: tono gris azulado
                     menuHTML += `
                         <a href="${clase.url}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
+                            <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-cyan-500 transition-colors"></span>
                             ${clase.numero}. ${clase.nombre}
                         </a>
                     `;

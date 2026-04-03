@@ -38,6 +38,34 @@
         #sidebar.sidebar-open {
             transform: translateX(0) !important;
         }
+
+        /* Mejoras para el menú */
+        #menu-container a {
+            transition: all 0.2s ease;
+        }
+
+        #menu-container a:hover {
+            transform: translateX(4px);
+        }
+
+        /* Scrollbar personalizada para el sidebar */
+        #sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #sidebar::-webkit-scrollbar-track {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+
+        #sidebar::-webkit-scrollbar-thumb {
+            background: #eab308;
+            border-radius: 3px;
+        }
+
+        #sidebar::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
         
     </style>
     <script>
@@ -539,27 +567,51 @@
 
 
         <!-- Sección 5: Investigación y desarrollo en Argentina -->
-        <section id="seccion-5" class="mb-20 bg-slate-900 dark:bg-black/40 text-white p-8 md:p-10 rounded-[2rem] shadow-2xl relative overflow-hidden not-prose">
-            <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-cyan-500 rounded-full blur-[80px] opacity-30 pointer-events-none"></div>
-            
-            <h2 class="text-3xl font-black mb-4 relative z-10 border-l-4 border-cyan-400 pl-4 text-cyan-400">
-                5 - Investigación y desarrollo en Argentina
-            </h2>
-            <p class="text-slate-300 text-justify relative z-10 leading-relaxed mb-6">
-                El aprovechamiento de la energía solar en Argentina no es solo una cuestión comercial, sino de soberanía tecnológica. Desde el año 1976, la <strong class="text-cyan-300">Comisión Nacional de Energía Atómica (CNEA)</strong> lidera un programa de investigación, desarrollo y transferencia tecnológica en este campo.
-            </p>
-            <p class="text-slate-300 text-justify relative z-10 leading-relaxed mb-6">
-                A través de su <em>Departamento de Energía Solar (DES)</em>, ubicado en el centro atómico constituyentes, los científicos y técnicos argentinos trabajan bajo tres pilares estratégicos:
-            </p>
-            <ul class="list-disc pl-6 space-y-3 text-slate-300 relative z-10 font-medium">
-                <li>Desarrollo de aplicaciones solares de extrema resistencia para misiones espaciales y satélites.</li>
-                <li>Implementación de sistemas fotovoltaicos terrestres para diversificar la matriz energética nacional (Programa RenovAr: +1.700 MW adjudicados).</li>
-                <li>Investigación aplicada sobre nuevos dispositivos fotovoltaicos, como celdas de alta eficiencia y sensores ópticos de vanguardia.</li>
+<section id="seccion-5" class="mb-20 bg-cyan-50 dark:bg-slate-900 text-slate-800 dark:text-white p-8 md:p-10 rounded-[2rem] shadow-2xl relative overflow-hidden not-prose border border-cyan-200 dark:border-slate-700">
+    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-cyan-500 rounded-full blur-[80px] opacity-20 dark:opacity-30 pointer-events-none"></div>
+    
+    <h2 class="text-3xl font-black mb-4 relative z-10 border-l-4 border-cyan-600 dark:border-cyan-400 pl-4 text-cyan-700 dark:text-cyan-400">
+        5 - Investigación y desarrollo en Argentina
+    </h2>
+    
+    <div class="relative z-10 space-y-4">
+        <p class="text-justify leading-relaxed">
+            El aprovechamiento de la energía solar en Argentina no es solo una cuestión comercial, sino de soberanía tecnológica. 
+            Desde el año 1976, la <strong class="text-cyan-700 dark:text-cyan-300">Comisión Nacional de Energía Atómica (CNEA)</strong> lidera un programa de investigación, 
+            desarrollo y transferencia tecnológica en este campo.
+        </p>
+        
+        <div class="bg-white dark:bg-cyan-500/10 p-4 rounded-xl border-l-4 border-cyan-600 dark:border-cyan-400 shadow-sm">
+            <h3 class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">🔬 Proyectos destacados de la CNEA:</h3>
+            <ul class="list-disc pl-5 space-y-2 text-base text-slate-700 dark:text-slate-300">
+                <li><strong>Desarrollo de celdas solares de silicio cristalino</strong> - Tecnología nacional para la fabricación de paneles.</li>
+                <li><strong>Plantas de generación distribuida en escuelas rurales</strong> - Energía limpia para zonas sin acceso a la red.</li>
+                <li><strong>Investigación en perovskitas</strong> - Nueva generación de celdas solares más eficientes y económicas.</li>
             </ul>
-            <div class="mt-6 p-4 bg-slate-800/50 border border-cyan-900/50 rounded-xl text-sm text-slate-300 relative z-10">
-                <span class="font-bold text-cyan-300">| Mapa de radiación:</span> Las provincias del NOA y Cuyo presentan los valores más altos del país, entre 5.5 y 6.5 kWh/m²/día.
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-4 mt-4">
+            <div class="bg-white dark:bg-slate-800/50 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+                <span class="text-cyan-600 dark:text-cyan-300 text-2xl font-bold">+1.700 MW</span>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Potencia fotovoltaica adjudicada por el Programa RenovAr (2016-2019)</p>
             </div>
-        </section>
+            <div class="bg-white dark:bg-slate-800/50 p-3 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
+                <span class="text-cyan-600 dark:text-cyan-300 text-2xl font-bold">10 provincias</span>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Con parques solares en operación o construcción</p>
+            </div>
+        </div>
+        
+        <p class="text-sm text-slate-600 dark:text-slate-400 mt-4">
+            📍 <strong>Centro Atómico Constituyentes (San Martín, Buenos Aires)</strong> - Sede del Departamento de Energía Solar de la CNEA, 
+            donde se investigan aplicaciones espaciales y terrestres.
+        </p>
+        
+        <div class="mt-4 p-3 bg-cyan-50 dark:bg-slate-800/50 rounded-lg text-sm border border-cyan-100 dark:border-slate-700">
+            <span class="font-bold text-cyan-700 dark:text-cyan-300">💡 Dato de interés:</span> 
+            <span class="text-slate-700 dark:text-slate-300">La CNEA desarrolló paneles solares para satélites argentinos como el <strong>SAOCOM</strong> y el <strong>ARSAT</strong>.</span>
+        </div>
+    </div>
+</section>
 
         <!-- Sección 6: Generación distribuida -->
         <section id="seccion-6" class="mb-20">
