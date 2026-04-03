@@ -34,7 +34,7 @@
                     nombre: "Renovables vs no renovables", 
                     url: "../clase-2/index.html", 
                     disponible: true,
-                    esActual: true,
+                    esActual: false,
                     subtemas: [
                         { nombre: "Fuentes No Renovables", anchor: "seccion-1" },
                         { nombre: "Energía Nuclear", anchor: "seccion-2" },
@@ -134,7 +134,26 @@
                         { nombre: "Mapa de recursos hídricos", url: "#", destacado: false }
                     ]
                 },
-                { numero: 8, nombre: "Uso responsable y vivienda sustentable", url: "../clase-8/index.html", disponible: false }
+                { 
+                    numero: 8, 
+                    nombre: "Uso responsable y vivienda sustentable", 
+                    url: "../clase-8/index.html", 
+                    disponible: true,
+                    esActual: true,
+                    subtemas: [
+                        { nombre: "¿Qué es la sustentabilidad?", anchor: "seccion-1" },
+                        { nombre: "Arquitectura Bioclimática", anchor: "seccion-2" },
+                        { nombre: "Eficiencia y Valor K", anchor: "seccion-3" },
+                        { nombre: "Gestión del Agua", anchor: "seccion-4" },
+                        { nombre: "Estrategias Activas", anchor: "seccion-5" },
+                        { nombre: "Materiales Ecológicos", anchor: "seccion-6" },
+                        { nombre: "Etiquetado Energético", anchor: "seccion-7" }
+                    ],
+                    herramientas: [
+                        { nombre: "Calculadora de Huella", url: "#", destacado: true },
+                        { nombre: "Manual de Buenas Prácticas", url: "#", destacado: false }
+                    ]
+                }
             ]
         };
 

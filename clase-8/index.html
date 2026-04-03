@@ -15,12 +15,25 @@
         #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
         #sidebar.sidebar-open { transform: translateX(0) !important; }
         
+        /* Tablas técnicas */
+        .tech-table th { @apply bg-teal-600 text-white p-3 text-left text-xs uppercase tracking-wider; }
+        .tech-table td { @apply p-3 border-b border-slate-200 dark:border-slate-700 text-sm; }
+        
         /* Animaciones */
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
         .reveal { animation: fadeInUp 0.8s ease-out forwards; }
+
+        /* Animación de flujo de aire para la maqueta */
+        .animate-flow {
+            stroke-dasharray: 8;
+            animation: flow 1s linear infinite;
+        }
+        @keyframes flow {
+            to { stroke-dashoffset: -16; }
+        }
     </style>
     <script>
         tailwind.config = { darkMode: 'class' }
@@ -71,6 +84,107 @@
     </header>
 
     <main class="max-w-3xl mx-auto py-16 px-6 prose prose-slate dark:prose-invert">
+
+        <!-- MAQUETA INTERACTIVA DE CASA SUSTENTABLE -->
+        <section id="maqueta-interactiva" class="mb-20 reveal not-prose">
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden relative">
+                <h2 class="text-2xl font-black mb-8 text-center bg-gradient-to-r from-teal-600 to-emerald-500 bg-clip-text text-transparent uppercase tracking-tight">
+                    Maqueta Virtual: La Vivienda como Sistema
+                </h2>
+                
+                <div class="relative max-w-xl mx-auto aspect-video mb-10">
+                    <svg viewBox="0 0 800 450" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-2xl">
+                        <!-- Cielo -->
+                        <rect width="800" height="450" rx="20" fill="url(#skyGrad)" class="transition-all duration-1000"/>
+                        
+                        <!-- Terreno -->
+                        <path d="M0 350C200 330 600 370 800 350V450H0V350Z" fill="#10B981" class="dark:fill-emerald-900 transition-colors duration-500"/>
+                        
+                        <!-- Casa -->
+                        <path d="M250 350V200H550V350H250Z" fill="#F1F5F9" class="dark:fill-slate-300 transition-colors duration-500"/>
+                        <path d="M250 200L400 120L550 200H250Z" fill="#334155" class="dark:fill-slate-700 transition-colors duration-500"/>
+                        
+                        <!-- Panel Solar -->
+                        <g class="cursor-help">
+                            <path d="M410 135L530 210H480L380 150L410 135Z" fill="#1E293B">
+                                <animate attributeName="fill" values="#1E293B;#475569;#1E293B" dur="3s" repeatCount="indefinite" />
+                            </path>
+                            <path d="M415 145L510 205" stroke="#64748B" stroke-width="1"/>
+                            <path d="M435 135L400 160" stroke="#64748B" stroke-width="1"/>
+                        </g>
+
+                        <!-- Aerogenerador -->
+                        <g transform="translate(620, 350)">
+                            <rect x="-2" y="-100" width="4" height="100" fill="#94A3B8"/>
+                            <g class="origin-center">
+                                <circle r="5" fill="#64748B" cy="-100"/>
+                                <path d="M0 -100L10 -130L-10 -130Z" fill="#CBD5E1"/>
+                                <path d="M0 -100L30 -90L30 -110Z" fill="#CBD5E1"/>
+                                <path d="M0 -100L-30 -90L-30 -110Z" fill="#CBD5E1"/>
+                                <animateTransform attributeName="transform" type="rotate" from="0 0 -100" to="360 0 -100" dur="3s" repeatCount="indefinite" />
+                            </g>
+                        </g>
+
+                        <!-- Ventilación (Flechas) -->
+                        <g>
+                            <path d="M200 260H320" stroke="#38BDF8" stroke-width="3" stroke-dasharray="8" class="animate-flow"/>
+                            <path d="M480 260H600" stroke="#38BDF8" stroke-width="3" stroke-dasharray="8" class="animate-flow"/>
+                            <path d="M320 260L310 255M320 260L310 265" stroke="#38BDF8" stroke-width="3"/>
+                            <path d="M600 260L590 255M600 260L590 265" stroke="#38BDF8" stroke-width="3"/>
+                        </g>
+
+                        <!-- Sol Animado -->
+                        <circle cx="120" cy="100" r="35" fill="#FBBF24" class="animate-pulse">
+                            <animate attributeName="cx" values="120;140;120" dur="8s" repeatCount="indefinite" />
+                        </circle>
+
+                        <defs>
+                            <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0%" stop-color="#7DD3FC"/>
+                                <stop offset="100%" stop-color="#E0F2FE"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <!-- Tooltips de información -->
+                    <div class="absolute top-[22%] right-[32%] group">
+                        <div class="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center text-white text-[10px] font-black animate-bounce cursor-help shadow-lg">i</div>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-40 bg-slate-900 text-white text-[10px] p-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-2xl border border-white/10">
+                            <strong class="text-yellow-400 block mb-1">ENERGÍA ACTIVA</strong>
+                            Paneles fotovoltaicos y colectores térmicos en el punto de mayor radiación.
+                        </div>
+                    </div>
+
+                    <div class="absolute top-[45%] left-[22%] group">
+                        <div class="w-6 h-6 bg-sky-500 rounded-full flex items-center justify-center text-white text-[10px] font-black animate-pulse cursor-help shadow-lg">i</div>
+                        <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-40 bg-slate-900 text-white text-[10px] p-3 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20 shadow-2xl border border-white/10">
+                            <strong class="text-sky-400 block mb-1">BIOCLIMÁTICA</strong>
+                            Ventilación natural cruzada para reducir el uso de aire acondicionado.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-teal-50 dark:bg-teal-900/30 p-4 rounded-2xl text-center border border-teal-100 dark:border-teal-800 transition-transform hover:scale-105">
+                        <span class="text-xl block mb-1">☀️</span>
+                        <span class="text-[9px] font-bold uppercase text-teal-600 dark:text-teal-400 tracking-widest">Solar</span>
+                    </div>
+                    <div class="bg-emerald-50 dark:bg-emerald-900/30 p-4 rounded-2xl text-center border border-emerald-100 dark:border-emerald-800 transition-transform hover:scale-105">
+                        <span class="text-xl block mb-1">🌀</span>
+                        <span class="text-[9px] font-bold uppercase text-emerald-600 dark:text-emerald-400 tracking-widest">Viento</span>
+                    </div>
+                    <div class="bg-sky-50 dark:bg-sky-900/30 p-4 rounded-2xl text-center border border-sky-100 dark:border-sky-800 transition-transform hover:scale-105">
+                        <span class="text-xl block mb-1">🌬️</span>
+                        <span class="text-[9px] font-bold uppercase text-sky-600 dark:text-sky-400 tracking-widest">Confort</span>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-900/30 p-4 rounded-2xl text-center border border-slate-100 dark:border-slate-800 transition-transform hover:scale-105">
+                        <span class="text-xl block mb-1">📦</span>
+                        <span class="text-[9px] font-bold uppercase text-slate-600 dark:text-slate-400 tracking-widest">Inercia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="seccion-1" class="mb-16 reveal" style="animation-delay: 0.1s;">
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-teal-500 pl-4">
                 1 - ¿Qué es la sustentabilidad en la construcción?
