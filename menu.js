@@ -14,7 +14,21 @@
         
         const menuConfig = {
             clases: [
-                { numero: 1, nombre: "Seguridad e higiene", url: "../clase-1/index.html", disponible: true },
+                { 
+                    numero: 1, 
+                    nombre: "Seguridad e higiene", 
+                    url: "../clase-1/index.html", 
+                    disponible: true,
+                    subtemas: [
+                        { nombre: "Normativa", anchor: "seccion-1" },
+                        { nombre: "EPP", anchor: "seccion-2" },
+                        { nombre: "Riesgos en obra", anchor: "seccion-3" },
+                        { nombre: "Señalización", anchor: "seccion-4" }
+                    ],
+                    herramientas: [
+                        { nombre: "Checklist de Obra", url: "#", destacado: true }
+                    ]
+                },
                 { 
                     numero: 2, 
                     nombre: "Renovables vs no renovables", 
