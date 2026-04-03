@@ -23,7 +23,7 @@
                     nombre: "Energía solar", 
                     url: "index.html",
                     disponible: true,
-                    esActual: true,
+                    esActual: false,
                     subtemas: [
                         { nombre: "Radiación solar", anchor: "seccion-1" },
                         { nombre: "Fotovoltaica", anchor: "seccion-2" },
@@ -37,8 +37,42 @@
                         { nombre: "Preguntas frecuentes", url: "preguntas-frecuentes.html", destacado: false }
                     ]
                 },
-                { numero: 6, nombre: "Biomasa", url: "../clase-6/index.html", disponible: false },
-                { numero: 7, nombre: "Hidroeléctrica y mareomotriz", url: "../clase-7/index.html", disponible: false },
+                { 
+                    numero: 6, 
+                    nombre: "Biomasa", 
+                    url: "../clase-6/index.html", 
+                    disponible: true,
+                    esActual: true,
+                    subtemas: [
+                        { nombre: "¿Qué es la biomasa?", anchor: "seccion-1" },
+                        { nombre: "Tipos: Seca vs Húmeda", anchor: "seccion-2" },
+                        { nombre: "El Biodigestor", anchor: "seccion-3" },
+                        { nombre: "Biocombustibles", anchor: "seccion-4" },
+                        { nombre: "Impacto ambiental", anchor: "seccion-5" }
+                    ],
+                    herramientas: [
+                        { nombre: "Calculadora de Biogás", url: "#", destacado: true },
+                        { nombre: "Ficha de mantenimiento", url: "#", destacado: false }
+                    ]
+                },
+                { 
+                    numero: 7, 
+                    nombre: "Hidroeléctrica y mareomotriz", 
+                    url: "../clase-7/index.html", 
+                    disponible: true,
+                    esActual: true,
+                    subtemas: [
+                        { nombre: "Hidroeléctrica: ¿Cómo funciona?", anchor: "seccion-1" },
+                        { nombre: "Tipos de centrales", anchor: "seccion-2" },
+                        { nombre: "Impacto ambiental (Hidro)", anchor: "seccion-3" },
+                        { nombre: "Mareomotriz: Principios", anchor: "seccion-4" },
+                        { nombre: "Tecnologías mareomotrices", anchor: "seccion-5" },
+                        { nombre: "Ventajas y desventajas (Mareo)", anchor: "seccion-6" }
+                    ],
+                    herramientas: [
+                        { nombre: "Mapa de recursos hídricos", url: "#", destacado: false }
+                    ]
+                },
                 { numero: 8, nombre: "Uso responsable y vivienda sustentable", url: "../clase-8/index.html", disponible: false }
             ]
         };
