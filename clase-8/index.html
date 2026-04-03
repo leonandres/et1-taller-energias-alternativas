@@ -15,6 +15,16 @@
         #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
         #sidebar.sidebar-open { transform: translateX(0) !important; }
         
+        /* Estilos para model-viewer */
+        model-viewer {
+            width: 100%;
+            height: 450px;
+            background-color: #f0f9ff; /* light blue-50 */
+            --poster-color: #f0f9ff;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
         /* Tablas técnicas */
         .tech-table th { @apply bg-teal-600 text-white p-3 text-left text-xs uppercase tracking-wider; }
         .tech-table td { @apply p-3 border-b border-slate-200 dark:border-slate-700 text-sm; }
@@ -38,6 +48,7 @@
     <script>
         tailwind.config = { darkMode: 'class' }
     </script>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
@@ -84,7 +95,41 @@
     </header>
 
     <main class="max-w-3xl mx-auto py-16 px-6 prose prose-slate dark:prose-invert">
-
+        <!-- MAQUETA 3D INTERACTIVA -->
+        <section id="maqueta-3d" class="mb-20 reveal not-prose">
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden relative">
+                <h2 class="text-2xl font-black mb-8 text-center bg-gradient-to-r from-teal-600 to-emerald-500 bg-clip-text text-transparent uppercase tracking-tight">
+                    Explorá en 3D: Vivienda Sustentable
+                </h2>
+                
+                <model-viewer 
+                    src="/recursos/sustainable-house-31mb.glb" 
+                    alt="Modelo 3D de prueba" 
+                    ar 
+                    ar-modes="webxr scene-viewer quick-look" 
+                    camera-controls 
+                    loading="lazy"
+                    reveal="auto"
+                    shadow-intensity="1" 
+                    auto-rotate 
+                    class="rounded-[2.5rem] border border-slate-300 dark:border-slate-600"
+                >
+                    <div slot="poster" class="flex items-center justify-center h-full bg-slate-100 dark:bg-slate-900 rounded-[2.5rem]">
+                        <div class="flex flex-col items-center gap-3">
+                            <div class="w-8 h-8 border-4 border-teal-500 border-t-transparent rounded-full animate-spin"></div>
+                            <p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Cargando Maqueta 3D...</p>
+                        </div>
+                    </div>
+                    <button slot="ar-button" id="ar-button">Ver en tu espacio</button>
+                </model-viewer>
+                <p class="text-center text-sm text-slate-500 dark:text-slate-400 mt-4">
+                    <span class="font-bold text-teal-500">Tip:</span> Usá el mouse para girar y hacer zoom en el modelo.
+                    <br>
+                    En dispositivos móviles, tocá el modelo para activar los controles táctiles.
+                </p>
+            </div>
+        </section>
+        
         <!-- MAQUETA INTERACTIVA DE CASA SUSTENTABLE -->
         <section id="maqueta-interactiva" class="mb-20 reveal not-prose">
             <div class="bg-white dark:bg-slate-800 p-8 rounded-[2.5rem] shadow-2xl border border-slate-200 dark:border-slate-700 overflow-hidden relative">
@@ -234,11 +279,40 @@
             </div>
         </section>
 
-        <section id="seccion-5" class="mb-16 reveal" style="animation-delay: 0.5s;">
+        <section id="seccion-5" class="mb-16 reveal">
             <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-emerald-500 pl-4">
                 5 - Etiquetado de Eficiencia Energética
             </h2>
-            <p>Al igual que los electrodomésticos, las viviendas en Argentina están comenzando a certificarse con una etiqueta que indica su desempeño térmico (de la A a la G).</p>
+            <p>El criterio principal para etiquetar una vivienda es el <strong>IPE (Índice de Prestaciones Energéticas)</strong>. Este valor representa el requerimiento teórico de energía primaria (en kWh/m² año) para satisfacer las necesidades de calefacción, refrigeración, agua caliente e iluminación.</p>
+            
+            <div class="not-prose overflow-hidden rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm my-8">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-50 dark:bg-slate-800 text-slate-500 uppercase text-[10px] font-bold">
+                        <tr>
+                            <th class="px-6 py-4">Clase</th>
+                            <th class="px-6 py-4">Rango IPE (kWh/m² año)</th>
+                            <th class="px-6 py-4">Estado del Inmueble</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                        <tr class="bg-emerald-500/10"><td class="px-6 py-4 font-black text-emerald-600">A</td><td class="px-6 py-4 font-mono">&lt; 45</td><td class="px-6 py-4">Máxima eficiencia (Passivhaus / Bio-construcción)</td></tr>
+                        <tr><td class="px-6 py-4 font-black text-emerald-500">B</td><td class="px-6 py-4 font-mono">45 - 90</td><td class="px-6 py-4">Alta eficiencia (Steel Frame con aislación extra)</td></tr>
+                        <tr><td class="px-6 py-4 font-black text-yellow-500">C</td><td class="px-6 py-4 font-mono">90 - 135</td><td class="px-6 py-4">Buen desempeño (Construcción tradicional aislada)</td></tr>
+                        <tr><td class="px-6 py-4 font-black text-orange-500">D</td><td class="px-6 py-4 font-mono">135 - 180</td><td class="px-6 py-4">Estándar mínimo recomendado</td></tr>
+                        <tr class="bg-red-500/5 text-red-400 opacity-70"><td class="px-6 py-4 font-black">G</td><td class="px-6 py-4 font-mono">&gt; 270</td><td class="px-6 py-4">Ineficiente (Sin aislación, vidrios simples)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border-l-4 border-blue-500">
+                <h4 class="font-bold text-blue-800 dark:text-blue-400 mb-2">¿Cómo se llega a la Categoría A?</h4>
+                <ul class="list-disc pl-5 space-y-2 text-sm">
+                    <li><strong>Aislación térmica superior:</strong> Muros con Valor K menor a 0.30 W/m²K.</li>
+                    <li><strong>Carpinterías:</strong> Uso de DVH (Doble Vidriado Hermético) con rotura de puente térmico.</li>
+                    <li><strong>Hermeticidad:</strong> Control de infiltraciones de aire (ensayo de Blower Door).</li>
+                    <li><strong>Energía:</strong> Integración de colectores solares para agua caliente y paneles para electricidad.</li>
+                </ul>
+            </div>
         </section>
 
         <section class="mt-20 pt-8 border-t-4 border-teal-500 not-prose reveal" style="animation-delay: 0.6s;">
