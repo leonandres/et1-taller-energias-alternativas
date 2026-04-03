@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energía Eólica | ET N°1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../menu.js"></script>
+    <script src="../sidebar.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #0f172a; color: #f1f5f9; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.8; text-wrap: pretty; }
+        #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
+        #sidebar.sidebar-open { transform: translateX(0) !important; }
+    </style>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+</head>
+<body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
+
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] shadow-2xl overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-10">
+                <span class="font-black text-xl tracking-tighter text-sky-500 uppercase">Energías alternativas</span>
+                <button id="close-sidebar" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="menu-container"></div>
+        </div>
+    </aside>
+
+    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 py-3 text-sm flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <span class="font-bold">ET N°1 - Clase 4: Energía eólica</span>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+                <span id="theme-toggle-dark-icon" class="hidden">🌙</span>
+                <span id="theme-toggle-light-icon">☀️</span>
+            </button>
+        </div>
+    </div>
+
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[30rem] h-[30rem] bg-sky-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <h1 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter leading-tight bg-gradient-to-r from-sky-600 to-indigo-500 bg-clip-text text-transparent">
+                Energía Eólica: Capturando la fuerza del viento
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+                Desde los molinos harineros hasta los modernos aerogeneradores multi-megavatios, el viento es una de las fuentes de energía más eficientes para la descarbonización.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto py-16 px-6 prose prose-slate dark:prose-invert">
+        <section id="seccion-1" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-sky-500 pl-4">
+                1 - ¿Cómo funciona?
+            </h2>
+            <p>
+                La energía eólica es la energía cinética contenida en las masas de aire en movimiento. Los aerogeneradores transforman esta energía mecánica en eléctrica mediante palas que giran un rotor, el cual activa un generador.
+            </p>
+            <div class="bg-sky-50 dark:bg-sky-900/20 p-6 rounded-2xl border-l-4 border-sky-500 my-8">
+                <h4 class="font-bold text-sky-800 dark:text-sky-400 mb-2">Dato técnico: Ley de Betz</h4>
+                <p class="text-sm m-0">Ningún aerogenerador puede capturar más del <strong>59.3%</strong> de la energía cinética del viento. Esto se conoce como el Límite de Betz, un principio fundamental de la aerodinámica.</p>
+            </div>
+        </section>
+
+        <section id="seccion-2" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-sky-500 pl-4">
+                2 - Anatomía del equipo
+            </h2>
+            <div class="grid md:grid-cols-2 gap-6 not-prose">
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <strong class="text-sky-600 block mb-1">Rotor y Palas</strong>
+                    <p class="text-sm">Diseñadas con perfiles alares (similares a aviones). Capturan la sustentación del viento.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <strong class="text-sky-600 block mb-1">Góndola (Nacelle)</strong>
+                    <p class="text-sm">Contiene la multiplicadora, el eje principal y el generador eléctrico.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <strong class="text-sky-600 block mb-1">Torre</strong>
+                    <p class="text-sm">Soporta el peso y eleva el rotor a alturas donde el viento es más laminar y constante.</p>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-5 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm border-l-4 border-indigo-500">
+                    <strong class="text-indigo-600 block mb-1">Fundación</strong>
+                    <p class="text-sm">Elemento crítico para constructores. Debe resistir momentos volcadores inmensos por la presión del viento.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="seccion-3" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-sky-500 pl-4">
+                3 - Eje Horizontal vs Vertical
+            </h2>
+            <p>
+                Aunque los de eje horizontal (HAWT) son los más comunes en grandes parques, los de eje vertical (VAWT) como el tipo <em>Darrieus</em> o <em>Savonius</em> son ideales para entornos urbanos donde el viento es turbulento.
+            </p>
+        </section>
+
+        <section id="seccion-4" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-indigo-500 pl-4">
+                4 - Viento y Estructura (Rol del Constructor)
+            </h2>
+            <p>
+                Para nosotros, el viento no es solo energía, es una <strong>carga dinámica</strong>. Al instalar micro-eólica en techos, debemos considerar:
+            </p>
+            <ul class="list-none space-y-3 pl-0">
+                <li class="flex gap-2"><span>🏗️</span> <strong>Vibraciones:</strong> Transmisión de ruido y armónicos a la estructura de la vivienda.</li>
+                <li class="flex gap-2"><span>🌪️</span> <strong>Carga de diseño:</strong> Verificación según norma CIRSOC 102.</li>
+                <li class="flex gap-2"><span>🔩</span> <strong>Anclajes:</strong> Resistencia a la tracción y fatiga de los materiales.</li>
+            </ul>
+        </section>
+
+        <section class="mt-20 pt-8 border-t-4 border-sky-500 not-prose">
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-8">📝 Actividad de Clase</h2>
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+                <p class="font-bold mb-4">Pregunta de reflexión:</p>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">
+                    ¿Por qué crees que los aerogeneradores eólicos se instalan sobre torres tan altas, superando a veces los 100 metros? Relaciona tu respuesta con el concepto de rugosidad del terreno.
+                </p>
+                <textarea class="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-sky-500 transition-all" rows="4" placeholder="Escribí tu respuesta técnica aquí..."></textarea>
+                <button class="mt-4 bg-sky-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-sky-700 transition-colors">Enviar respuesta</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center text-slate-500 text-sm">
+        <p>ET N°1 - Especialidad Construcciones - 2026</p>
+    </footer>
+
+    <script>
+        // Lógica de tema
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

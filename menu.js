@@ -17,7 +17,23 @@
                 { numero: 1, nombre: "Seguridad e higiene", url: "../clase-1/index.html", disponible: true },
                 { numero: 2, nombre: "Renovables vs no renovables", url: "../clase-2/index.html", disponible: false },
                 { numero: 3, nombre: "Energía geotérmica", url: "../clase-3/index.html", disponible: true },
-                { numero: 4, nombre: "Energía eólica", url: "../clase-4/index.html", disponible: true },
+                { 
+                    numero: 4, 
+                    nombre: "Energía eólica", 
+                    url: "../clase-4/index.html", 
+                    disponible: true,
+                    esActual: true,
+                    subtemas: [
+                        { nombre: "¿Cómo funciona?", anchor: "seccion-1" },
+                        { nombre: "Anatomía del equipo", anchor: "seccion-2" },
+                        { nombre: "Eje horizontal vs vertical", anchor: "seccion-3" },
+                        { nombre: "Viento y Estructura", anchor: "seccion-4" },
+                        { nombre: "Eólica en Argentina", anchor: "seccion-5" }
+                    ],
+                    herramientas: [
+                        { nombre: "Mapa de vientos (SIG)", url: "#", destacado: true }
+                    ]
+                },
                 { 
                     numero: 5, 
                     nombre: "Energía solar", 
@@ -42,7 +58,7 @@
                     nombre: "Biomasa", 
                     url: "../clase-6/index.html", 
                     disponible: true,
-                    esActual: true,
+                    esActual: false,
                     subtemas: [
                         { nombre: "¿Qué es la biomasa?", anchor: "seccion-1" },
                         { nombre: "Tipos: Seca vs Húmeda", anchor: "seccion-2" },
@@ -60,7 +76,7 @@
                     nombre: "Hidroeléctrica y mareomotriz", 
                     url: "../clase-7/index.html", 
                     disponible: true,
-                    esActual: true,
+                    esActual: false,
                     subtemas: [
                         { nombre: "Hidroeléctrica: ¿Cómo funciona?", anchor: "seccion-1" },
                         { nombre: "Tipos de centrales", anchor: "seccion-2" },

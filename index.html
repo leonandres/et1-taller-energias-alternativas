@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ET N°1 | Taller energías renovables | Especialidad construcciones</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="menu.js"></script>
+    <script src="sidebar.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
@@ -29,9 +31,6 @@
 </head>
 <body class="bg-slate-900 text-slate-100">
 
-    <!-- Overlay para el sidebar -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[60] hidden"></div>
-
     <!-- Sidebar Navegación -->
     <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full sidebar-open shadow-2xl overflow-y-auto">
         <div class="p-6">
@@ -46,62 +45,13 @@
             <div class="mb-10 px-1">
                 <div class="flex justify-between items-center mb-2">
                     <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Progreso del programa</span>
-                    <span class="text-[10px] font-bold text-yellow-500">12.5% (1/8)</span>
+                    <span class="text-[10px] font-bold text-yellow-500">75% (6/8)</span>
                 </div>
                 <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                    <div class="bg-yellow-500 h-full rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)]" style="width: 12.5%"></div>
+                    <div class="bg-yellow-500 h-full rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)]" style="width: 75%"></div>
                 </div>
             </div>
-
-            <nav class="space-y-1">
-                <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    1. Seguridad e higiene
-                </a>
-                <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    2. Renovables vs No Renovables
-                </a>
-                <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    3. Energía geotérmica
-                </a>
-                <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    4. Energía eólica
-                </a>
-                
-                <!-- Clase 5 con Submenú -->
-                <div class="py-2">
-                    <div class="bg-yellow-500/5 border-l-4 border-yellow-500 p-3 rounded-r-xl">
-                        <a href="clase-5/index.html" class="text-yellow-500 font-bold text-sm block mb-2 hover:underline">5. Energía solar</a>
-                        <div class="pl-4 space-y-2 border-l border-slate-700 ml-1 mt-2">
-                            <a href="clase-5/index.html#seccion-1" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">• Radiación solar</a>
-                            <a href="clase-5/index.html#seccion-2" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">• Fotovoltaica</a>
-                            <a href="clase-5/index.html#seccion-3" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">• Termosolar</a>
-                            <a href="clase-5/index.html#seccion-4" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">• Estructuras (Obra)</a>
-                            <a href="clase-5/index.html#seccion-6" class="block text-xs text-slate-400 hover:text-yellow-400 transition-colors">• Ley de gen. distribuida</a>
-                        </div>
-                        <div class="mt-4 pt-2 border-t border-slate-800 space-y-2">
-                            <a href="clase-5/calculadora.html" class="block text-xs font-bold text-slate-400 hover:text-yellow-500 transition-colors">Calculadora de cargas</a>
-                            <a href="clase-5/preguntas-frecuentes.html" class="block text-xs font-bold text-slate-400 hover:text-yellow-500 transition-colors">Preguntas frecuentes</a>
-                        </div>
-                    </div>
-                </div>
-
-                <a href="clase-6/index.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    6. Energía hidroeléctrica
-                </a>
-                <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    7. Mareomotriz y biomasa
-                </a>
-                <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
-                    <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                    8. Uso responsable
-                </a>
-            </nav>
+            <div id="menu-container"></div>
         </div>
     </aside>
 
@@ -175,12 +125,13 @@
             </div>
 
             <!-- Clase 4 -->
-            <div class="class-card bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500/50 transition">
-                <div class="text-4xl mb-3">💧</div>
+            <div class="class-card bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500/50 transition shadow-lg shadow-sky-500/5">
+                <div class="text-4xl mb-3">💨</div>
                 <h3 class="text-xl font-bold">Clase 4</h3>
-                <p class="text-slate-400 text-sm mt-1">Energía hidroeléctrica</p>
-                <p class="text-slate-500 text-xs mt-2">Próximamente</p>
-                <div class="mt-4 h-1 w-16 bg-slate-700 rounded-full"></div>
+                <p class="text-slate-400 text-sm mt-1">Energía eólica</p>
+                <a href="clase-4/index.html" class="inline-block mt-4 text-yellow-500 font-bold text-sm hover:underline">
+                    Ver materiales →
+                </a>
             </div>
 
             <!-- Clase 5 - Energía solar (activa) -->
@@ -195,21 +146,23 @@
             </div>
 
             <!-- Clase 6 -->
-            <div class="class-card bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500/50 transition">
-                <div class="text-4xl mb-3">💧</div>
+            <div class="class-card bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-emerald-500/50 transition shadow-lg shadow-emerald-500/5">
+                <div class="text-4xl mb-3">🌿</div>
                 <h3 class="text-xl font-bold">Clase 6</h3>
                 <p class="text-slate-400 text-sm mt-1">Biomasa</p>
-                <p class="text-slate-500 text-xs mt-2">Próximamente</p>
-                <div class="mt-4 h-1 w-16 bg-slate-700 rounded-full"></div>
+                <a href="clase-6/index.html" class="inline-block mt-4 text-emerald-500 font-bold text-sm hover:underline">
+                    Ver materiales →
+                </a>
             </div>
 
             <!-- Clase 7 -->
-            <div class="class-card bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-yellow-500/50 transition">
-                <div class="text-4xl mb-3">🍂</div>
+            <div class="class-card bg-slate-800/50 rounded-2xl p-6 border border-slate-700 hover:border-blue-500/50 transition shadow-lg shadow-blue-500/5">
+                <div class="text-4xl mb-3">🌊</div>
                 <h3 class="text-xl font-bold text-slate-200">Clase 7</h3>
-                <p class="text-slate-400 text-sm mt-1">Mareomotriz || Biomasa</p>
-                <p class="text-slate-500 text-xs mt-2">Próximamente</p>
-                <div class="mt-4 h-1 w-16 bg-slate-700 rounded-full"></div>
+                <p class="text-slate-400 text-sm mt-1">Hidroeléctrica y mareomotriz</p>
+                <a href="clase-7/index.html" class="inline-block mt-4 text-blue-500 font-bold text-sm hover:underline">
+                    Ver materiales →
+                </a>
             </div>
 
             <!-- Clase 8 -->
@@ -228,29 +181,6 @@
             <p>ET N°1 | Taller energías renovables | Especialidad construcciones</p>
         </footer>
     </main>
-
-    <script>
-        // Lógica del Sidebar
-        const openSidebarBtn = document.getElementById('open-sidebar');
-        const closeSidebarBtn = document.getElementById('close-sidebar');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('sidebar-open');
-            
-            // Solo mostramos el overlay y bloqueamos scroll si el menú se abre en modo "móvil/drawer"
-            // o si queremos que actúe como un modal. 
-            if (!sidebar.classList.contains('sidebar-open')) {
-                overlay.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            }
-        }
-
-        openSidebarBtn.addEventListener('click', toggleSidebar);
-        closeSidebarBtn.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-    </script>
 
 </body>
 </html>
