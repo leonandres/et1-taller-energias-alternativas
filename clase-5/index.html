@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducción a la Energía Solar | ET N°1</title>
+    <title>Energía Solar | ET N°1</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="/menu.js"></script>
+    <script src="/sidebar.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
         body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
@@ -25,12 +27,18 @@
             border-bottom-color: #eab308;
             color: #eab308;
         }
+        
+        /* Sidebar: oculto por defecto */
         #sidebar {
             transition: transform 0.3s ease-in-out;
+            transform: translateX(-100%);
         }
-        .sidebar-open {
+        
+        /* Sidebar visible cuando tiene la clase sidebar-open */
+        #sidebar.sidebar-open {
             transform: translateX(0) !important;
         }
+        
     </style>
     <script>
         tailwind.config = {
@@ -40,75 +48,17 @@
 </head>
 <body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
-    <!-- Overlay para el sidebar -->
-    <div id="sidebar-overlay" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] hidden"></div>
-
     <!-- Sidebar navegación -->
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 z-[70] transform -translate-x-full sidebar-open shadow-2xl overflow-y-auto">
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full shadow-2xl overflow-y-auto">
         <div class="p-6">
             <div class="flex justify-between items-center mb-8">
-                <span class="font-black text-xl tracking-tighter text-slate-900 dark:text-white uppercase">Programa 2026</span>
-                <button id="close-sidebar" class="text-slate-500 hover:text-slate-900 dark:hover:text-white">
+                <span class="font-black text-xl tracking-tighter text-yellow-500 uppercase">Energías alternativas</span>
+                <button id="close-sidebar" class="text-slate-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                 </button>
             </div>
-
             <div class="space-y-8">
-                <div>
-                    <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">Clases del Módulo</h4>
-                    <div class="space-y-1">
-                        <a href="../index.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            1. Seguridad e higiene
-                        </a>
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            2. Renovables vs no ren.
-                        </a>
-                        <a href="../clase-3/energia-geotermica.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            3. Energía geotérmica
-                        </a>
-                        <a href="../clase-4/energia-eolica.html" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            4. Energía eólica
-                        </a>
-
-                        
-                        <!-- CLASE ACTUAL ACTIVA -->
-                        <div class="bg-yellow-500/10 dark:bg-yellow-500/20 border-l-4 border-yellow-500 p-3 rounded-r-xl my-2">
-                            <span class="text-yellow-700 dark:text-yellow-500 font-bold text-sm block mb-2">5. Energía solar (Teoría)</span>
-                            <div class="pl-4 space-y-2 border-l border-slate-200 dark:border-slate-700 ml-1 mt-2">
-                                <a href="#seccion-1" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Radiación solar</a>
-                                <a href="#seccion-2" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Fotovoltaica</a>
-                                <a href="#seccion-3" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Termosolar</a>
-                                <a href="#seccion-4" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">El sol como material de obra</a>
-                                <a href="#seccion-5" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">I+D en Argentina</a>
-                                <a href="#seccion-mantenimiento" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Mantenimiento y seguridad</a>
-                                <a href="#seccion-6" class="block text-xs text-slate-600 dark:text-slate-400 hover:text-yellow-600 transition-colors">Ley 27.424</a>
-                            </div>
-                            <div class="mt-4 pt-2 border-t border-slate-200 dark:border-slate-800 space-y-2">
-                                <a href="calculo-de-eficiencia.html" class="block text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-yellow-600 transition-colors">Calculadora de Cargas</a>
-                                <a href="preguntas-frecuentes.html" class="block text-xs font-bold text-slate-500 dark:text-slate-400 hover:text-yellow-600 transition-colors">FAQ de Obra</a>
-                            </div>
-                        </div>
-
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            6. Biomasa
-                        </a>
-
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            7. Hidroeléctrica y mareomotriz
-                        </a>
-
-                        <a href="#" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 text-sm transition-all group">
-                            <span class="w-1.5 h-6 bg-slate-200 dark:bg-slate-700 rounded-full group-hover:bg-yellow-500 transition-colors"></span>
-                            8. Uso responsable y vivienda sustentable
-                        </a>
-                    </div>
-                </div>
+                <div id="menu-container"></div> <!-- El menú se inyecta acá -->
             </div>
         </div>
     </aside>
@@ -146,7 +96,7 @@
             <div class="flex items-center gap-2 text-sm text-yellow-600 dark:text-yellow-500 mb-4">
                 <span>🏠 ET N°1</span>
                 <span>→</span>
-                <span>Clase 6</span>
+                <span>Clase 5</span>
                 <span>→</span>
                 <span class="text-slate-500">Energía solar</span>
             </div>
@@ -843,27 +793,6 @@
                 localStorage.setItem('color-theme', 'dark');
             }
         });
-
-        // Lógica del Sidebar
-        const openSidebarBtn = document.getElementById('open-sidebar');
-        const closeSidebarBtn = document.getElementById('close-sidebar');
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('sidebar-overlay');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('sidebar-open');
-            
-            if (!sidebar.classList.contains('sidebar-open')) {
-                overlay.classList.add('hidden');
-                document.body.classList.remove('overflow-hidden');
-            }
-        }
-
-        openSidebarBtn.addEventListener('click', toggleSidebar);
-        closeSidebarBtn.addEventListener('click', toggleSidebar);
-        overlay.addEventListener('click', toggleSidebar);
-        // Cerrar al hacer clic en un link del sidebar
-        sidebar.querySelectorAll('a').forEach(link => link.addEventListener('click', toggleSidebar));
     </script>
 
     <script>

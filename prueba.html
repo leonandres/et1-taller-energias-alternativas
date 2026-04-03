@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="menu.js"></script>
+</head>
+<body>
+
+<div id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 text-white p-6">
+    <div class="space-y-8">
+        <div id="menu-container"></div>
+    </div>
+</div>
+
+<button id="open-sidebar" class="fixed top-4 left-4 bg-yellow-500 p-2">Abrir</button>
+
+<script>
+    document.getElementById('open-sidebar').onclick = () => {
+        document.getElementById('sidebar').classList.toggle('hidden');
+    };
+</script>
+
+</body>
+</html>
