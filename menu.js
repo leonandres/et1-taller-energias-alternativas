@@ -6,6 +6,9 @@
         iniciarMenu();
     }
 
+    // Escuchar cambios en el hash (#) para actualizar el estado activo sin recargar
+    window.addEventListener('hashchange', iniciarMenu);
+
     function iniciarMenu() {
         const currentHash = window.location.hash;
         

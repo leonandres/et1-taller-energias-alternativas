@@ -38,14 +38,12 @@
             sidebar.classList.add('sidebar-open');
             overlay.style.visibility = 'visible';
             overlay.style.opacity = '1';
-            document.body.classList.add('overflow-hidden');
         }
 
         function closeSidebar() {
             sidebar.classList.remove('sidebar-open');
             overlay.style.visibility = 'hidden';
             overlay.style.opacity = '0';
-            document.body.classList.remove('overflow-hidden');
         }
 
         openSidebarBtn.addEventListener('click', openSidebar);
