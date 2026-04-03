@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renovables vs No Renovables | ET N°1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="../menu.js"></script>
+    <script src="../sidebar.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
+        .dark body { background-color: #0f172a; color: #f1f5f9; }
+        .prose p { margin-bottom: 1.25rem; line-height: 1.8; text-wrap: pretty; }
+        #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
+        #sidebar.sidebar-open { transform: translateX(0) !important; }
+    </style>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+</head>
+<body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
+
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] shadow-2xl overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-10">
+                <span class="font-black text-xl tracking-tighter text-violet-500 uppercase">Energías alternativas</span>
+                <button id="close-sidebar" class="text-slate-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            <div id="menu-container"></div>
+        </div>
+    </aside>
+
+    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 py-3 text-sm flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
+                    <svg class="w-6 h-6 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <span class="font-bold">ET N°1 - Clase 2: Fuentes de Energía</span>
+            </div>
+            <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
+                <span id="theme-toggle-dark-icon" class="hidden text-slate-300">🌙</span>
+                <span id="theme-toggle-light-icon" class="text-yellow-400">☀️</span>
+            </button>
+        </div>
+    </div>
+
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[30rem] h-[30rem] bg-violet-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <h1 class="text-5xl md:text-6xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter leading-tight bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent">
+                Renovables vs No Renovables
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400">
+                Analizamos las diferencias fundamentales entre las fuentes que se agotan y aquellas que se regeneran, y por qué el mundo está en medio de una transición energética sin precedentes.
+            </p>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto py-16 px-6 prose prose-slate dark:prose-invert">
+        <section id="seccion-1" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-violet-500 pl-4">
+                1 - Fuentes No Renovables
+            </h2>
+            <p>
+                Las energías no renovables son aquellas que se encuentran en la naturaleza en cantidades limitadas. Una vez consumidas en su totalidad, no pueden sustituirse, ya que su proceso de formación tardó millones de años.
+            </p>
+            <div class="grid md:grid-cols-3 gap-4 not-prose my-8">
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm text-center">
+                    <span class="text-2xl">🛢️</span>
+                    <h4 class="font-bold text-sm mt-2">Petróleo</h4>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm text-center">
+                    <span class="text-2xl">🪵</span>
+                    <h4 class="font-bold text-sm mt-2">Carbón</h4>
+                </div>
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm text-center">
+                    <span class="text-2xl">🔥</span>
+                    <h4 class="font-bold text-sm mt-2">Gas Natural</h4>
+                </div>
+            </div>
+            <p><strong>Desventaja principal:</strong> Su combustión libera gases de efecto invernadero (CO2) y partículas contaminantes que afectan la salud y el clima.</p>
+        </section>
+
+        <section id="seccion-2" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-violet-500 pl-4">
+                2 - Energía Nuclear
+            </h2>
+            <p>
+                A menudo genera debate: ¿Es renovable? La respuesta técnica es <strong>no</strong>, porque el uranio es un recurso limitado. Sin embargo, es una energía de "bajas emisiones" ya que no produce CO2 durante la generación eléctrica.
+            </p>
+            <div class="bg-violet-50 dark:bg-violet-900/20 p-6 rounded-2xl border-l-4 border-violet-500 my-8">
+                <h4 class="font-bold text-violet-800 dark:text-violet-400 mb-2">Contexto Argentina:</h4>
+                <p class="text-sm m-0">Argentina es referente regional con sus tres centrales: Atucha I, Atucha II y Embalse, aportando una base constante de energía al sistema nacional.</p>
+            </div>
+        </section>
+
+        <section id="seccion-3" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-violet-500 pl-4">
+                3 - Fuentes Renovables
+            </h2>
+            <p>
+                Son aquellas que provienen de fuentes naturales virtualmente inagotables, ya sea por la inmensa cantidad de energía que contienen o porque son capaces de regenerarse por medios naturales.
+            </p>
+            <ul class="list-none space-y-3 pl-0">
+                <li class="flex gap-3 items-start">
+                    <span class="bg-violet-100 dark:bg-violet-900/40 p-1 rounded">☀️</span>
+                    <div><strong>Solar:</strong> Fotovoltaica (luz) y Termosolar (calor).</div>
+                </li>
+                <li class="flex gap-3 items-start">
+                    <span class="bg-violet-100 dark:bg-violet-900/40 p-1 rounded">💨</span>
+                    <div><strong>Eólica:</strong> Aprovechamiento de las masas de aire.</div>
+                </li>
+                <li class="flex gap-3 items-start">
+                    <span class="bg-violet-100 dark:bg-violet-900/40 p-1 rounded">🌊</span>
+                    <div><strong>Hidroeléctrica:</strong> Fuerza del agua en movimiento.</div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="seccion-4" class="mb-16">
+            <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-6 border-l-4 border-fuchsia-500 pl-4">
+                4 - Transición Energética
+            </h2>
+            <p>
+                La transición energética es el cambio estructural de los sistemas energéticos hacia la descarbonización. Para un técnico constructor, esto significa diseñar edificios que consuman menos (eficiencia) y generen su propia energía (generación distribuida).
+            </p>
+        </section>
+
+        <section class="mt-20 pt-8 border-t-4 border-violet-500 not-prose">
+            <h2 class="text-3xl font-black text-slate-900 dark:text-white mb-8">📝 Actividad de Clase</h2>
+            <div class="bg-white dark:bg-slate-800 p-8 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-xl">
+                <p class="font-bold mb-4">Análisis de impacto:</p>
+                <p class="text-slate-600 dark:text-slate-400 mb-6">
+                    Si tuvieras que proyectar una vivienda sustentable en una zona aislada sin red eléctrica, ¿cuál sería tu prioridad: elegir una fuente renovable potente o reducir el consumo mediante aislación térmica? Justificá tu elección técnica.
+                </p>
+                <textarea class="w-full p-4 rounded-xl border border-slate-300 dark:border-slate-600 dark:bg-slate-900 outline-none focus:ring-2 focus:ring-violet-500 transition-all" rows="4" placeholder="Escribí tu respuesta aquí..."></textarea>
+                <button class="mt-4 bg-violet-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-violet-700 transition-colors">Enviar respuesta</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center text-slate-500 text-sm">
+        <p>ET N°1 - Especialidad Construcciones - 2026</p>
+    </footer>
+
+    <script>
+        // Lógica de tema
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            darkIcon.classList.remove('hidden');
+            lightIcon.classList.add('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.add('hidden');
+            lightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            darkIcon.classList.toggle('hidden');
+            lightIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>
