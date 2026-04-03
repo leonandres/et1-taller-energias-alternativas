@@ -15,14 +15,45 @@
         const menuConfig = {
             clases: [
                 { numero: 1, nombre: "Seguridad e higiene", url: "../clase-1/index.html", disponible: true },
-                { numero: 2, nombre: "Renovables vs no renovables", url: "../clase-2/index.html", disponible: false },
-                { numero: 3, nombre: "Energía geotérmica", url: "../clase-3/index.html", disponible: true },
+                { 
+                    numero: 2, 
+                    nombre: "Renovables vs no renovables", 
+                    url: "../clase-2/index.html", 
+                    disponible: true,
+                    esActual: true,
+                    subtemas: [
+                        { nombre: "Fuentes No Renovables", anchor: "seccion-1" },
+                        { nombre: "Energía Nuclear", anchor: "seccion-2" },
+                        { nombre: "Fuentes Renovables", anchor: "seccion-3" },
+                        { nombre: "Transición Energética", anchor: "seccion-4" }
+                    ],
+                    herramientas: [
+                        { nombre: "Gráfico: Matriz Argentina", url: "#", destacado: false }
+                    ]
+                },
+                { 
+                    numero: 3, 
+                    nombre: "Energía geotérmica", 
+                    url: "../clase-3/index.html", 
+                    disponible: true,
+                    esActual: false,
+                    subtemas: [
+                        { nombre: "¿Qué es la geotermia?", anchor: "seccion-1" },
+                        { nombre: "El calor de la tierra", anchor: "seccion-2" },
+                        { nombre: "Yacimientos", anchor: "seccion-3" },
+                        { nombre: "Bombas de calor", anchor: "seccion-4" },
+                        { nombre: "Proyecto Copahue", anchor: "seccion-5" }
+                    ],
+                    herramientas: [
+                        { nombre: "Ficha técnica: Intercambiadores", url: "#", destacado: false }
+                    ]
+                },
                 { 
                     numero: 4, 
                     nombre: "Energía eólica", 
                     url: "../clase-4/index.html", 
                     disponible: true,
-                    esActual: true,
+                    esActual: false,
                     subtemas: [
                         { nombre: "¿Cómo funciona?", anchor: "seccion-1" },
                         { nombre: "Anatomía del equipo", anchor: "seccion-2" },
@@ -37,7 +68,7 @@
                 { 
                     numero: 5, 
                     nombre: "Energía solar", 
-                    url: "index.html",
+                    url: "../clase-5/index.html",
                     disponible: true,
                     esActual: false,
                     subtemas: [
@@ -94,6 +125,13 @@
         };
 
         function generarMenu() {
+            const path = window.location.pathname;
+            const isRoot = !path.includes('/clase-');
+            
+            // Detectar automáticamente la clase actual por la carpeta en la URL
+            const match = path.match(/\/clase-(\d+)\//);
+            const claseActualId = match ? parseInt(match[1]) : null;
+
             let menuHTML = `
                 <div>
                     <h4 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-4">📚 Clases del Módulo</h4>
@@ -101,6 +139,10 @@
             `;
 
             menuConfig.clases.forEach(clase => {
+                // Determinar si es la clase actual dinámicamente o por config
+                const esActual = claseActualId ? (clase.numero === claseActualId) : clase.esActual;
+                const urlFinal = isRoot && clase.url.startsWith('../') ? clase.url.substring(3) : clase.url;
+
                 if (!clase.disponible) {
                     menuHTML += `
                         <div class="flex items-center gap-3 p-3 rounded-xl text-slate-500 text-sm opacity-50 cursor-not-allowed">
@@ -112,13 +154,13 @@
                     return;
                 }
 
-                if (clase.esActual) {
+                if (esActual) {
                     // Clase activa: fondo más claro y borde amarillo
                     menuHTML += `
                         <div class="bg-gradient-to-r from-cyan-500/10 to-blue-500/5 border-l-4 border-cyan-400 p-3 rounded-r-xl my-2">
                             <div class="flex items-center gap-2 mb-2">
                                 <span class="text-cyan-400 text-lg">⭐</span>
-                                <a href="${clase.url}" class="text-cyan-400 font-bold text-sm">${clase.numero}. ${clase.nombre}</a>
+                                <a href="${urlFinal}" class="text-cyan-400 font-bold text-sm">${clase.numero}. ${clase.nombre}</a>
                             </div>
                     `;
                     
@@ -128,7 +170,7 @@
                                 <div class="text-[10px] font-bold text-cyan-400/70 uppercase tracking-wider mb-2">📖 Contenido</div>
                         `;
                         clase.subtemas.forEach(sub => {
-                            const anchorUrl = `${clase.url}#${sub.anchor}`;
+                            const anchorUrl = `${urlFinal}#${sub.anchor}`;
                             const isActive = currentHash === `#${sub.anchor}`;
                             const activeClass = isActive 
                                 ? 'text-cyan-300 font-bold bg-cyan-500/10' 
@@ -172,7 +214,7 @@
                 } else {
                     // Clase no actual: tono gris azulado
                     menuHTML += `
-                        <a href="${clase.url}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
+                        <a href="${urlFinal}" class="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800 text-slate-400 text-sm transition-all group">
                             <span class="w-1.5 h-6 bg-slate-700 rounded-full group-hover:bg-cyan-500 transition-colors"></span>
                             ${clase.numero}. ${clase.nombre}
                         </a>
