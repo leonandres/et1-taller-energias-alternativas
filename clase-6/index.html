@@ -22,7 +22,7 @@
 </head>
 <body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] shadow-2xl overflow-y-auto">
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full shadow-2xl overflow-y-auto">
         <div class="p-6">
             <div class="flex justify-between items-center mb-10">
                 <span class="font-black text-xl tracking-tighter text-emerald-500 uppercase">Energías alternativas</span>
@@ -102,10 +102,20 @@
             <div class="bg-emerald-50 dark:bg-emerald-900/20 p-6 rounded-2xl border-l-4 border-emerald-500 my-8">
                 <p class="text-lg m-0 text-emerald-800 dark:text-emerald-300">💡 <strong>Nota:</strong> La biomasa se considera "carbono neutral" porque el CO2 que emite al quemarse es el mismo que la planta absorbió durante su crecimiento.</p>
             </div>
+
+            <!-- Video de apoyo -->
+            <div class="my-10 shadow-2xl rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700 not-prose">
+                <div class="aspect-video">
+                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/yvD7t_eN9oM" title="¿Qué es la biomasa?" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="p-4 bg-slate-50 dark:bg-slate-800 text-center text-xs text-slate-500 italic">
+                    Video sugerido: El ciclo de la biomasa y su potencial renovable.
+                </div>
+            </div>
         </section>
 
         <section id="seccion-2" class="mb-20">
-            <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent w-fit">
+            <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent w-fit">
                 2 - El funcionamiento: La batería química
             </h2>
             <p class="text-lg">
@@ -118,7 +128,7 @@
                     <div>
                         <h4 class="font-bold text-slate-900 dark:text-white">La carga (fotosíntesis)</h4>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Todo comienza con el sol. Las plantas absorben la luz solar y, mediante la fotosíntesis, combinan agua (H2O) y dióxido de carbono (CO2) de la atmósfera para crear materia orgánica (azúcares, celulosa). En este punto, la energía del sol queda atrapada en forma de enlaces químicos dentro de la planta. Cuando los animales comen plantas, esa energía se transfiere a ellos. Por lo tanto, toda la materia orgánica (madera, cosechas, estiércol, residuos de comida) es biomasa que contiene energía solar almacenada.</p>
-                        <img src="../recursos/imagenes/clase-6/2-biomasa-fotosintesis.png" alt="Fotosíntesis" srcset="">
+                        <img src="../recursos/imagenes/clase-6/2.1-biomasa-fotosintesis.png" alt="Fotosíntesis" class="mx-auto block rounded-xl mt-4 border border-slate-100 dark:border-slate-700/50 shadow-sm max-h-52">
                     </div>
                 </div>
                 <div class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
@@ -126,19 +136,21 @@
                     <div>
                         <h4 class="font-bold text-slate-900 dark:text-white">El Almacenamiento</h4>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Esa energía solar queda "bloqueada" en los <strong>enlaces químicos</strong> de la materia orgánica (madera, algas, residuos) por tiempo indefinido hasta que decidamos usarla.</p>
+                        <img src="../recursos/imagenes/clase-6/6-biomasa-recoleccion.png" alt="Almacenamiento de energía" class="mx-auto block rounded-xl mt-4 border border-slate-100 dark:border-slate-700/50 shadow-sm max-h-52">
                     </div>
                 </div>
                 <div class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
                     <div class="flex-shrink-0 w-12 h-12 bg-orange-500/10 text-orange-600 rounded-full flex items-center justify-center font-bold">03</div>
                     <div>
-                        <h4 class="font-bold text-slate-900 dark:text-white">La Descarga</h4>
+                        <h4 class="font-bold text-slate-900 dark:text-white">La descarga</h4>
                         <p class="text-sm text-slate-600 dark:text-slate-400">Al quemar la biomasa o convertirla en biogás, rompemos esos enlaces y "liberamos" la energía almacenada para generar <strong>calor o electricidad</strong>.</p>
+                        <img src="../recursos/imagenes/clase-6/7-biomasa-almacenamiento.png" alt="Descarga de energía" class="mx-auto block rounded-xl mt-4 border border-slate-100 dark:border-slate-700/50 shadow-sm max-h-52">
                     </div>
                 </div>
             </div>
 
             <div class="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-2xl border-l-4 border-blue-500">
-                <h4 class="text-blue-800 dark:text-blue-400 font-bold mb-2">¿Cómo "fusiona" la planta estos materiales?</h4>
+                <h4 class="text-xl font-bold text-blue-800 dark:text-blue-400 mb-2">¿Cómo "fusiona" la planta estos materiales?</h4>
                 <p class="text-lg text-slate-700 dark:text-slate-300">
                     No es una fusión física, sino una <strong>síntesis química</strong>. La planta utiliza la luz como fuente de energía externa para forzar la unión de átomos de Carbono, Hidrógeno y Oxígeno. Es como si la planta usara electricidad (luz) para armar un juguete de Lego (materia orgánica) muy complejo que, al desarmarse (combustión), devuelve la energía que costó armarlo.
                 </p>
@@ -288,6 +300,25 @@
             <p class="mt-6 italic text-slate-500 dark:text-slate-400 text-sm">
                 "En la construcción sustentable, el residuo no es un desecho, es energía esperando a ser liberada."
             </p>
+        </section>
+
+        <section id="seccion-7" class="mb-16">
+            <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent w-fit">
+                7 - Impacto ambiental y Sostenibilidad
+            </h2>
+            <div class="space-y-4 text-lg">
+                <p>El uso de la biomasa tiene un impacto profundamente positivo en la descarbonización, pero requiere una <strong>gestión responsable</strong> para ser verdaderamente sostenible.</p>
+                <div class="grid md:grid-cols-2 gap-6 not-prose">
+                    <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <h4 class="font-bold text-emerald-600 mb-2">Ciclo de Carbono Cerrado</h4>
+                        <p class="text-sm">A diferencia del petróleo, la biomasa devuelve a la atmósfera el CO2 que la planta absorbió recientemente, manteniendo el balance del ecosistema en equilibrio.</p>
+                    </div>
+                    <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <h4 class="font-bold text-emerald-600 mb-2">Reducción de Metano</h4>
+                        <p class="text-sm">Capturar residuos evita que se descompongan al aire libre generando metano, un gas de efecto invernadero 25 veces más potente que el CO2.</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="actividades" class="mt-20 pt-8 border-t-4 border-emerald-500 not-prose">

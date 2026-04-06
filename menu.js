@@ -26,7 +26,7 @@
                         { nombre: "Señalización", anchor: "seccion-4" }
                     ],
                     herramientas: [
-                        { nombre: "Checklist de Obra", url: "#", destacado: true }
+                        { nombre: "Checklist de obra", url: "#", destacado: true }
                     ]
                 },
                 { 
@@ -36,10 +36,10 @@
                     disponible: true,
                     esActual: false,
                     subtemas: [
-                        { nombre: "Fuentes No Renovables", anchor: "seccion-1" },
-                        { nombre: "Energía Nuclear", anchor: "seccion-2" },
-                        { nombre: "Fuentes Renovables", anchor: "seccion-3" },
-                        { nombre: "Transición Energética", anchor: "seccion-4" }
+                        { nombre: "Fuentes no renovables", anchor: "seccion-1" },
+                        { nombre: "Energía nuclear", anchor: "seccion-2" },
+                        { nombre: "Fuentes renovables", anchor: "seccion-3" },
+                        { nombre: "Transición energética", anchor: "seccion-4" }
                     ],
                     herramientas: [
                         { nombre: "Gráfico: Matriz Argentina", url: "#", destacado: false }
@@ -72,7 +72,7 @@
                         { nombre: "¿Cómo funciona?", anchor: "seccion-1" },
                         { nombre: "Anatomía del equipo", anchor: "seccion-2" },
                         { nombre: "Eje horizontal vs vertical", anchor: "seccion-3" },
-                        { nombre: "Viento y Estructura", anchor: "seccion-4" },
+                        { nombre: "Viento y estructura", anchor: "seccion-4" },
                         { nombre: "Eólica en Argentina", anchor: "seccion-5" }
                     ],
                     herramientas: [
@@ -106,13 +106,15 @@
                     esActual: false,
                     subtemas: [
                         { nombre: "¿Qué es la biomasa?", anchor: "seccion-1" },
-                        { nombre: "Tipos: Seca vs Húmeda", anchor: "seccion-2" },
-                        { nombre: "El Biodigestor", anchor: "seccion-3" },
-                        { nombre: "Biocombustibles", anchor: "seccion-4" },
-                        { nombre: "Impacto ambiental", anchor: "seccion-5" }
+                        { nombre: "El funcionamiento", anchor: "seccion-2" },
+                        { nombre: "Tipos: seca vs húmeda", anchor: "seccion-3" },
+                        { nombre: "El biodigestor", anchor: "seccion-4" },
+                        { nombre: "Aplicación en obra", anchor: "seccion-5" },
+                        { nombre: "Valorización de residuos", anchor: "seccion-6" },
+                        { nombre: "Impacto ambiental", anchor: "seccion-7" }
                     ],
                     herramientas: [
-                        { nombre: "Calculadora de Biogás", url: "#", destacado: true },
+                        { nombre: "Calculadora de biogás", url: "#", destacado: true },
                         { nombre: "Ficha de mantenimiento", url: "#", destacado: false }
                     ]
                 },
@@ -125,10 +127,10 @@
                     subtemas: [
                         { nombre: "Hidroeléctrica: ¿Cómo funciona?", anchor: "seccion-1" },
                         { nombre: "Tipos de centrales", anchor: "seccion-2" },
-                        { nombre: "Impacto ambiental (Hidro)", anchor: "seccion-3" },
-                        { nombre: "Mareomotriz: Principios", anchor: "seccion-4" },
+                        { nombre: "Impacto ambiental (hidro)", anchor: "seccion-3" },
+                        { nombre: "Mareomotriz: principios", anchor: "seccion-4" },
                         { nombre: "Tecnologías mareomotrices", anchor: "seccion-5" },
-                        { nombre: "Ventajas y desventajas (Mareo)", anchor: "seccion-6" }
+                        { nombre: "Ventajas y desventajas (mareo)", anchor: "seccion-6" }
                     ],
                     herramientas: [
                         { nombre: "Mapa de recursos hídricos", url: "#", destacado: false }
@@ -139,19 +141,19 @@
                     nombre: "Uso responsable y vivienda sustentable", 
                     url: "../clase-8/index.html", 
                     disponible: true,
-                    esActual: true,
+                    esActual: false,
                     subtemas: [
                         { nombre: "¿Qué es la sustentabilidad?", anchor: "seccion-1" },
-                        { nombre: "Arquitectura Bioclimática", anchor: "seccion-2" },
-                        { nombre: "Eficiencia y Valor K", anchor: "seccion-3" },
-                        { nombre: "Gestión del Agua", anchor: "seccion-4" },
-                        { nombre: "Estrategias Activas", anchor: "seccion-5" },
-                        { nombre: "Materiales Ecológicos", anchor: "seccion-6" },
-                        { nombre: "Etiquetado Energético", anchor: "seccion-7" }
+                        { nombre: "Arquitectura bioclimática", anchor: "seccion-2" },
+                        { nombre: "Eficiencia y valor K", anchor: "seccion-3" },
+                        { nombre: "Gestión del agua", anchor: "seccion-4" },
+                        { nombre: "Estrategias activas", anchor: "seccion-5" },
+                        { nombre: "Materiales ecológicos", anchor: "seccion-6" },
+                        { nombre: "Etiquetado energético", anchor: "seccion-7" }
                     ],
                     herramientas: [
-                        { nombre: "Calculadora de Huella", url: "#", destacado: true },
-                        { nombre: "Manual de Buenas Prácticas", url: "#", destacado: false }
+                        { nombre: "Calculadora de huella", url: "#", destacado: true },
+                        { nombre: "Manual de buenas prácticas", url: "#", destacado: false }
                     ]
                 }
             ]
