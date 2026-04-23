@@ -1,15 +1,9 @@
 // menu.js - Menú con bolitas y efecto hover
 (function() {
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', iniciarMenu);
-    } else {
-        iniciarMenu();
-    }
-
     // Escuchar cambios en el hash (#) para actualizar el estado activo sin recargar
-    window.addEventListener('hashchange', iniciarMenu);
+    window.addEventListener('hashchange', () => window.iniciarMenu());
 
-    function iniciarMenu() {
+    window.iniciarMenu = function() {
         const currentHash = window.location.hash;
         
         const menuConfig = {
@@ -107,15 +101,15 @@
                     subtemas: [
                         { nombre: "¿Qué es la biomasa?", anchor: "seccion-1" },
                         { nombre: "El funcionamiento", anchor: "seccion-2" },
-                        { nombre: "Tipos: seca vs húmeda", anchor: "seccion-3" },
+                        { nombre: "Clasificación y Procesos", anchor: "seccion-3" },
                         { nombre: "El biodigestor", anchor: "seccion-4" },
-                        { nombre: "Aplicación en obra", anchor: "seccion-5" },
-                        { nombre: "Valorización de residuos", anchor: "seccion-6" },
-                        { nombre: "Impacto ambiental", anchor: "seccion-7" }
+                        { nombre: "Aplicación Profesional", anchor: "seccion-5" },
+                        { nombre: "Impacto ambiental", anchor: "seccion-6" }
                     ],
                     herramientas: [
                         { nombre: "Calculadora de biogás", url: "#", destacado: true },
-                        { nombre: "Ficha de mantenimiento", url: "#", destacado: false }
+                        { nombre: "Ficha de mantenimiento", url: "#", destacado: false },
+                        { nombre: "Libro de biomasa (PDF)", url: "https://www.energia.gob.ar/contenidos/archivos/publicaciones/libro_energia_biomasa.pdf", destacado: false }
                     ]
                 },
                 { 
@@ -165,7 +159,7 @@
             const urlInicio = isRoot ? "index.html" : "../index.html";
             
             // Detectar automáticamente la clase actual por la carpeta en la URL
-            const match = path.match(/\/clase-(\d+)\//);
+            const match = path.match(/clase-(\d+)/);
             const claseActualId = match ? parseInt(match[1]) : null;
 
             let menuHTML = `

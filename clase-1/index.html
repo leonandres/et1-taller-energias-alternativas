@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad e Higiene | ET N°1</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>☀️</text></svg>">
+    <title>Seguridad e higiene | E.Alternativas </title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='25' fill='%230f172a'/%3E%3Cpath d='M50 15 L25 55 H45 L35 85 L75 40 H55 Z' fill='url(%23g)'/%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23fbbf24'/%3E%3Cstop offset='100%25' style='stop-color:%23f97316'/%3E%3C/linearGradient%3E%3C/defs%3E%3C/svg%3E">
+    <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../menu.js"></script>
     <script src="../sidebar.js"></script>
+    <script src="../loader.js"></script>
+    <script src="../theme.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
         body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
@@ -20,15 +23,6 @@
         .dark .bg-white { background-color: #1e293b; }
         .dark .bg-slate-100 { background-color: #1e293b; }
         .dark .text-slate-900 { color: #ffffff; }
-        
-        /* Sidebar */
-        #sidebar {
-            transition: transform 0.3s ease-in-out;
-            transform: translateX(-100%);
-        }
-        #sidebar.sidebar-open {
-            transform: translateX(0) !important;
-        }
     </style>
     <script>
         tailwind.config = {
@@ -38,60 +32,14 @@
 </head>
 <body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
-    <!-- Sidebar navegación -->
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full shadow-2xl overflow-y-auto">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-8">
-                <span class="font-black text-xl tracking-tighter text-yellow-500 uppercase">Energías alternativas</span>
-                <button id="close-sidebar" class="text-slate-400 hover:text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            <div class="space-y-8">
-                <div id="menu-container"></div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Barra superior con navegación -->
-    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 py-3">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-                <div class="flex items-center gap-2">
-                    <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-                    <span class="font-bold tracking-tight text-sm flex items-center gap-2">
-                        <span class="text-yellow-500 font-black">|</span> 
-                        ET N°1 - Clase 1: Seguridad e higiene
-                    </span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Cambiar tema">
-                        <span id="theme-toggle-dark-icon" class="hidden text-slate-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                        </span>
-                        <span id="theme-toggle-light-icon" class="text-yellow-400">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                        </span>
-                    </button>
-                    <div class="flex items-center gap-3 ml-2 border-l border-slate-700 pl-3">
-                        <a href="../index.html" class="text-slate-400 hover:text-white text-sm transition-colors">Inicio</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Contenedores dinámicos -->
+    <div id="sidebar-container"></div>
+    <div id="header-container"></div>
 
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[30rem] h-[30rem] bg-red-500/10 blur-[100px] rounded-full pointer-events-none"></div>
         <div class="max-w-3xl mx-auto relative z-10">
-            <div class="flex items-center gap-2 text-sm text-red-600 dark:text-red-400 mb-4 font-bold">
-                <a href="../index.html" class="hover:underline">🏠 ET N°1</a>
-                <span>→</span>
-                <span>Clase 1</span>
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black text-slate-900 dark:text-white mb-8 tracking-tighter leading-tight bg-gradient-to-r from-red-600 to-orange-500 bg-clip-text text-transparent italic">
+            <h1 class="text-5xl md:text-7xl font-black bg-gradient-to-r from-red-800 to-orange-700 bg-clip-text text-transparent dark:from-red-500 dark:to-orange-400 mb-8 tracking-tighter leading-tight italic-none">
                 Seguridad e higiene: El primer paso en la obra
             </h1>
 
@@ -101,7 +49,7 @@
             </div>
 
             <figure class="my-8 rounded-2xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
-                <img src="https://placehold.co/800x400/1e293b/white?text=Seguridad+en+Obra+-+EPP" alt="Equipos de protección personal en obra" class="w-full h-auto object-cover">
+                <img src="../recursos/imagenes/clase-1/seg-e-higiene.webp" alt="Equipos de protección personal en obra" class="w-full h-[300px] md:h-[400px] object-cover object-center">
                 <figcaption class="bg-slate-50 dark:bg-slate-800/50 p-4 text-sm text-slate-500 dark:text-slate-400 italic text-center border-t border-slate-200 dark:border-slate-800">
                     "La seguridad no es un gasto, es una inversión en vidas".
                 </figcaption>
@@ -398,41 +346,8 @@
         </section>
 
     </main>
+    
+    <div id="footer-container"></div>
 
-    <footer class="bg-slate-200 dark:bg-slate-800 border-t border-slate-300 dark:border-slate-700 py-10 text-center mt-8">
-        <div class="max-w-4xl mx-auto px-6">
-            <p class="text-slate-500 dark:text-slate-400 font-medium tracking-wide">ET N°1 - Construcciones - Energías alternativas</p>
-            <p class="text-slate-400 text-sm mt-2">© 2026 - Todos los derechos reservados</p>
-        </div>
-    </footer>
-
-    <script>
-        // Lógica de tema
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            darkIcon.classList.remove('hidden');
-            lightIcon.classList.add('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        });
-    </script>
 </body>
 </html>

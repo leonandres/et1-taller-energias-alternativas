@@ -5,16 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Biomasa | ET N°1</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>☀️</text></svg>">
+    <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../menu.js"></script>
     <script src="../sidebar.js"></script>
+    <script src="../loader.js"></script>
+    <script src="../theme.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
         body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
         .dark body { background-color: #0f172a; color: #f1f5f9; }
         .prose p { margin-bottom: 1.25rem; line-height: 1.8; text-wrap: pretty; }
-        #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
-        #sidebar.sidebar-open { transform: translateX(0) !important; }
     </style>
     <script>
         tailwind.config = { darkMode: 'class' }
@@ -22,48 +23,9 @@
 </head>
 <body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full shadow-2xl overflow-y-auto">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-10">
-                <span class="font-black text-xl tracking-tighter text-emerald-500 uppercase">Energías alternativas</span>
-                <button id="close-sidebar" class="text-slate-400 hover:text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            <div id="menu-container"></div>
-        </div>
-    </aside>
-
-
-    <!-- Barra superior unificada -->
-    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 py-3">
-            <div class="flex flex-wrap items-center justify-between gap-3">
-                <div class="flex items-center gap-2">
-                    <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-                    <span class="font-bold tracking-tight text-sm flex items-center gap-2">
-                        <span class="text-emerald-500 font-black">|</span> 
-                        ET N°1 - Clase 6: Biomasa
-                    </span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors" title="Cambiar tema">
-                        <span id="theme-toggle-dark-icon" class="hidden text-slate-300">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                        </span>
-                        <span id="theme-toggle-light-icon" class="text-yellow-400">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-                        </span>
-                    </button>
-                    <div class="flex items-center gap-3 ml-2 border-l border-slate-700 pl-3">
-                        <a href="../index.html" class="text-slate-400 hover:text-white text-sm transition-colors">Inicio</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Contenedores dinámicos -->
+    <div id="sidebar-container"></div>
+    <div id="header-container"></div>
 
 
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
@@ -122,29 +84,34 @@
                 Para entender la biomasa, debemos verla como un sistema de <strong>almacenamiento químico</strong> de energía solar. El proceso se divide en tres etapas fundamentales:
             </p>
 
-            <div class="space-y-4 my-8 not-prose">
-                <div class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-500/10 text-yellow-600 rounded-full flex items-center justify-center font-bold">01</div>
+            <div class="space-y-8 my-10 not-prose relative">
+                <!-- Línea conectora (decorativa) -->
+                <div class="absolute left-6 md:left-12 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-700 z-0 hidden sm:block"></div>
+
+                <div class="relative z-10 flex flex-col md:flex-row gap-6 p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="flex-shrink-0 w-12 h-12 bg-yellow-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-yellow-500/20 group-hover:scale-110 transition-transform">01</div>
                     <div>
-                        <h4 class="font-bold text-slate-900 dark:text-white">La carga (fotosíntesis)</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400">Todo comienza con el sol. Las plantas absorben la luz solar y, mediante la fotosíntesis, combinan agua (H2O) y dióxido de carbono (CO2) de la atmósfera para crear materia orgánica (azúcares, celulosa). En este punto, la energía del sol queda atrapada en forma de enlaces químicos dentro de la planta. Cuando los animales comen plantas, esa energía se transfiere a ellos. Por lo tanto, toda la materia orgánica (madera, cosechas, estiércol, residuos de comida) es biomasa que contiene energía solar almacenada.</p>
-                        <img src="../recursos/imagenes/clase-6/2.1-biomasa-fotosintesis.png" alt="Fotosíntesis" class="mx-auto block rounded-xl mt-4 border border-slate-100 dark:border-slate-700/50 shadow-sm max-h-52">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">La carga (fotosíntesis)</h4>
+                        <p class="text-base text-slate-600 dark:text-slate-400">Todo comienza con el sol. Las plantas absorben la luz solar y, mediante la fotosíntesis, combinan agua (H<sub>2</sub>O) y dióxido de carbono (CO<sub>2</sub>) de la atmósfera para crear materia orgánica. En este punto, la energía del sol queda atrapada en forma de enlaces químicos dentro de la planta.</p>
+                        <img src="../recursos/imagenes/clase-6/2.1-biomasa-fotosintesis.png" alt="Fotosíntesis" class="mx-auto block rounded-2xl mt-6 border border-slate-100 dark:border-slate-700/50 shadow-md max-h-64 group-hover:scale-[1.02] transition-transform duration-500">
                     </div>
                 </div>
-                <div class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-500/10 text-emerald-600 rounded-full flex items-center justify-center font-bold">02</div>
+
+                <div class="relative z-10 flex flex-col md:flex-row gap-6 p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="flex-shrink-0 w-12 h-12 bg-emerald-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform">02</div>
                     <div>
-                        <h4 class="font-bold text-slate-900 dark:text-white">El Almacenamiento</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400">Esa energía solar queda "bloqueada" en los <strong>enlaces químicos</strong> de la materia orgánica (madera, algas, residuos) por tiempo indefinido hasta que decidamos usarla.</p>
-                        <img src="../recursos/imagenes/clase-6/6-biomasa-recoleccion.png" alt="Almacenamiento de energía" class="mx-auto block rounded-xl mt-4 border border-slate-100 dark:border-slate-700/50 shadow-sm max-h-52">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">El Almacenamiento</h4>
+                        <p class="text-base text-slate-600 dark:text-slate-400">Esa energía solar queda "bloqueada" en los <strong>enlaces químicos</strong> de la materia orgánica (madera, algas, residuos) por tiempo indefinido. La biomasa es, literalmente, un contenedor de energía en espera.</p>
+                        <img src="../recursos/imagenes/clase-6/6-biomasa-recoleccion.png" alt="Almacenamiento de energía" class="mx-auto block rounded-2xl mt-6 border border-slate-100 dark:border-slate-700/50 shadow-md max-h-64 group-hover:scale-[1.02] transition-transform duration-500">
                     </div>
                 </div>
-                <div class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <div class="flex-shrink-0 w-12 h-12 bg-orange-500/10 text-orange-600 rounded-full flex items-center justify-center font-bold">03</div>
+
+                <div class="relative z-10 flex flex-col md:flex-row gap-6 p-6 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-all duration-300 group">
+                    <div class="flex-shrink-0 w-12 h-12 bg-orange-500 text-white rounded-full flex items-center justify-center font-bold text-xl shadow-lg shadow-orange-500/20 group-hover:scale-110 transition-transform">03</div>
                     <div>
-                        <h4 class="font-bold text-slate-900 dark:text-white">La descarga</h4>
-                        <p class="text-sm text-slate-600 dark:text-slate-400">Al quemar la biomasa o convertirla en biogás, rompemos esos enlaces y "liberamos" la energía almacenada para generar <strong>calor o electricidad</strong>.</p>
-                        <img src="../recursos/imagenes/clase-6/7-biomasa-almacenamiento.png" alt="Descarga de energía" class="mx-auto block rounded-xl mt-4 border border-slate-100 dark:border-slate-700/50 shadow-sm max-h-52">
+                        <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-2">La descarga</h4>
+                        <p class="text-base text-slate-600 dark:text-slate-400">Aquí elegimos el camino: si es madera, la <strong>quemamos</strong> para obtener calor. Si es una papa o residuo húmedo, la <strong>fermentamos</strong> para extraer gas. En ambos casos, liberamos la energía solar guardada.</p>
+                        <img src="../recursos/imagenes/clase-6/7-biomasa-almacenamiento.png" alt="Descarga de energía" class="mx-auto block rounded-2xl mt-6 border border-slate-100 dark:border-slate-700/50 shadow-md max-h-64 group-hover:scale-[1.02] transition-transform duration-500">
                     </div>
                 </div>
             </div>
@@ -162,45 +129,47 @@
 
         <section id="seccion-3" class="mb-16">
             <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent w-fit">
-                3 - Clasificación: seca vs húmeda
+                3 - Clasificación y procesos: ¿cómo extraemos la energía?
             </h2>
+            <p class="text-lg mb-6">No todos los materiales entregan su energía de la misma forma. La clave está en el <strong>contenido de humedad</strong>:</p>
+            
             <div class="space-y-8 not-prose">
-                <!-- Biomasa Seca -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <h3 class="font-bold mb-3 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent w-fit text-lg uppercase tracking-wider">Biomasa seca</h3>
-                    <p class="text-sm">Leña, astillas, cáscaras de cereales, poda. Se aprovecha principalmente mediante <strong>combustión directa</strong> o procesos termoquímicos para generar calor o vapor.</p>
+                <!-- Ruta Térmica -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-lg border-t-4 border-t-orange-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🔥</span>
+                        <h3 class="font-bold bg-gradient-to-r from-orange-600 to-red-500 bg-clip-text text-transparent text-xl uppercase tracking-wider">Ruta Térmica (Seca)</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Para materiales con baja humedad (madera, cáscaras, poda). La energía se libera mediante la <strong>combustión</strong>.</p>
                     
-                    <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory mt-6 pb-4 scrollbar-hide">
-                        <div class="snap-center shrink-0 w-64 h-40 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner">
+                    <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-hide">
+                        <div class="snap-center shrink-0 w-48 h-32 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden">
                             <img src="../recursos/imagenes/clase-6/3-biomasa_sostenibilidad-energia-renovable.avif" class="w-full h-full object-cover" alt="Leña">
                         </div>
-                        <div class="snap-center shrink-0 w-64 h-40 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner">
+                        <div class="snap-center shrink-0 w-48 h-32 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden">
                             <img src="../recursos/imagenes/clase-6/4-pellets-de-madera.avif" class="w-full h-full object-cover" alt="Pellets">
                         </div>
-                        <div class="snap-center shrink-0 w-64 h-40 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner">
+                        <div class="snap-center shrink-0 w-48 h-32 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden">
                             <img src="../recursos/imagenes/clase-6/5-cascara-mani.jpg" class="w-full h-full object-cover" alt="Cáscaras">
                         </div>
                     </div>
-                    <p class="text-[10px] text-slate-400 mt-2 text-center italic">Primer foto: leña. Segunda foto: pellets de madera. Tercer foto: cascaras de maní →</p>
                 </div>
 
-                <!-- Biomasa Húmeda -->
-                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <h3 class="font-bold mb-3 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent w-fit text-lg uppercase tracking-wider">Biomasa húmeda</h3>
-                    <p class="text-sm">Estiércol, restos de comida, efluentes industriales. Se aprovecha mediante <strong>procesos biológicos</strong> (fermentación anaeróbica) para producir Biogás.</p>
+                <!-- Ruta Biológica -->
+                <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-lg border-t-4 border-t-emerald-500">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="text-3xl">🦠</span>
+                        <h3 class="font-bold bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent text-xl uppercase tracking-wider">Ruta Biológica (Húmeda)</h3>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Para materiales con mucha agua (estiércol, restos de cocina, papas). La energía se extrae mediante <strong>fermentación</strong> en biodigestores.</p>
                     
-                    <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory mt-6 pb-4">
-                        <div class="snap-center shrink-0 w-64 h-40 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner">
+                    <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4">
+                        <div class="snap-center shrink-0 w-48 h-32 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden">
                             <img src="https://placehold.co/400x250/0d9488/white?text=Residuos+Agrícolas" class="w-full h-full object-cover" alt="Residuos">
                         </div>
-                        <div class="snap-center shrink-0 w-64 h-40 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner">
+                        <div class="snap-center shrink-0 w-48 h-32 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden">
                             <img src="https://placehold.co/400x250/0d9488/white?text=Estiércol+Animal" class="w-full h-full object-cover" alt="Estiércol">
                         </div>
-                        <div class="snap-center shrink-0 w-64 h-40 bg-slate-200 dark:bg-slate-700 rounded-2xl overflow-hidden shadow-inner">
-                            <img src="https://placehold.co/400x250/0d9488/white?text=Biodigestores" class="w-full h-full object-cover" alt="Biodigestores">
-                        </div>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mt-2 text-center italic">Desliza para ver más →</p>
                 </div>
             </div>
         </section>
@@ -215,7 +184,7 @@
                 </p>
                 
                 <div class="bg-white dark:bg-slate-800 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm my-8 not-prose text-center">
-                    <h3 class="font-bold text-emerald-600 mb-6 uppercase text-xs tracking-widest">Proceso de Transformación</h3>
+                    <h3 class="font-bold text-emerald-600 mb-6 uppercase text-xs tracking-widest">Proceso de transformación</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                         <div class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl">
                             <span class="text-3xl block mb-2">🥗</span>
@@ -230,7 +199,7 @@
                         <div class="p-4 bg-slate-50 dark:bg-slate-900/50 rounded-2xl">
                             <span class="text-3xl block mb-2">⚡</span>
                             <span class="font-bold block text-sm mb-1 text-slate-900 dark:text-white">Energía</span>
-                            <p class="text-[11px] text-slate-500">Generación de Biogás y Bio-fertilizante.</p>
+                            <p class="text-[11px] text-slate-500">Generación de Biogás y bio-fertilizante.</p>
                         </div>
                     </div>
                 </div>
@@ -244,56 +213,62 @@
                     <li class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
                         <span class="text-3xl">🔥</span>
                         <div>
-                            <strong class="text-emerald-600 dark:text-emerald-400 block mb-1">Biogás (Metano + CO2)</strong>
+                            <strong class="text-emerald-600 dark:text-emerald-400 block mb-1">Biogás (metano + CO2)</strong>
                             <p class="text-sm text-slate-600 dark:text-slate-400">Gas combustible que se acumula en la parte superior. Se utiliza para cocinar, calentar agua o incluso generar electricidad mediante motores adaptados.</p>
                         </div>
                     </li>
                     <li class="flex gap-4 p-5 bg-white dark:bg-slate-800 rounded-2xl border border-slate-100 dark:border-slate-700 shadow-sm">
                         <span class="text-3xl">🌿</span>
                         <div>
-                            <strong class="text-emerald-600 dark:text-emerald-400 block mb-1">Biol (Fertilizante líquido)</strong>
+                            <strong class="text-emerald-600 dark:text-emerald-400 block mb-1">Biol (fertilizante líquido)</strong>
                             <p class="text-sm text-slate-600 dark:text-slate-400">El efluente líquido que sale del digestor. Es un fertilizante orgánico extraordinario, ya que el proceso elimina patógenos pero conserva todos los nutrientes (Nitrógeno, Fósforo y Potasio).</p>
                         </div>
                     </li>
                 </ul>
+
+                <!-- Comparativa: Biodigestor vs Compostera -->
+                <div class="mt-12 p-8 bg-slate-100 dark:bg-slate-900/50 rounded-[2rem] border border-slate-200 dark:border-slate-800 not-prose">
+                    <h4 class="text-center font-bold text-slate-900 dark:text-white mb-6 uppercase text-xs tracking-widest">¿Biodigestor o Compostera?</h4>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="space-y-2">
+                            <p class="text-emerald-600 dark:text-emerald-400 font-bold text-center border-b border-emerald-500/20 pb-2 text-sm">BIODIGESTOR</p>
+                            <p class="text-xs text-slate-500"><strong>Sin oxígeno</strong> (anaeróbico). Produce <strong>Biogás</strong> para cocinar y fertilizante líquido (Biol).</p>
+                            <p class="text-[10px] text-slate-400 italic">"Atrapamos el gas para usarlo".</p>
+                        </div>
+                        <div class="space-y-2">
+                            <p class="text-orange-600 dark:text-orange-400 font-bold text-center border-b border-orange-500/20 pb-2 text-sm">COMPOSTERA</p>
+                            <p class="text-xs text-slate-500"><strong>Con oxígeno</strong> (aeróbico). Produce <strong>Compost</strong> sólido para tierra. El gas se escapa a la atmósfera.</p>
+                            <p class="text-[10px] text-slate-400 italic">"Es un proceso de reciclaje de suelo".</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="seccion-5" class="mb-16">
-            <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent w-fit">
-                5 - Aplicación en obra: calderas y pellets
+            <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent w-fit">
+                5 - Aplicación profesional y valorización de residuos
             </h2>
-            <p class="text-lg">
-                Como técnicos, debemos saber que la biomasa seca (especialmente el <strong>pellet</strong>) es una alternativa real al gas natural para calefacción centralizada.
+            <p class="text-lg mb-8">
+                Para un técnico, la biomasa no es solo combustible; es una decisión de <strong>diseño constructivo</strong> y de gestión de recursos que transforma un desecho en un insumo valioso.
             </p>
-            <div class="grid md:grid-cols-2 gap-8 my-8 not-prose">
-                <div class="bg-slate-100 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">🔥 La Caldera de Biomasa</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400">Funciona igual que una caldera a gas, pero quema materia sólida. Son automáticas: un tornillo sin fin transporta el combustible desde un depósito hasta el quemador según la demanda del termostato.</p>
+
+            <div class="grid md:grid-cols-2 gap-6 my-8 not-prose">
+                <div class="bg-slate-100 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">🔥 Sistemas centralizados</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Las calderas de pellets son automáticas. El desafío en obra es el <strong>silo de almacenamiento</strong>: se debe prever un espacio seco y accesible para la carga de combustible.</p>
                 </div>
-                <div class="bg-slate-100 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700">
-                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">🏗️ El Silo de Almacenamiento</h4>
-                    <p class="text-sm text-slate-600 dark:text-slate-400"><strong>Dato constructivo:</strong> La biomasa ocupa volumen. En el diseño de una vivienda, se debe prever un local o "silo" cerca de la sala de máquinas para el acopio de combustible, con acceso para camiones de carga.</p>
+                <div class="bg-slate-100 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <h4 class="font-bold text-slate-900 dark:text-white mb-2">🏗️ Autoconsumo industrial</h4>
+                    <p class="text-sm text-slate-600 dark:text-slate-400">Muchas industrias (como aserraderos) usan sus propios descartes para generar vapor, eliminando el costo de disposición de residuos y ahorrando energía.</p>
                 </div>
             </div>
-        </section>
 
-        <section id="seccion-6" class="mb-16">
-            <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent w-fit">
-                6 - Valorización de residuos
-            </h2>
-            <div class="bg-emerald-900/10 dark:bg-emerald-500/5 p-8 rounded-[2.5rem] border border-emerald-100 dark:border-emerald-800/50 relative overflow-hidden not-prose">
+            <div class="bg-emerald-900/10 dark:bg-emerald-500/5 p-8 rounded-[2rem] border border-emerald-100 dark:border-emerald-800/50 relative overflow-hidden not-prose mb-8">
                 <div class="relative z-10">
-                    <h3 class="text-xl font-bold text-emerald-700 dark:text-emerald-400 mb-4">De Basura a Recurso (Waste to Energy)</h3>
-                    <p class="text-slate-700 dark:text-slate-300 mb-4 leading-relaxed">
-                        La biomasa cierra el círculo de la <strong>economía circular</strong>. En Argentina, muchas industrias (como las maniceras en Córdoba o los aserraderos en Misiones) utilizan sus propios desechos para generar el vapor y la electricidad que necesitan para producir.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-xs font-bold shadow-sm border border-slate-200 dark:border-slate-700">♻️ Menos costos de disposición</span>
                         <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-xs font-bold shadow-sm border border-slate-200 dark:border-slate-700">🔋 Independencia energética</span>
                         <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-xs font-bold shadow-sm border border-slate-200 dark:border-slate-700">📉 Menor huella de carbono</span>
-                    </div>
-                </div>
+                        <span class="px-3 py-1 bg-white dark:bg-slate-800 rounded-full text-xs font-bold shadow-sm border border-slate-200 dark:border-slate-700">♻️ Menos desperdicio</span>
                 <!-- Decoración sutil -->
                 <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-emerald-500/10 blur-3xl rounded-full"></div>
             </div>
@@ -303,20 +278,117 @@
         </section>
 
         <section id="seccion-7" class="mb-16">
+        <section id="seccion-6" class="mb-16">
             <h2 class="text-3xl font-extrabold mb-6 border-l-4 border-emerald-500 pl-4 bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-500 bg-clip-text text-transparent w-fit">
-                7 - Impacto ambiental y Sostenibilidad
+                7 - Impacto ambiental y sostenibilidad
             </h2>
             <div class="space-y-4 text-lg">
-                <p>El uso de la biomasa tiene un impacto profundamente positivo en la descarbonización, pero requiere una <strong>gestión responsable</strong> para ser verdaderamente sostenible.</p>
                 <div class="grid md:grid-cols-2 gap-6 not-prose">
                     <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                        <h4 class="font-bold text-emerald-600 mb-2">Ciclo de Carbono Cerrado</h4>
+                        <h4 class="font-bold text-emerald-600 mb-2">Ciclo de carbono cerrado</h4>
                         <p class="text-sm">A diferencia del petróleo, la biomasa devuelve a la atmósfera el CO2 que la planta absorbió recientemente, manteniendo el balance del ecosistema en equilibrio.</p>
                     </div>
                     <div class="p-6 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
-                        <h4 class="font-bold text-emerald-600 mb-2">Reducción de Metano</h4>
+                        <h4 class="font-bold text-emerald-600 mb-2">Reducción de metano</h4>
                         <p class="text-sm">Capturar residuos evita que se descompongan al aire libre generando metano, un gas de efecto invernadero 25 veces más potente que el CO2.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recurso PDF Destacado -->
+        <section class="mb-16 not-prose">
+            <a href="https://www.energia.gob.ar/contenidos/archivos/publicaciones/libro_energia_biomasa.pdf" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-6 p-6 rounded-3xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/50 hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-300 transform hover:-translate-y-1">
+                <div class="flex-shrink-0 w-16 h-16 bg-emerald-500/10 dark:bg-emerald-500/20 rounded-2xl flex items-center justify-center text-emerald-600 dark:text-emerald-500 group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-300">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                    </svg>
+                </div>
+                <div class="flex-grow">
+                    <span class="inline-block px-2 py-0.5 rounded text-[10px] font-black bg-emerald-500 text-white uppercase mb-2">Lectura recomendada</span>
+                    <h4 class="text-xl font-bold text-slate-900 dark:text-white leading-tight">Libro: energía de la biomasa</h4>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Manual técnico completo de la secretaría de energía de la nación.</p>
+                </div>
+                <div class="hidden sm:block text-slate-300 dark:text-slate-600 group-hover:text-emerald-500 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+            </a>
+        </section>
+
+        <!-- Sección: repaso relámpago -->
+        <section id="repaso-rapido" class="mb-16 not-prose">
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-[2.5rem] shadow-2xl border border-emerald-500/30">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center text-xl animate-pulse">⚡</div>
+                    <h2 class="text-2xl font-black text-white uppercase tracking-tight">Repaso Relámpago</h2>
+                </div>
+
+                <div class="grid gap-4">
+                    <!-- Pregunta 1 -->
+                    <details class="group bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-emerald-500/50">
+                        <summary class="list-none p-5 cursor-pointer flex justify-between items-center text-slate-200 font-bold">
+                            1. ¿La biomasa es materia o energía?
+                            <span class="text-emerald-500 transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-4">
+                            Es <strong>materia orgánica</strong>. Sin embargo, funciona como una "batería biológica": es materia que contiene energía química almacenada en sus enlaces, esperando ser liberada.
+                        </div>
+                    </details>
+
+                    <!-- Pregunta 2 -->
+                    <details class="group bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-emerald-500/50">
+                        <summary class="list-none p-5 cursor-pointer flex justify-between items-center text-slate-200 font-bold">
+                            2. ¿Tiene una huella de carbono positiva o negativa?
+                            <span class="text-emerald-500 transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-4">
+                            Se considera <strong>Neutra</strong>. El CO₂ que libera al quemarse es el mismo que la planta capturó de la atmósfera durante su crecimiento. El ciclo se mantiene en equilibrio.
+                        </div>
+                    </details>
+
+                    <!-- Pregunta 3 -->
+                    <details class="group bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-emerald-500/50">
+                        <summary class="list-none p-5 cursor-pointer flex justify-between items-center text-slate-200 font-bold">
+                            3. ¿Qué diferencia a la biomasa de un panel solar?
+                            <span class="text-emerald-500 transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-4">
+                            La <strong>gestionabilidad</strong>. El panel solar genera energía solo cuando hay sol; la biomasa puede almacenarse en un silo y usarse exactamente cuando el edificio lo necesita, como un combustible convencional.
+                        </div>
+                    </details>
+
+                    <!-- Pregunta 4 -->
+                    <details class="group bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-emerald-500/50">
+                        <summary class="list-none p-5 cursor-pointer flex justify-between items-center text-slate-200 font-bold">
+                            4. ¿Puedo usar una piedra como biomasa?
+                            <span class="text-emerald-500 transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-4">
+                            <strong>No.</strong> La biomasa debe ser obligatoriamente de origen <strong>orgánico</strong> (vegetal o animal). Las piedras son materia inorgánica o mineral y no contienen la energía química almacenada mediante la fotosíntesis que permite la combustión o la generación de biogás.
+                        </div>
+                    </details>
+
+                    <!-- Pregunta 5 -->
+                    <details class="group bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-emerald-500/50">
+                        <summary class="list-none p-5 cursor-pointer flex justify-between items-center text-slate-200 font-bold">
+                            5. ¿Puedo usar una papa como biomasa?
+                            <span class="text-emerald-500 transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-4">
+                            <strong>Sí.</strong> Al ser un tubérculo (materia orgánica vegetal), la papa contiene almidón y energía almacenada. En la industria, los descartes de papa se pueden procesar en biodigestores para generar biogás o incluso fermentarse para producir bioetanol.
+                        </div>
+                    </details>
+
+                    <!-- Pregunta 6 -->
+                    <details class="group bg-slate-800/50 border border-slate-700 rounded-2xl overflow-hidden transition-all hover:border-emerald-500/50">
+                        <summary class="list-none p-5 cursor-pointer flex justify-between items-center text-slate-200 font-bold">
+                            6. ¿Puedo usar madera?
+                            <span class="text-emerald-500 transition-transform group-open:rotate-180">▼</span>
+                        </summary>
+                        <div class="px-5 pb-5 text-slate-400 text-sm leading-relaxed border-t border-slate-700/50 pt-4">
+                            <strong>¡Absolutamente!</strong> Es la biomasa por excelencia. La madera (biomasa seca) almacena energía solar en forma de lignina y celulosa. Al quemarla en una caldera eficiente o estufa, recuperamos ese calor para calefacción o procesos industriales.
+                        </div>
+                    </details>
                 </div>
             </div>
         </section>
@@ -370,38 +442,5 @@
         </section>
     </main>
 
-    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center text-slate-400 text-sm">
-        <p class="font-medium tracking-wide">ET N°1 - Construcciones - Energías alternativas</p>
-        <p class="mt-2">© 2026 - Todos los derechos reservados</p>
-    </footer>
-
-    <script>
-        // Lógica de tema (Copiada para consistencia)
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            darkIcon.classList.remove('hidden');
-            lightIcon.classList.add('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        });
-    </script>
 </body>
 </html>

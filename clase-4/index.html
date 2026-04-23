@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energía Eólica | ET N°1</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>☀️</text></svg>">
+    <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="../menu.js"></script>
     <script src="../sidebar.js"></script>
+    <script src="../loader.js"></script>
+    <script src="../theme.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
         body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
         .dark body { background-color: #0f172a; color: #f1f5f9; }
         .prose p { margin-bottom: 1.25rem; line-height: 1.8; text-wrap: pretty; }
-        #sidebar { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
-        #sidebar.sidebar-open { transform: translateX(0) !important; }
     </style>
     <script>
         tailwind.config = { darkMode: 'class' }
@@ -21,32 +23,9 @@
 </head>
 <body class="text-slate-800 dark:text-slate-200 leading-relaxed antialiased">
 
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] shadow-2xl overflow-y-auto">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-10">
-                <span class="font-black text-xl tracking-tighter text-sky-500 uppercase">Energías alternativas</span>
-                <button id="close-sidebar" class="text-slate-400 hover:text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-            <div id="menu-container"></div>
-        </div>
-    </aside>
-
-    <div class="bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800">
-        <div class="max-w-4xl mx-auto px-4 py-3 text-sm flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors">
-                    <svg class="w-6 h-6 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                </button>
-                <span class="font-bold">ET N°1 - Clase 4: Energía eólica</span>
-            </div>
-            <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors">
-                <span id="theme-toggle-dark-icon" class="hidden">🌙</span>
-                <span id="theme-toggle-light-icon">☀️</span>
-            </button>
-        </div>
-    </div>
+    <!-- Contenedores dinámicos -->
+    <div id="sidebar-container"></div>
+    <div id="header-container"></div>
 
     <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 py-20 px-6 relative overflow-hidden">
         <div class="absolute top-0 right-0 w-[30rem] h-[30rem] bg-sky-500/10 blur-[100px] rounded-full pointer-events-none"></div>
@@ -134,37 +113,5 @@
         </section>
     </main>
 
-    <footer class="bg-slate-900 border-t border-slate-800 py-10 text-center text-slate-500 text-sm">
-        <p>ET N°1 - Especialidad Construcciones - 2026</p>
-    </footer>
-
-    <script>
-        // Lógica de tema
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const darkIcon = document.getElementById('theme-toggle-dark-icon');
-        const lightIcon = document.getElementById('theme-toggle-light-icon');
-
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-            darkIcon.classList.remove('hidden');
-            lightIcon.classList.add('hidden');
-        } else {
-            document.documentElement.classList.remove('dark');
-            darkIcon.classList.add('hidden');
-            lightIcon.classList.remove('hidden');
-        }
-
-        themeToggleBtn.addEventListener('click', function() {
-            darkIcon.classList.toggle('hidden');
-            lightIcon.classList.toggle('hidden');
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('color-theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('color-theme', 'dark');
-            }
-        });
-    </script>
 </body>
 </html>

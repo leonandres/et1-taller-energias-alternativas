@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Bolas de luz decorativas de fondo */
 .background-blobs {
     position: fixed;
@@ -90,7 +94,24 @@ h1 { font-size: 2.2rem; margin-top: 1rem; }
     margin-bottom: 8px;
     font-weight: 500;
 }
+/*
 
+/* --- Reglas del Sidebar Global --- */
 #sidebar {
-    transform: translateX(0) !important;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(-100%);
+}
+
+#sidebar.sidebar-open {
+    transform: translateX(0);
+}
+
+/* Scrollbar para el sidebar */
+#sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background: #475569;
+    border-radius: 3px;
 }

@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ET N°1 | Taller energías renovables | Especialidad construcciones</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>☀️</text></svg>">
+    <title>ET N°1 | Taller energías alternativas | Especialidad construcciones</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230f172a'/><path d='M50 15 L25 55 H45 L35 85 L75 40 H55 Z' fill='url(%23g)'/><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' style='stop-color:%23fbbf24'/><stop offset='100%25' style='stop-color:%23f97316'/></linearGradient></defs></svg>">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="menu.js"></script>
     <script src="sidebar.js"></script>
+    <script src="loader.js"></script>
+    <script src="theme.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <style>
         * { font-family: 'Inter', sans-serif; }
@@ -22,46 +25,13 @@
             transform: translateY(-6px);
             box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.5);
         }
-        #sidebar {
-            transition: transform 0.3s ease-in-out;
-        }
-        .sidebar-open {
-            transform: translateX(0) !important;
-        }
     </style>
 </head>
 <body class="bg-slate-900 text-slate-100">
 
-    <!-- Sidebar Navegación -->
-    <aside id="sidebar" class="fixed top-0 left-0 h-full w-80 bg-slate-900 border-r border-slate-800 z-[70] transform -translate-x-full shadow-2xl overflow-y-auto">
-        <div class="p-6">
-            <div class="flex justify-between items-center mb-10">
-                <span class="font-black text-xl tracking-tighter text-yellow-500 uppercase">Programa 2026</span>
-                <button id="close-sidebar" class="text-slate-400 hover:text-white">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                </button>
-            </div>
-
-            <!-- Barra de Progreso Global -->
-            <div class="mb-10 px-1">
-                <div class="flex justify-between items-center mb-2">
-                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Progreso del programa</span>
-                    <span class="text-[10px] font-bold text-yellow-500">100% (8/8)</span>
-                </div>
-                <div class="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-                    <div class="bg-yellow-500 h-full rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)]" style="width: 100%"></div>
-                </div>
-            </div>
-            <div id="menu-container"></div>
-        </div>
-    </aside>
-
-    <!-- Botón para abrir menú (Sticky) -->
-    <div class="fixed top-6 left-6 z-50">
-        <button id="open-sidebar" class="bg-slate-800/80 backdrop-blur-md p-3 rounded-2xl border border-slate-700 text-yellow-500 shadow-xl hover:scale-110 transition-all">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-        </button>
-    </div>
+    <!-- Contenedores dinámicos -->
+    <div id="sidebar-container"></div>
+    <div id="header-container"></div>
 
     <!-- Header hero -->
     <header class="hero-gradient py-20 px-6 border-b border-slate-800">
@@ -103,7 +73,9 @@
                 <div class="text-4xl mb-3">🌱</div>
                 <h3 class="text-xl font-bold text-slate-200">Clase 1: Seguridad e higiene</h3>
                 <p class="text-slate-400 text-sm mt-1">EPP y normas en el taller</p>
-                <p class="text-slate-500 text-xs mt-2">Próximamente</p>
+                <a href="clase-2/index.html" class="inline-block mt-4 text-violet-400 font-bold text-sm hover:underline">
+                    Ver clase →
+                </a>
                 <div class="mt-4 h-1 w-16 bg-slate-700 rounded-full"></div>
             </div>
 
@@ -113,7 +85,7 @@
                 <h3 class="text-xl font-bold">Clase 2</h3>
                 <p class="text-slate-400 text-sm mt-1">Energías renovables vs no renovables</p>
                 <a href="clase-2/index.html" class="inline-block mt-4 text-violet-400 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
@@ -123,7 +95,7 @@
                 <h3 class="text-xl font-bold">Clase 3</h3>
                 <p class="text-slate-400 text-sm mt-1">Energía geotérmica</p>
                 <a href="clase-3/index.html" class="inline-block mt-4 text-orange-500 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
@@ -133,7 +105,7 @@
                 <h3 class="text-xl font-bold">Clase 4</h3>
                 <p class="text-slate-400 text-sm mt-1">Energía eólica</p>
                 <a href="clase-4/index.html" class="inline-block mt-4 text-yellow-500 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
@@ -143,7 +115,7 @@
                 <h3 class="text-xl font-bold">Clase 5</h3>
                 <p class="text-slate-400 text-sm mt-1">Energía solar</p>
                 <a href="clase-5/index.html" class="inline-block mt-4 text-yellow-500 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
@@ -153,7 +125,7 @@
                 <h3 class="text-xl font-bold">Clase 6</h3>
                 <p class="text-slate-400 text-sm mt-1">Biomasa</p>
                 <a href="clase-6/index.html" class="inline-block mt-4 text-emerald-500 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
@@ -163,7 +135,7 @@
                 <h3 class="text-xl font-bold text-slate-200">Clase 7</h3>
                 <p class="text-slate-400 text-sm mt-1">Hidroeléctrica y mareomotriz</p>
                 <a href="clase-7/index.html" class="inline-block mt-4 text-blue-500 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
@@ -173,16 +145,14 @@
                 <h3 class="text-xl font-bold">Clase 8</h3>
                 <p class="text-slate-400 text-sm mt-1">Uso responsable y Vivienda sustentable</p>
                 <a href="clase-8/index.html" class="inline-block mt-4 text-teal-400 font-bold text-sm hover:underline">
-                    Ver materiales →
+                    Ver clase →
                 </a>
             </div>
 
         </div>
 
         <!-- Footer -->
-        <footer class="mt-20 pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
-            <p>ET N°1 | Taller energías renovables | Especialidad construcciones</p>
-        </footer>
+        <div id="footer-container"></div>
     </main>
 
 </body>

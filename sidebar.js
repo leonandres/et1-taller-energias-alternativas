@@ -18,13 +18,13 @@
         return div;
     }
 
-    function initSidebar() {
+    window.initSidebar = function() {
         const openSidebarBtn = document.getElementById('open-sidebar');
         const closeSidebarBtn = document.getElementById('close-sidebar');
         const sidebar = document.getElementById('sidebar');
 
         if (!openSidebarBtn || !closeSidebarBtn || !sidebar) {
-            console.warn('Sidebar: elementos no encontrados');
+            console.warn('Sidebar: elementos no encontrados en el DOM');
             return;
         }
 
@@ -58,11 +58,5 @@
         // Asegurar estado inicial
         overlay.style.visibility = 'hidden';
         overlay.style.opacity = '0';
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSidebar);
-    } else {
-        initSidebar();
     }
 })();

@@ -7,8 +7,9 @@ function calcular() {
     const resultBox = document.getElementById('resultBox');
 
     // Validación básica
-    if (isNaN(watts) || isNaN(hsp)) {
-        alert("Por favor, ingresá valores válidos.");
+    if (isNaN(watts) || isNaN(hsp) || watts <= 0 || hsp <= 0 || eficiencia <= 0) {
+        resultBox.innerHTML = `<p class="text-red-500 font-bold">Por favor, ingresá valores válidos mayores a cero.</p>`;
+        resultBox.classList.remove('hidden');
         return;
     }
 
