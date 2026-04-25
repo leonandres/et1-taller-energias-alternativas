@@ -938,6 +938,48 @@
             document.getElementById('respuesta-imagen').value = '';
             document.getElementById('feedback-imagen').classList.add('hidden');
         });
+
+        // --- PERSISTENCIA CON LOCALSTORAGE ---
+        const storageKey = 'clase-5-progreso';
+
+        function guardarProgreso() {
+            const progreso = {
+                respuestasRadio: {},
+                justificacionImagen: document.getElementById('respuesta-imagen').value,
+                calculosPracticos: document.querySelector('textarea[placeholder*="Escribí acá tus cálculos"]').value
+            };
+            
+            document.querySelectorAll('.quiz-radio:checked').forEach(radio => {
+                progreso.respuestasRadio[radio.name] = radio.value;
+            });
+
+            localStorage.setItem(storageKey, JSON.stringify(progreso));
+        }
+
+        function cargarProgreso() {
+            const datos = JSON.parse(localStorage.getItem(storageKey));
+            if (!datos) return;
+
+            // Cargar radios y disparar el evento change para mostrar el feedback
+            Object.entries(datos.respuestasRadio).forEach(([name, value]) => {
+                const radio = document.querySelector(`input[name="${name}"][value="${value}"]`);
+                if (radio) {
+                    radio.checked = true;
+                    radio.dispatchEvent(new Event('change'));
+                }
+            });
+
+            if (datos.justificacionImagen) document.getElementById('respuesta-imagen').value = datos.justificacionImagen;
+            const calcArea = document.querySelector('textarea[placeholder*="Escribí acá tus cálculos"]');
+            if (calcArea && datos.calculosPracticos) calcArea.value = datos.calculosPracticos;
+        }
+
+        // Escuchar cambios para guardar
+        document.addEventListener('change', (e) => { if (e.target.matches('.quiz-radio, textarea')) guardarProgreso(); });
+        document.addEventListener('input', (e) => { if (e.target.tagName === 'TEXTAREA') guardarProgreso(); });
+        
+        // Cargar al iniciar
+        window.addEventListener('load', cargarProgreso);
     </script>
 
     <script>

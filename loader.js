@@ -52,9 +52,19 @@ document.addEventListener('DOMContentLoaded', () => {
         // Pasamos el fondo y el comportamiento sticky al contenedor principal
         headerPlaceholder.className = "bg-slate-900 text-white sticky top-0 z-50 shadow-lg border-b border-slate-800";
         
-        // Construcción milimétrica para evitar espacios fantasma
-        //headerPlaceholder.innerHTML = `<nav class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"><div class="flex items-center gap-2"><button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors"><svg class="w-6 h-6 text-${activeColorClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button><span class="font-bold text-sm tracking-tight flex items-center gap-1.5"><span class="text-${activeColorClass} font-black">|</span>Energías alternativas<span class="mx-1 opacity-20">|</span><span class="text-slate-300 font-normal">${classPrefix}${pageTitle}</span></span></div><div class="flex items-center gap-4"><button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"><span id="theme-toggle-dark-icon" class="hidden text-slate-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg></span><span id="theme-toggle-light-icon" class="text-orange-200/80"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"></path></svg></span></button><a href="${pathPrefix}index.html" class="text-xs font-bold uppercase text-slate-400 hover:text-white transition-colors hidden sm:block">Inicio</a></div></nav>`;
-        headerPlaceholder.innerHTML = `<nav class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"><div class="flex items-center gap-2"><button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors"><svg class="w-6 h-6 text-${activeColorClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button><span class="font-bold text-sm tracking-tight flex items-center gap-1.5"><span class="text-${activeColorClass} font-black">|</span>Energías alternativas<span class="mx-1 opacity-20">|</span><span class="text-slate-300 font-normal">${classPrefix}${pageTitle}</span></span></div><div class="flex items-center gap-4"><button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"><span id="theme-toggle-dark-icon" class="hidden text-slate-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg></span><span id="theme-toggle-light-icon" class="text-amber-300/90"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M19.78 4.22l-1.42 1.42"></path></svg></span></button><a href="${pathPrefix}index.html" class="text-xs font-bold uppercase text-slate-400 hover:text-white transition-colors hidden sm:block">Inicio</a></div></nav>`;
+        headerPlaceholder.innerHTML = `
+            <nav class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <button id="open-sidebar" class="p-2 -ml-2 hover:bg-slate-800 rounded-lg transition-colors"><svg class="w-6 h-6 text-${activeColorClass}" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+                    <span class="font-bold text-sm tracking-tight flex items-center gap-1.5"><span class="text-${activeColorClass} font-black">|</span>Energías alternativas<span class="mx-1 opacity-20">|</span><span class="text-slate-300 font-normal">${classPrefix}${pageTitle}</span></span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="theme-toggle" class="p-2 rounded-lg bg-slate-800 hover:bg-slate-700 transition-colors"><span id="theme-toggle-dark-icon" class="hidden text-slate-300"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg></span><span id="theme-toggle-light-icon" class="text-amber-300/90"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><path stroke-linecap="round" d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M19.78 4.22l-1.42 1.42"></path></svg></span></button>
+                    <a href="${pathPrefix}index.html" class="text-xs font-bold uppercase text-slate-400 hover:text-white transition-colors hidden sm:block">Inicio</a>
+                </div>
+            </nav>
+            <div id="scroll-progress-bar" class="absolute bottom-0 left-0 h-1 bg-${activeColorClass} transition-all duration-150" style="width: 0%"></div>
+        `;
     }
 
     // 3. Inyectar Footer
@@ -77,4 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof window.initSidebar === 'function') window.initSidebar();
         if (typeof window.initTheme === 'function') window.initTheme();
     }, 50);
+
+    // 5. Lógica de la barra de progreso
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+        const bar = document.getElementById('scroll-progress-bar');
+        if (bar) bar.style.width = Math.min(scrolled, 100) + "%";
+    });
 });
