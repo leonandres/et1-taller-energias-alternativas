@@ -2,7 +2,7 @@
 import { supabase } from './supabase-client.js'
 
 // IMPORTAR funciones desde auth-ui.js
-import { actualizarHeaderUI, initModales, initAuthEvents } from '../auth-ui.js'
+import { actualizarHeaderUI, initModales, initAuthEvents } from './auth-ui.js'
 
 document.addEventListener('DOMContentLoaded', () => {
     const esperarHeader = setInterval(() => {
