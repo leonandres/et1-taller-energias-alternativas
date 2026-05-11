@@ -100,6 +100,21 @@
 
     </main>
 
+        <div id="footer-container"></div>
+
+    <script type="module">
+        import { inicializarProgreso } from '../js/progreso-ui.js'
+        inicializarProgreso(6)  // ← Esto ejecuta la lógica del progreso
+    </script>
+
+    <script type="module" src="../js/auth-loader.js"></script>
+    <script type="module" src="../js/progreso.js"></script>
+
+    <script src="../js/loader.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/theme.js"></script>
+
     <footer class="bg-slate-200 dark:bg-slate-800 border-t border-slate-300 dark:border-slate-700 py-10 text-center mt-8">
         <p class="text-slate-500 dark:text-slate-400 font-medium tracking-wide">ET N°1 - Construcciones - Energías alternativas</p>
         <p class="text-slate-400 text-sm mt-2">© 2026 - Todos los derechos reservados</p>
