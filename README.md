@@ -146,4 +146,6 @@ git push origin main
 ---
 
 ## 📝 Licencia
-Este proyecto es de uso educativo para la **Escuela Técnica N°1**.
+Este proyecto está bajo la [Licencia MIT](LICENSE). 
+Desarrollado exclusivamente con fines educativos para la **Escuela Técnica N°1**.
+
