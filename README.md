@@ -5,6 +5,8 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/leonandres/et1-taller-energias-alternativas)
 
 Plataforma educativa interactiva para la especialidad en **Construcciones**, enfocada en energías renovables y su aplicación en la construcción sustentable.
+<img width="1676" height="945" alt="image" src="https://github.com/user-attachments/assets/54834b4d-3ab5-4d3a-b375-74bd531b7d35" />
+
 
 🌐 **Sitio:** [leonandres.github.io/et1-taller-energias-alternativas](https://leonandres.github.io/et1-taller-energias-alternativas/)
 
@@ -147,5 +149,4 @@ git push origin main
 
 ## 📝 Licencia
 Este proyecto está bajo la [Licencia MIT](LICENSE). 
-Desarrollado exclusivamente con fines educativos para la **Escuela Técnica N°1**.
-
+Este material es de uso libre y gratuito para cualquier institución educativa que desee impartir conocimientos sobre energías renovables y construcción sustentable.
