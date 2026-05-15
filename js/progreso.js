@@ -16,7 +16,7 @@ export async function marcarCompletado(claseId) {
       clase_id: claseId, 
       completado: true,
       fecha: new Date()
-    })
+    }, { onConflict: 'user_id, clase_id' })  // Evita duplicados
   
   if (error) {
     console.error('Error:', error)

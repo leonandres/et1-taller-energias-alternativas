@@ -56,6 +56,16 @@
             </p>
         </div>
 
+        <!-- Mensaje de progreso (solo visible para usuarios logueados) -->
+        <div id="progreso-container" class="mb-8 text-center hidden">
+            <div class="inline-block bg-slate-800/80 backdrop-blur-sm rounded-2xl px-6 py-3 border border-yellow-500/30">
+                <p id="mensaje-progreso" class="text-yellow-400 font-medium">
+                    <span class="inline-block mr-2">📊</span> 
+                    Cargando tu progreso...
+                </p>
+            </div>
+        </div>
+
         <!-- Clases disponibles -->
         <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
             <span class="w-2 h-8 bg-yellow-500 rounded-full"></span>
@@ -69,7 +79,7 @@
                 <div class="text-4xl mb-3">🌱</div>
                 <h3 class="text-xl font-bold text-slate-200">Clase 1: Seguridad e higiene</h3>
                 <p class="text-slate-400 text-sm mt-1">EPP y normas en el taller</p>
-                <a href="clase-2/index.html" class="inline-block mt-4 text-violet-400 font-bold text-sm hover:underline">
+                <a href="clase-1/index.html" class="inline-block mt-4 text-violet-400 font-bold text-sm hover:underline">
                     Ver clase →
                 </a>
                 <div class="mt-4 h-1 w-16 bg-slate-700 rounded-full"></div>
@@ -146,32 +156,25 @@
             </div>
 
         </div>
-
-        <h2 id="saludo" class="text-center text-xl mt-4 font-bold text-yellow-400"></h2>
-
-        <!-- PRIMERO: Módulos (con import) -->
-        <script type="module" src="js/auth-loader.js"></script>
-        <script type="module">
-            import { inicializarProgreso } from '../js/progreso-ui.js'
-            inicializarProgreso(1)
-        </script>
-
+        
         <!-- Footer -->
         <div id="footer-container"></div>
     </main>
 
-        <script type="module">
-        import { inicializarProgreso } from '../js/progreso-ui.js'
-        inicializarProgreso(1)  // ← Esto ejecuta la lógica del progreso
-    </script>
-
     <script type="module" src="js/auth-loader.js"></script>
     <script type="module" src="js/progreso.js"></script>
+    <script type="module" src="js/perfil-ui.js"></script>
 
     <script src="js/loader.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/sidebar.js"></script>
     <script src="js/theme.js"></script>
+
+    <!-- Esperar a que cargue y ejecutar -->
+    <script type="module">
+        import { mostrarProgreso } from './js/perfil-ui.js'
+        mostrarProgreso()
+    </script>
 
 </body>
 </html>

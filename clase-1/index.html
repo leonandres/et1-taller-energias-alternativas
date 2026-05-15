@@ -8,10 +8,6 @@
     <link rel="stylesheet" href="../styles.css">
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <script type="module">
-        import { inicializarProgreso } from '../js/progreso-ui.js'
-        inicializarProgreso(1)
-    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Onest:wght@300;400;600;700;800&display=swap');
         body { font-family: 'Onest', sans-serif; background-color: #f8fafc; transition: background-color 0.3s, color 0.3s; }
@@ -366,11 +362,6 @@
 
     <div id="footer-container"></div>
 
-    <script type="module">
-        import { inicializarProgreso } from '../js/progreso-ui.js'
-        inicializarProgreso(1)  // ← Esto ejecuta la lógica del progreso
-    </script>
-
     <script type="module" src="../js/auth-loader.js"></script>
     <script type="module" src="../js/progreso.js"></script>
 
@@ -378,6 +369,11 @@
     <script src="../js/menu.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/theme.js"></script>
+
+    <script type="module">
+        import { inicializarProgreso } from '../js/progreso-ui.js'
+        inicializarProgreso(1)  // ← Esto ejecuta la lógica del progreso
+    </script>
 
 </body>
 </html>
